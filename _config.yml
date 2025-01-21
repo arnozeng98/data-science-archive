@@ -3,7 +3,7 @@
 
 title: Arno's Projects Collection
 author: Arno Zeng
-logo: img/Arno.jpg
+logo: img/icon(small).png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
