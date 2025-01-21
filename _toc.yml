@@ -1,0 +1,10 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: archive/intro
+chapters:
+- file: archive/markdown
+- file: archive/notebooks
+- file: archive/markdown-notebooks
+- file: archive/house-prices/docs/report
