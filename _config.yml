@@ -22,7 +22,6 @@ bibtex_bibfiles:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/arnozeng98/data-science-archive  # Online location
-  path_to_book: docs
   branch: gh-pages
 
 # Add GitHub buttons to your book
