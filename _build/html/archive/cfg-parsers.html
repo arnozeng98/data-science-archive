@@ -1,0 +1,1430 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>COLX 535 Lab Assignment 2: Working with CFG Parsers &#8212; Arno&#39;s Projects Collection</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'archive/cfg-parsers';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lab 3: Subqueries, window functions, CTEs" href="postgresql.html" />
+    <link rel="prev" title="DSCI 563 Lab Assignment 3: Blogs" href="blogs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Arno's Projects Collection - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Arno's Projects Collection - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Arno’s Projects Collection
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="house-prices%28py%29.html">House Prices - Advanced Regression Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="house-prices%28r%29.html">House Prices - Advanced Regression Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coronary-heart-disease-study.html">Coronary Heart Disease Study</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="blogs.html">DSCI 563 Lab Assignment 3: Blogs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NLP</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">COLX 535 Lab Assignment 2: Working with CFG Parsers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Database</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="postgresql.html">Lab 3: Subqueries, window functions, CTEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">Lab 4: MongoDB query language</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Lab 4 Py</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/arnozeng98/data-science-archive" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/arnozeng98/data-science-archive/issues/new?title=Issue%20on%20page%20%2Farchive/cfg-parsers.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/archive/cfg-parsers.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>COLX 535 Lab Assignment 2: Working with CFG Parsers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-objectives">Assignment Objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-this-relate-to-class">How does this relate to class?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tidy-submission">Tidy Submission</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-test-the-parser">Exercise 1: Test the parser</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-build-a-gold-standard">Exercise 2: Build a gold standard</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sentence-1">Sentence 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sentence-2">Sentence 2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sentence-3">Sentence 3</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-evaluating-parsers">Exercise 3: Evaluating parsers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.3</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.4</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-generate-a-grammar">Exercise 4: Generate a grammar</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional">4.3  Optional</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="colx-535-lab-assignment-2-working-with-cfg-parsers">
+<h1>COLX 535 Lab Assignment 2: Working with CFG Parsers<a class="headerlink" href="#colx-535-lab-assignment-2-working-with-cfg-parsers" title="Link to this heading">#</a></h1>
+<section id="assignment-objectives">
+<h2>Assignment Objectives<a class="headerlink" href="#assignment-objectives" title="Link to this heading">#</a></h2>
+<p>In this assignment you will</p>
+<ul class="simple">
+<li><p>Use the Stanford CoreNLP parser to parse new text into constituency trees</p></li>
+<li><p>Create a parsing gold standard and use it to evaluate parsers</p></li>
+<li><p>Build a context-free grammar from existing parses (optional assignment)</p></li>
+</ul>
+<section id="how-does-this-relate-to-class">
+<h3>How does this relate to class?<a class="headerlink" href="#how-does-this-relate-to-class" title="Link to this heading">#</a></h3>
+<p>In class, we’re discussing CFGs (Context-free grammars).  In this lab, you will be evaluating the quality of the Stanford Parser, and then using it to create and modify your own CFG (and feature grammar), to establish a treebank of your own.</p>
+</section>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<p>This assignment requires that you have set up the Stanford parser. First, make sure you have the more recent version of <a class="reference external" href="https://www.java.com/en/download/">Java</a>, then get the <a class="reference external" href="https://stanfordnlp.github.io/CoreNLP/">Stanford CoreNLP</a> package. Make sure that you get the 4.3.2 version (or at least &gt;=4.2.0).  (It’s probably easiest to download from <a class="reference external" href="https://huggingface.co/stanfordnlp/CoreNLP/tree/main">HuggingFace</a>)</p>
+<p>To load Stanford CoreNLP in Python, change the <code class="docutils literal notranslate"><span class="pre">coreNLP_dir</span></code> variable in the code below to where you unzipped Stanford coreNLP. You can follow this <a class="reference external" href="https://bbengfort.github.io/snippets/2018/06/22/corenlp-nltk-parses.html">tutorial</a>. Once the coreNLP server is running, you will be able to access it through NLTK.</p>
+<p>There are 3 steps:</p>
+<ul class="simple">
+<li><p>Install Java (the JRE is fine for this assignment, but you may want to consider the JDK if you want to do Java development)</p></li>
+<li><p>Set an environment variable called JAVA_HOME to the location of your java.exe file (you might need to restart your machine after setting this variable)</p></li>
+<li><p>Download the coreNLP, unzip it, and point to it in the code below.</p></li>
+</ul>
+<p>It may take a few seconds or up to a minute to start the server.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.parse.corenlp</span> <span class="kn">import</span> <span class="n">CoreNLPServer</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">coreNLP_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;models&#39;</span><span class="p">,</span> <span class="s1">&#39;stanford-corenlp-4.5.8&#39;</span><span class="p">)</span>
+
+<span class="c1"># # Create the server</span>
+<span class="c1"># server = CoreNLPServer(</span>
+<span class="c1">#    os.path.join(coreNLP_dir, &quot;stanford-corenlp-4.5.8.jar&quot;),</span>
+<span class="c1">#    os.path.join(coreNLP_dir, &quot;stanford-corenlp-4.5.8-models.jar&quot;)    </span>
+<span class="c1"># )</span>
+
+<span class="c1"># # Start the server in the background</span>
+<span class="c1"># server.start()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coreNLP_dir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;models\\stanford-corenlp-4.5.8&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>run following in terminal:</p>
+<div class="highlight-ba notranslate"><div class="highlight"><pre><span></span>java -mx4g -cp &#39;models\\stanford-corenlp-4.5.8/*&#39; edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
+</pre></div>
+</div>
+<p>Try to parse a sentence to make sure that everything works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.parse.corenlp</span> <span class="kn">import</span> <span class="n">CoreNLPParser</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">CoreNLPParser</span><span class="p">()</span>
+<span class="n">parse</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">raw_parse</span><span class="p">(</span><span class="s2">&quot;I put the book in the box on the table.&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">parse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(ROOT
+  (S
+    (NP (PRP I))
+    (VP
+      (VBD put)
+      (NP (DT the) (NN book))
+      (PP (IN in) (NP (DT the) (NN box)))
+      (PP (IN on) (NP (DT the) (NN table))))
+    (. .)))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">raw_parse</span><span class="p">(</span><span class="s1">&#39;I put the book in the box on the table.&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                         ROOT                              
+                          |                                 
+                          S                                
+  ________________________|______________________________   
+ |                        VP                             | 
+ |    ____________________|________________              |  
+ |   |       |            PP               PP            | 
+ |   |       |         ___|____         ___|___          |  
+ NP  |       NP       |        NP      |       NP        | 
+ |   |    ___|___     |    ____|___    |    ___|____     |  
+PRP VBD  DT      NN   IN  DT       NN  IN  DT       NN   . 
+ |   |   |       |    |   |        |   |   |        |    |  
+ I  put the     book  in the      box  on the     table  . 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">raw_parse</span><span class="p">(</span><span class="s2">&quot;They gave me yellow and blue pants&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">parse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(ROOT
+  (S
+    (NP (PRP They))
+    (VP
+      (VBD gave)
+      (NP (PRP me))
+      (NP (ADJP (JJ yellow) (CC and) (JJ blue)) (NNS pants)))))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">raw_parse</span><span class="p">(</span><span class="s2">&quot;They gave me yellow and blue pants&quot;</span><span class="p">)))[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      S                                 
+  ____|_________                         
+ |              VP                      
+ |     _________|__________              
+ |    |    |               NP           
+ |    |    |           ____|_________    
+ NP   |    NP        ADJP            |  
+ |    |    |     _____|________      |   
+PRP  VBD  PRP   JJ    CC       JJ   NNS 
+ |    |    |    |     |        |     |   
+They gave  me yellow and      blue pants
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the code below if you want to shut down the coreNLP server after you’ve finished with it. It’s a good idea to shut down the parser after finishing work with it because it may remain running in the background and you may not be able to start another parser instance without restarting your computer or manually killing the parser process.</p>
+<p>If you forget to stop the server, next time when you try to launch it, you’ll get an error. In this case, you may first need to kill the old server manually. To do this, you can run <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-ax</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">stanford</span></code> on the commandline (at least on OSX and Linux) which should give you the process ID of the server, e.g. 11111. You can then use <code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">-9</span> <span class="pre">11111</span></code> to kill the parser, after which you should be able to start the server again.  On Windows, you should be able to use the Task Manager to kill the process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Other things you’ll need:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.tree</span> <span class="kn">import</span> <span class="n">Tree</span>
+<span class="kn">from</span> <span class="nn">nltk.grammar</span> <span class="kn">import</span> <span class="n">CFG</span><span class="p">,</span> <span class="n">Nonterminal</span><span class="p">,</span> <span class="n">Production</span><span class="p">,</span> <span class="n">FeatureGrammar</span>
+<span class="kn">from</span> <span class="nn">nltk.parse</span> <span class="kn">import</span> <span class="n">CoreNLPParser</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">brown</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;movie_reviews&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package movie_reviews to
+[nltk_data]     C:\Users\ArnoZ\AppData\Roaming\nltk_data...
+[nltk_data]   Package movie_reviews is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tidy-submission">
+<h2>Tidy Submission<a class="headerlink" href="#tidy-submission" title="Link to this heading">#</a></h2>
+<p>rubric={mechanics:1}</p>
+<p>To get the marks for tidy submission:</p>
+<ul class="simple">
+<li><p>Submit the assignment by filling in this jupyter notebook with your answers embedded</p></li>
+<li><p>Be sure to follow the <a class="reference external" href="https://ubc-mds.github.io/resources_pages/general_lab_instructions">general lab instructions</a></p></li>
+</ul>
+<section id="exercise-1-test-the-parser">
+<h3>Exercise 1: Test the parser<a class="headerlink" href="#exercise-1-test-the-parser" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h4>1.1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>rubric={accuracy:2}</p>
+<p>Get the Stanford parser working, then parse the first 20 sentences of the NLTK <code class="docutils literal notranslate"><span class="pre">movie_reviews</span></code> corpus, and report the average depth (height) of the parse trees. If you find the parser is failing to parse something, you can skip over it.</p>
+<p>You should retain the tokenization in the <code class="docutils literal notranslate"><span class="pre">movie_reviews</span></code> corpus. You can use <code class="docutils literal notranslate"><span class="pre">parser.parse()</span></code> to parse the tokenized input sentences. Note that <code class="docutils literal notranslate"><span class="pre">parser.parse()</span></code> returns an iterator over possible parses. There may be several if the sentence is ambiguous. You can compute statistics on the first sentence which is returned by <code class="docutils literal notranslate"><span class="pre">parser.parse()</span></code> (ie, don’t calculate an average height over all parses - we’re just interested in the height of the first parse, for simplicity.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">movie_reviews</span>
+
+<span class="c1"># your code here</span>
+
+<span class="n">movie_reviews_sentences</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">movie_reviews</span><span class="o">.</span><span class="n">sents</span><span class="p">())[:</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">movie_reviews_sentences</span><span class="p">):</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">parse_tree</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">raw_parse</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="p">)))</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">parse_tree</span><span class="o">.</span><span class="n">height</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Height </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">heights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to parse: </span><span class="si">{</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">average_height</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Average height: </span><span class="si">{</span><span class="n">average_height</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Height 1: 10
+Height 2: 7
+Height 3: 12
+Height 4: 7
+Height 5: 8
+Height 6: 4
+Height 7: 4
+Height 8: 12
+Height 9: 20
+Height 10: 12
+Height 11: 8
+Height 12: 9
+Height 13: 17
+Height 14: 12
+Height 15: 15
+Height 16: 15
+Height 17: 10
+Height 18: 5
+Height 19: 24
+Height 20: 23
+
+Average height: 11.7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-2-build-a-gold-standard">
+<h3>Exercise 2: Build a gold standard<a class="headerlink" href="#exercise-2-build-a-gold-standard" title="Link to this heading">#</a></h3>
+<p>One typical way to build treebanks is, rather than having humans build a tree from scratch, instead use an automatic parser to give an initial parse, and then have humans do a second pass to fix any errors. That’s what you’re going to do in this exercise.</p>
+<p>We will use the following three sentences from the NLTK <code class="docutils literal notranslate"><span class="pre">movie_reviews</span></code> corpus to build a mini-treebank:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corpus</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;oh&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;by&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;way&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;this&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> 
+     <span class="s1">&#39;not&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;horror&#39;</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="s1">&#39;teen&#39;</span><span class="p">,</span> <span class="s1">&#39;slasher&#39;</span><span class="p">,</span> <span class="s1">&#39;flick&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
+    
+    <span class="p">[</span><span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;they&#39;</span><span class="p">,</span> <span class="s1">&#39;know&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;power&#39;</span><span class="p">,</span> <span class="s1">&#39;within&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
+    
+    <span class="p">[</span><span class="s1">&#39;so&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;if&#39;</span><span class="p">,</span> <span class="s1">&#39;robots&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;parts&#39;</span><span class="p">,</span> <span class="s1">&#39;really&#39;</span><span class="p">,</span> 
+     <span class="s1">&#39;turn&#39;</span><span class="p">,</span> <span class="s1">&#39;you&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;here&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;your&#39;</span><span class="p">,</span> <span class="s1">&#39;movie&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In each of the three sections below you will see a parse tree produced by CoreNLPParser. Each of the trees contains at least one parse error. You’ll see a brief informal description of the error and it is your task to fix the tree.</p>
+<p>Create an NLTK Tree corresponding to the correct parse, which should be appended to the <code class="docutils literal notranslate"><span class="pre">gold_standard_parses</span></code> list below. You can do this manually by printing the tree, creating a triple-quoted string, modifying it, and converting it back into a <code class="docutils literal notranslate"><span class="pre">Tree</span></code> using the function <code class="docutils literal notranslate"><span class="pre">Tree.fromstring</span></code> following the example below. If you are unsure exactly how to correct something, read through the lecture slides. Many common parse errors are explained there.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example:</span>
+
+<span class="c1"># The second phrase should be a VP, not an NP</span>
+<span class="n">err_tree_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;(S</span>
+<span class="s1">(NP (NNS Dogs)) </span>
+<span class="s1">(NP (VBN bark))</span>
+<span class="s1">(. .))</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">corr_tree_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;(S</span>
+<span class="s1">(NP (NNS Dogs)) </span>
+<span class="s1">(VP (VBN bark))</span>
+<span class="s1">(. .))</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">corr_tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">corr_tree_str</span><span class="p">)</span>
+<span class="n">corr_tree</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      S      
+  ____|____   
+ NP   VP   | 
+ |    |    |  
+NNS  VBN   . 
+ |    |    |  
+Dogs bark  . 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store your corrected nltk.Tree objects in this list</span>
+<span class="n">gold_standard_parses</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="sentence-1">
+<h4>Sentence 1<a class="headerlink" href="#sentence-1" title="Link to this heading">#</a></h4>
+<p>rubric={accuracy:2}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The word &quot;flick&quot; should be modified by the entire noun phrase </span>
+<span class="c1"># &quot;a horror or teen slasher&quot; instead of just &quot;teen slasher&quot;. A noun </span>
+<span class="c1"># phrase which modifies a noun is labeled as NML.</span>
+
+<span class="n">err_tree_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;(ROOT</span>
+<span class="s1">  (S</span>
+<span class="s1">    (INTJ (UH oh))</span>
+<span class="s1">    (, ,)</span>
+<span class="s1">    (CC and)</span>
+<span class="s1">    (PP (IN by) (NP (DT the) (NN way)))</span>
+<span class="s1">    (, ,)</span>
+<span class="s1">    (NP (DT this))</span>
+<span class="s1">    (VP</span>
+<span class="s1">      (VBZ is)</span>
+<span class="s1">      (RB not)</span>
+<span class="s1">      (NP</span>
+<span class="s1">        (NP (DT a) (NN horror))</span>
+<span class="s1">        (CC or)</span>
+<span class="s1">        (NP (NML (NN teen) (NN slasher)) (NN flick))))</span>
+<span class="s1">    (. .)))&#39;&#39;&#39;</span>
+
+<span class="c1"># your code here</span>
+
+<span class="n">corr_tree_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;(ROOT</span>
+<span class="s1">  (S</span>
+<span class="s1">    (INTJ (UH oh))</span>
+<span class="s1">    (, ,)</span>
+<span class="s1">    (CC and)</span>
+<span class="s1">    (PP (IN by) (NP (DT the) (NN way)))</span>
+<span class="s1">    (, ,)</span>
+<span class="s1">    (NP (DT this))</span>
+<span class="s1">    (VP</span>
+<span class="s1">      (VBZ is)</span>
+<span class="s1">      (RB not)</span>
+<span class="s1">      (NP</span>
+<span class="s1">        (NML</span>
+<span class="s1">          (NP (DT a) (NN horror))</span>
+<span class="s1">          (CC or)</span>
+<span class="s1">          (NP (NN teen) (NN slasher)))</span>
+<span class="s1">        (NN flick)))</span>
+<span class="s1">    (. .)))&#39;&#39;&#39;</span>
+
+<span class="n">corr_tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">corr_tree_str</span><span class="p">)</span>
+<span class="n">gold_standard_parses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corr_tree</span><span class="p">)</span>
+<span class="n">corr_tree</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                      ROOT                                                  
+                                       |                                                     
+                                       S                                                    
+  _____________________________________|__________________________________________________   
+ |    |   |       |           |   |                      VP                               | 
+ |    |   |       |           |   |     _________________|_________                       |  
+ |    |   |       |           |   |    |    |                      NP                     | 
+ |    |   |       |           |   |    |    |                   ___|_________________     |  
+ |    |   |       PP          |   |    |    |                 NML                    |    | 
+ |    |   |    ___|___        |   |    |    |        __________|________             |    |  
+INTJ  |   |   |       NP      |   NP   |    |       NP         |        NP           |    | 
+ |    |   |   |    ___|___    |   |    |    |    ___|____      |    ____|_____       |    |  
+ UH   ,   CC  IN  DT      NN  ,   DT  VBZ   RB  DT       NN    CC  NN         NN     NN   . 
+ |    |   |   |   |       |   |   |    |    |   |        |     |   |          |      |    |  
+ oh   ,  and  by the     way  ,  this  is  not  a      horror  or teen     slasher flick  . 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sentence-2">
+<h4>Sentence 2<a class="headerlink" href="#sentence-2" title="Link to this heading">#</a></h4>
+<p>rubric={accuracy:2}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The PP &quot;within&quot; should attach to the NP &quot;the power&quot;, not to the VP &quot;know the power&quot;. </span>
+
+<span class="n">err_tree_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;(ROOT</span>
+<span class="s1">  (S</span>
+<span class="s1">    (NP (RB little))</span>
+<span class="s1">    (VP</span>
+<span class="s1">      (VBP do)</span>
+<span class="s1">      (SBAR</span>
+<span class="s1">        (S</span>
+<span class="s1">          (NP (PRP they))</span>
+<span class="s1">          (VP (VBP know) (NP (DT the) (NN power)) (PP (IN within))))))</span>
+<span class="s1">    (. .)))&#39;&#39;&#39;</span>
+
+<span class="c1"># your code here</span>
+
+<span class="n">corr_tree_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;(ROOT</span>
+<span class="s1">  (S</span>
+<span class="s1">    (NP (RB little))</span>
+<span class="s1">    (VP</span>
+<span class="s1">      (VBP do)</span>
+<span class="s1">      (SBAR</span>
+<span class="s1">        (S</span>
+<span class="s1">          (NP (PRP they))</span>
+<span class="s1">          (VP</span>
+<span class="s1">            (VBP know)</span>
+<span class="s1">            (NP</span>
+<span class="s1">              (NP (DT the) (NN power))</span>
+<span class="s1">              (PP (IN within)))))))</span>
+<span class="s1">    (. .)))&#39;&#39;&#39;</span>
+
+<span class="n">corr_tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">corr_tree_str</span><span class="p">)</span>
+<span class="n">gold_standard_parses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corr_tree</span><span class="p">)</span>
+<span class="n">corr_tree</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                ROOT                          
+                 |                             
+                 S                            
+   ______________|__________________________   
+  |              VP                         | 
+  |      ________|____                      |  
+  |     |            SBAR                   | 
+  |     |             |                     |  
+  |     |             S                     | 
+  |     |    _________|____                 |  
+  |     |   |              VP               | 
+  |     |   |     _________|____            |  
+  |     |   |    |              NP          | 
+  |     |   |    |          ____|_____      |  
+  NP    |   NP   |         NP         PP    | 
+  |     |   |    |     ____|____      |     |  
+  RB   VBP PRP  VBP   DT        NN    IN    . 
+  |     |   |    |    |         |     |     |  
+little  do they know the      power within  . 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sentence-3">
+<h4>Sentence 3<a class="headerlink" href="#sentence-3" title="Link to this heading">#</a></h4>
+<p>rubric={accuracy:2}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># There are several errors.&quot;body&quot; and &quot;parts&quot; should form an NP. </span>
+<span class="c1"># Moreover, &quot;here&#39;s your movie&quot; should form a clause and &quot;s&quot; is in </span>
+<span class="c1"># fact a verb.  </span>
+
+<span class="n">err_tree_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;(ROOT</span>
+<span class="s1">  (SINV</span>
+<span class="s1">    (ADVP (RB so))</span>
+<span class="s1">    (, ,)</span>
+<span class="s1">    (PP</span>
+<span class="s1">      (IN if)</span>
+<span class="s1">      (NP (NML (NNS robots) (CC and) (NN body)) (NNS parts)))</span>
+<span class="s1">    (ADVP (RB really))</span>
+<span class="s1">    (VP</span>
+<span class="s1">      (VBP turn)</span>
+<span class="s1">      (NP (NP (PRP you)) (PP (IN on) (, ,) (NP (RB here))) (&#39;&#39; &#39;))</span>
+<span class="s1">      (S (NP (POS s))))</span>
+<span class="s1">    (NP (PRP$ your) (NN movie))</span>
+<span class="s1">    (. .)))&#39;&#39;&#39;</span>
+
+<span class="c1"># your code here</span>
+
+<span class="n">corr_tree_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;(ROOT</span>
+<span class="s1">  (SINV</span>
+<span class="s1">    (ADVP (RB so))</span>
+<span class="s1">    (, ,)</span>
+<span class="s1">    (PP</span>
+<span class="s1">      (IN if)</span>
+<span class="s1">      (NP (NML (NNS robots) (CC and) (NN body) (NNS parts))))</span>
+<span class="s1">    (ADVP (RB really))</span>
+<span class="s1">    (VP</span>
+<span class="s1">      (VBP turn)</span>
+<span class="s1">      (NP</span>
+<span class="s1">        (NP (PRP you))</span>
+<span class="s1">        (PP</span>
+<span class="s1">          (IN on)</span>
+<span class="s1">          (, ,)</span>
+<span class="s1">          (S</span>
+<span class="s1">            (NP (EX here))</span>
+<span class="s1">            (VP (VBZ &#39;s)</span>
+<span class="s1">                (NP (PRP$ your) (NN movie))))))</span>
+<span class="s1">      )</span>
+<span class="s1">    (. .)))&#39;&#39;&#39;</span>
+
+<span class="n">corr_tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">corr_tree_str</span><span class="p">)</span>
+<span class="n">gold_standard_parses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corr_tree</span><span class="p">)</span>
+<span class="n">corr_tree</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                          ROOT                                            
+                                           |                                               
+                                          SINV                                            
+  _________________________________________|____________________________________________   
+ |    |        |                     |          VP                                      | 
+ |    |        |                     |      ____|___                                    |  
+ |    |        |                     |     |        NP                                  | 
+ |    |        |                     |     |     ___|_______                            |  
+ |    |        |                     |     |    |           PP                          | 
+ |    |        |                     |     |    |    _______|________                   |  
+ |    |        PP                    |     |    |   |   |            S                  | 
+ |    |    ____|_____                |     |    |   |   |    ________|___               |  
+ |    |   |          NP              |     |    |   |   |   |            VP             | 
+ |    |   |          |               |     |    |   |   |   |     _______|____          |  
+ADVP  |   |         NML             ADVP   |    NP  |   |   NP   |            NP        | 
+ |    |   |     _____|_________      |     |    |   |   |   |    |        ____|____     |  
+ RB   ,   IN  NNS    CC  NN   NNS    RB   VBP  PRP  IN  ,   EX  VBZ     PRP$       NN   . 
+ |    |   |    |     |   |     |     |     |    |   |   |   |    |       |         |    |  
+ so   ,   if robots and body parts really turn you  on  ,  here  &#39;s     your     movie  . 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercise-3-evaluating-parsers">
+<h3>Exercise 3: Evaluating parsers<a class="headerlink" href="#exercise-3-evaluating-parsers" title="Link to this heading">#</a></h3>
+<p>Now that we have a gold standard, we can use it to evaluate parser output.</p>
+<section id="id2">
+<h4>3.1<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>rubric={accuracy:3,quality:1}</p>
+<p>Start by writing a function, get_constituents, which takes a parse tree and returns a set of tuples, where each tuple is (<em>label</em>, <em>start</em>, <em>end</em>) where <em>start</em> and <em>end</em> correspond to the indices of a corresponding constituent (phrase) in the sentence and <em>label</em> is the label of that constituent.</p>
+<p>Do <strong>not</strong> include simple POS constituents <code class="docutils literal notranslate"><span class="pre">(POS</span> <span class="pre">word)</span></code> like <code class="docutils literal notranslate"><span class="pre">(VBD</span> <span class="pre">ate)</span></code>. We want to evaluate the parser only on actual phrases.</p>
+<p><strong>HINT:</strong> You may want to use recursion to solve this assignment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_constituents</span><span class="p">(</span><span class="n">tree</span><span class="p">:</span> <span class="n">Tree</span><span class="p">,</span> <span class="n">start_index</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+    <span class="n">constituents</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="c1"># your code here</span>
+    
+    <span class="k">def</span> <span class="nf">traverse_with_root</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Tree</span><span class="p">,</span> <span class="n">start_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="c1"># Add the current node to constituents </span>
+        <span class="c1"># if it has children or it is the final single-branch node</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Tree</span><span class="p">)):</span>
+            <span class="n">end_index</span> <span class="o">=</span> <span class="n">start_index</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">leaves</span><span class="p">())</span>
+            <span class="n">constituents</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">label</span><span class="p">(),</span> <span class="n">start_index</span><span class="p">,</span> <span class="n">end_index</span><span class="p">))</span>
+
+        <span class="c1"># Recursively traverse children</span>
+        <span class="n">current_index</span> <span class="o">=</span> <span class="n">start_index</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">Tree</span><span class="p">):</span>
+                <span class="n">traverse_with_root</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">current_index</span><span class="p">)</span> <span class="c1"># recursion</span>
+                <span class="n">current_index</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">leaves</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">traverse_with_root</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">start_index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">constituents</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;(S (NP (DT the) (DT mouse)) (VP (VBD ate) (NP (NP (DT the) (DT mouse)) (POS &#39;s) (NN cheese))) )&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">get_constituents</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">==</span> <span class="p">{(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;NP&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;VP&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="s2">&quot;NP&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="s2">&quot;NP&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)}</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;(S (NP (DET the) (NP (NN cat) (CC and) (NN dog))) (VP (VBD fought)))&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">get_constituents</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">==</span> <span class="p">{(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;NP&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;NP&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="s2">&quot;VP&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Success!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h4>3.2<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>rubric={accuracy:2,efficiency:1}</p>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">parse_f1</span></code> which uses get_constituents to implement the constituent F-score measure discussed in the lecture and reading. It should be given two lists, a lists of proposed parses and a corresponding list of gold standard parses, and return an F-score reflecting how close the proposed parses match. For full points, you should keep a running count of the relevant numbers over the entire set, and not average f-score across the individual sentences.</p>
+<p><strong>Hint:</strong> to get the efficiency point, you should take advantage of Python’s fast set operations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_f1</span><span class="p">(</span><span class="n">proposed_parses</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">gold_parses</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="n">f1score</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># your code here</span>
+
+    <span class="c1"># Initialize counts for precision and recall</span>
+    <span class="n">true_positives</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">total_proposed</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">total_gold</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Loop through the parses</span>
+    <span class="k">for</span> <span class="n">proposed_tree</span><span class="p">,</span> <span class="n">gold_tree</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">proposed_parses</span><span class="p">,</span> <span class="n">gold_parses</span><span class="p">):</span>
+        <span class="n">proposed_constituents</span> <span class="o">=</span> <span class="n">get_constituents</span><span class="p">(</span><span class="n">proposed_tree</span><span class="p">)</span>
+        <span class="n">gold_constituents</span> <span class="o">=</span> <span class="n">get_constituents</span><span class="p">(</span><span class="n">gold_tree</span><span class="p">)</span>
+
+        <span class="c1"># Count overlaps (true positives)</span>
+        <span class="n">true_positives</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">proposed_constituents</span> <span class="o">&amp;</span> <span class="n">gold_constituents</span><span class="p">)</span>
+        <span class="c1"># Count total proposed and gold constituents</span>
+        <span class="n">total_proposed</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">proposed_constituents</span><span class="p">)</span>
+        <span class="n">total_gold</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">gold_constituents</span><span class="p">)</span>
+
+    <span class="c1"># Calculate precision, recall, and F1 score</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="n">true_positives</span> <span class="o">/</span> <span class="n">total_proposed</span> <span class="k">if</span> <span class="n">total_proposed</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">true_positives</span> <span class="o">/</span> <span class="n">total_gold</span> <span class="k">if</span> <span class="n">total_gold</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">f1score</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+    
+    <span class="k">return</span> <span class="n">f1score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gold_parses</span> <span class="o">=</span> <span class="p">[</span><span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;(S (NP (DT the) (DT mouse)) (VP (VBD ate) (NP (NP (DT the) (DT mouse)) (POS &#39;s) (NN cheese))) )&#39;&#39;&#39;</span><span class="p">),</span> <span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;(S (NP (NNS mice)) (VP (VBD love) (NP (NNS ducks))))&#39;&#39;&#39;</span><span class="p">)]</span>
+<span class="n">proposed_parses</span> <span class="o">=</span> <span class="p">[</span><span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;(S (NP (DT the) (DT mouse)) (VP (VBD ate) (NP (NP (DT the) (DT mouse)) (POS &#39;s) (NN cheese))) )&#39;&#39;&#39;</span><span class="p">),</span> <span class="n">Tree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;(S (NP (NNS mice) (NN love)) (VP (VBZ ducks)))&#39;&#39;&#39;</span><span class="p">)]</span>
+<span class="k">assert</span> <span class="mf">0.71</span> <span class="o">&gt;</span> <span class="n">parse_f1</span><span class="p">(</span><span class="n">proposed_parses</span><span class="p">,</span> <span class="n">gold_parses</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.7</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Success!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h4>3.3<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>rubric={accuracy:1}</p>
+<p>Parse your three example sentences from assignment 2 using CoreNLPParser (you can find the sentences in the list <code class="docutils literal notranslate"><span class="pre">corpus</span></code>), extract the constituents and evaluate the result against <code class="docutils literal notranslate"><span class="pre">gold_standard_parses</span></code>.</p>
+<p><strong>Hint:</strong> Your F1-score should be &gt; 0.6 (the actual score may depend a bit on your version of the CoreNLP parser).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+
+<span class="c1"># Parse sentences</span>
+<span class="n">proposed_parses</span> <span class="o">=</span> <span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">raw_parse</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="p">)))</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">]</span>
+
+<span class="c1"># Calculate F1 score</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="n">parse_f1</span><span class="p">(</span><span class="n">proposed_parses</span><span class="p">,</span> <span class="n">gold_standard_parses</span><span class="p">)</span>
+<span class="n">f1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.684931506849315
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h4>3.4<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>rubric={reasoning:1}</p>
+<p>Given the way we build our gold standard, do you think this is a valid indication of the quality of parsers? Why or why not? What about if we tested the parser on the Penn Treebank corpus instead?</p>
+<p><strong>Answer:</strong></p>
+<p>I don’t think it is valid due to these problems. Firstly, there are only three sentences, this insufficient in diversity of syntactic structures may cause subjectivity and bias. And the robustness and generalization ability of the evaluation are limited. Secondly, the F1 score only focuses on the complete match of components, instead of partial matches or semantic understanding. This may affect the actual performance of the parser. In contrast, using a standard corpus like Penn Treebank, is more reasonable for evaluation.</p>
+</section>
+</section>
+<section id="exercise-4-generate-a-grammar">
+<h3>Exercise 4: Generate a grammar<a class="headerlink" href="#exercise-4-generate-a-grammar" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h4>4.1<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>rubric= {accuracy:1}</p>
+<p>Parse trees implicitly contain the production rules for a CFG defined by the productions which are present in the parse tree. You can access these productions using the member function <code class="docutils literal notranslate"><span class="pre">nltk.Tree.productions()</span></code>.</p>
+<p>Produce a grammar corresponding to the CFG productions in your three sentences from exercise 2, and print it out. One “trick” to sort string in the manner you want is to create a sorting function that biases the sort by placing extra information (that will be sorted correctly) at the start of each string.  So you should write a sort function that does this, and pass it to the <code class="docutils literal notranslate"><span class="pre">sorted</span></code> function under the <code class="docutils literal notranslate"><span class="pre">key</span></code> parameter (similar to how we did lambda sorting in 521).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="c1"># your code here</span>
+
+<span class="c1"># Sort the rules according to type: First ROOT rules, followed</span>
+<span class="c1"># by S rules, other non-terminals and finally terminal rules.</span>
+<span class="c1"># This is not a mandatory part of the assignment.</span>
+
+<span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">gold_standard_parses</span><span class="p">:</span>
+    <span class="n">rules</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">productions</span><span class="p">())</span>
+
+<span class="c1"># Custom sort function for rules</span>
+<span class="k">def</span> <span class="nf">sort_key</span><span class="p">(</span><span class="n">rule</span><span class="p">:</span> <span class="n">nltk</span><span class="o">.</span><span class="n">grammar</span><span class="o">.</span><span class="n">Production</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">lhs</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">lhs</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">lhs</span> <span class="o">==</span> <span class="s2">&quot;ROOT&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;0&quot;</span> <span class="o">+</span> <span class="n">lhs</span>
+    <span class="k">elif</span> <span class="n">lhs</span> <span class="o">==</span> <span class="s2">&quot;S&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;1&quot;</span> <span class="o">+</span> <span class="n">lhs</span>
+    <span class="k">elif</span> <span class="n">lhs</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;2&quot;</span> <span class="o">+</span> <span class="n">lhs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;3&quot;</span> <span class="o">+</span> <span class="n">lhs</span>
+
+<span class="c1"># Sort rules and print</span>
+<span class="n">sorted_rules</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">sort_key</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">sorted_rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ROOT -&gt; S
+ROOT -&gt; SINV
+S -&gt; NP VP .
+S -&gt; NP VP
+S -&gt; INTJ , CC PP , NP VP .
+ADVP -&gt; RB
+CC -&gt; &#39;or&#39;
+CC -&gt; &#39;and&#39;
+DT -&gt; &#39;this&#39;
+DT -&gt; &#39;a&#39;
+DT -&gt; &#39;the&#39;
+EX -&gt; &#39;here&#39;
+IN -&gt; &#39;within&#39;
+IN -&gt; &#39;if&#39;
+IN -&gt; &#39;by&#39;
+IN -&gt; &#39;on&#39;
+INTJ -&gt; UH
+NML -&gt; NP CC NP
+NML -&gt; NNS CC NN NNS
+NN -&gt; &#39;flick&#39;
+NN -&gt; &#39;body&#39;
+NN -&gt; &#39;movie&#39;
+NN -&gt; &#39;teen&#39;
+NN -&gt; &#39;slasher&#39;
+NN -&gt; &#39;power&#39;
+NN -&gt; &#39;way&#39;
+NN -&gt; &#39;horror&#39;
+NNS -&gt; &#39;parts&#39;
+NNS -&gt; &#39;robots&#39;
+NP -&gt; PRP
+NP -&gt; DT
+NP -&gt; NP PP
+NP -&gt; EX
+NP -&gt; NN NN
+NP -&gt; DT NN
+NP -&gt; NML
+NP -&gt; RB
+NP -&gt; PRP$ NN
+NP -&gt; NML NN
+PP -&gt; IN , S
+PP -&gt; IN NP
+PP -&gt; IN
+PRP -&gt; &#39;they&#39;
+PRP -&gt; &#39;you&#39;
+PRP$ -&gt; &#39;your&#39;
+RB -&gt; &#39;really&#39;
+RB -&gt; &#39;little&#39;
+RB -&gt; &#39;not&#39;
+RB -&gt; &#39;so&#39;
+SBAR -&gt; S
+SINV -&gt; ADVP , PP ADVP VP .
+UH -&gt; &#39;oh&#39;
+VBP -&gt; &#39;do&#39;
+VBP -&gt; &#39;turn&#39;
+VBP -&gt; &#39;know&#39;
+VBZ -&gt; &quot;&#39;s&quot;
+VBZ -&gt; &#39;is&#39;
+VP -&gt; VBZ RB NP
+VP -&gt; VBP NP
+VP -&gt; VBP SBAR
+VP -&gt; VBZ NP
+, -&gt; &#39;,&#39;
+. -&gt; &#39;.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h4>4.2<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p>rubric= {accuracy:1}</p>
+<p>Show the rules in 4.1 are indeed sufficient to parse the sentences in the list <code class="docutils literal notranslate"><span class="pre">corpus</span></code>. Using an NLTK EarleyChartParser parser for this. Print out the number of parses for each sentence. Don’t print out the parses themselves, as there might be a lot of them and you could crash your notebook (this depends a bit on how you fixed the parse trees in exercise 2). You should also set the <code class="docutils literal notranslate"><span class="pre">trace</span></code> keyword argument of the parser to 0 for the same reason.</p>
+<p>If you have individual sentences which are taking longer than 2 minutes to parse, you can skip over them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">EarleyChartParser</span>
+<span class="kn">from</span> <span class="nn">nltk.grammar</span> <span class="kn">import</span> <span class="n">CFG</span>
+
+<span class="c1"># your code here</span>
+
+<span class="c1"># Add terminal rules for all unique words in the corpus</span>
+<span class="n">vocabulary</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">:</span>
+    <span class="n">vocabulary</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">vocabulary</span><span class="p">:</span>
+    <span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Production</span><span class="p">(</span><span class="n">Nonterminal</span><span class="p">(</span><span class="n">word</span><span class="p">),</span> <span class="p">[</span><span class="n">word</span><span class="p">]))</span>
+
+<span class="c1"># Create a CFG grammar from the rules</span>
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">CFG</span><span class="p">(</span><span class="n">Nonterminal</span><span class="p">(</span><span class="s1">&#39;ROOT&#39;</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">rules</span><span class="p">))</span>
+
+<span class="c1"># Initialize an EarleyChartParser with the grammar</span>
+<span class="n">earley_parser</span> <span class="o">=</span> <span class="n">EarleyChartParser</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">trace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Parse each sentence in the corpus</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+    <span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="n">parses</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">earley_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentence </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">parses</span><span class="p">)</span><span class="si">}</span><span class="s2"> parses&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sentence 1: 1 parses
+Sentence 2: 2 parses
+Sentence 3: 0 parses
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optional">
+<h4>4.3  Optional<a class="headerlink" href="#optional" title="Link to this heading">#</a></h4>
+<p>rubric= {accuracy:2}</p>
+<p>Convert your CFG grammar into a feature grammar and implement noun-verb agreement (you should use the feature values <code class="docutils literal notranslate"><span class="pre">3SG</span></code> and <code class="docutils literal notranslate"><span class="pre">NON3SG</span></code>). Make sure that all S, NP and VP rules use agreement features.</p>
+<p>Give an example sentence, which displays noun-verb agreement. Show that your feature grammar can parse this sentence. Then create a version of the same sentence without proper agreement, and show that the number of parses for this setence is lower (possibly zero).</p>
+<p>Your grammar shouldn’t contain any rules where the LHS contains special characters like <code class="docutils literal notranslate"><span class="pre">.</span></code> or <code class="docutils literal notranslate"><span class="pre">$</span></code>. Otherwise <code class="docutils literal notranslate"><span class="pre">FeatureGrammar.fromstring</span></code> might give an error. This means that you might need to rename some of your non-terminals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./archive"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="blogs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DSCI 563 Lab Assignment 3: Blogs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="postgresql.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 3: Subqueries, window functions, CTEs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-objectives">Assignment Objectives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-this-relate-to-class">How does this relate to class?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tidy-submission">Tidy Submission</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-test-the-parser">Exercise 1: Test the parser</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-build-a-gold-standard">Exercise 2: Build a gold standard</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sentence-1">Sentence 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sentence-2">Sentence 2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sentence-3">Sentence 3</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-evaluating-parsers">Exercise 3: Evaluating parsers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.3</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.4</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-generate-a-grammar">Exercise 4: Generate a grammar</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional">4.3  Optional</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arno Zeng
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

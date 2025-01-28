@@ -3,8 +3,26 @@
 
 format: jb-book
 root: archive/intro
-chapters:
-- file: archive/markdown
-- file: archive/notebooks
-- file: archive/markdown-notebooks
-- file: archive/house-prices/docs/report
+parts:
+  - caption: Machine Learning
+    chapters:
+    - file: archive/house-prices(py)
+    - file: archive/house-prices(r)
+    - file: archive/coronary-heart-disease-study
+
+  - caption: Deep Learning
+    chapters: 
+    - file: archive/blogs
+  
+  - caption: NLP
+    chapters:
+    - file: archive/cfg-parsers
+  
+  - caption: Database
+    chapters:
+    - file: archive/postgresql
+    - file: archive/mongodb
+  
+  - caption: Visualization
+    chapters:
+    - file: archive/visualization
