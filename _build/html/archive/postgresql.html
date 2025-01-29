@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lab 3: Subqueries, window functions, CTEs &#8212; Arno&#39;s Projects Collection</title>
+    <title>PostgreSQL &#8212; Arno&#39;s Projects Collection</title>
   
   
   
@@ -63,11 +63,12 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'archive/postgresql';</script>
+    <link rel="canonical" href="docs.arnozeng.com/archive/postgresql.html" />
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lab 4: MongoDB query language" href="mongodb.html" />
-    <link rel="prev" title="COLX 535 Lab Assignment 2: Working with CFG Parsers" href="cfg-parsers.html" />
+    <link rel="next" title="MongoDB" href="mongodb.html" />
+    <link rel="prev" title="CFG Parsers" href="cfg-parsers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -167,32 +168,32 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to Arno’s Projects Collection
+                    Arno’s Projects Collection
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="house-prices%28py%29.html">House Prices - Advanced Regression Techniques</a></li>
-<li class="toctree-l1"><a class="reference internal" href="house-prices%28r%29.html">House Prices - Advanced Regression Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="house-prices%28py%29.html">House Prices (Python)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="house-prices%28r%29.html">House Prices (R)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coronary-heart-disease-study.html">Coronary Heart Disease Study</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="blogs.html">DSCI 563 Lab Assignment 3: Blogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blogs.html">Blogs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NLP</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cfg-parsers.html">COLX 535 Lab Assignment 2: Working with CFG Parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg-parsers.html">CFG Parsers</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Database</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 3: Subqueries, window functions, CTEs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mongodb.html">Lab 4: MongoDB query language</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">MongoDB</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">Lab 4 Py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 </ul>
 
     </div>
@@ -375,7 +376,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab 3: Subqueries, window functions, CTEs</h1>
+    <h1>PostgreSQL</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -385,6 +386,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subqueries-window-functions-ctes">Subqueries, window functions, CTEs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-set-up">Getting set up</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-simple-subqueries">Exercise 1: Simple subqueries</a><ul class="nav section-nav flex-column">
@@ -421,9 +423,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <img src="img/dsci513_header2.png" width="600"><section class="tex2jax_ignore mathjax_ignore" id="lab-3-subqueries-window-functions-ctes">
-<h1>Lab 3: Subqueries, window functions, CTEs<a class="headerlink" href="#lab-3-subqueries-window-functions-ctes" title="Link to this heading">#</a></h1>
-<p>Total out of 29 marks.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="postgresql">
+<h1>PostgreSQL<a class="headerlink" href="#postgresql" title="Link to this heading">#</a></h1>
+<section id="subqueries-window-functions-ctes">
+<h2>Subqueries, window functions, CTEs<a class="headerlink" href="#subqueries-window-functions-ctes" title="Link to this heading">#</a></h2>
+</section>
 <section id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Link to this heading">#</a></h2>
 <hr class="docutils" />
@@ -2397,7 +2401,7 @@ ORDER BY
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">COLX 535 Lab Assignment 2: Working with CFG Parsers</p>
+        <p class="prev-next-title">CFG Parsers</p>
       </div>
     </a>
     <a class="right-next"
@@ -2405,7 +2409,7 @@ ORDER BY
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab 4: MongoDB query language</p>
+        <p class="prev-next-title">MongoDB</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2426,6 +2430,7 @@ ORDER BY
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subqueries-window-functions-ctes">Subqueries, window functions, CTEs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-set-up">Getting set up</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-simple-subqueries">Exercise 1: Simple subqueries</a><ul class="nav section-nav flex-column">
@@ -2475,7 +2480,7 @@ By Arno Zeng
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>
