@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>House Prices - Advanced Regression Techniques &#8212; Arno&#39;s Projects Collection</title>
+    <title>House Prices (R) &#8212; Arno&#39;s Projects Collection</title>
   
   
   
@@ -61,11 +61,12 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'archive/house-prices(r)';</script>
+    <link rel="canonical" href="docs.arnozeng.com/archive/house-prices(r).html" />
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Coronary Heart Disease Study" href="coronary-heart-disease-study.html" />
-    <link rel="prev" title="House Prices - Advanced Regression Techniques" href="house-prices%28py%29.html" />
+    <link rel="prev" title="House Prices (Python)" href="house-prices%28py%29.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -165,32 +166,32 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to Arno’s Projects Collection
+                    Arno’s Projects Collection
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="house-prices%28py%29.html">House Prices - Advanced Regression Techniques</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">House Prices - Advanced Regression Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="house-prices%28py%29.html">House Prices (Python)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">House Prices (R)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coronary-heart-disease-study.html">Coronary Heart Disease Study</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="blogs.html">DSCI 563 Lab Assignment 3: Blogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blogs.html">Blogs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NLP</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cfg-parsers.html">COLX 535 Lab Assignment 2: Working with CFG Parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg-parsers.html">CFG Parsers</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Database</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="postgresql.html">Lab 3: Subqueries, window functions, CTEs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mongodb.html">Lab 4: MongoDB query language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgresql.html">PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">MongoDB</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">Lab 4 Py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 </ul>
 
     </div>
@@ -373,7 +374,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>House Prices - Advanced Regression Techniques</h1>
+    <h1>House Prices (R)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,6 +384,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-regression-techniques">Advanced Regression Techniques</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
@@ -396,7 +398,32 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-descriptions">File descriptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-missing-values">Handling Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding">Encoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalize-data-standard-scaling">Normalize Data (Standard Scaling)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#knn">kNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">SVM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">Lasso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge">Ridge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticnet">ElasticNet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">XGBoost</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -408,15 +435,19 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="house-prices-advanced-regression-techniques">
-<h1>House Prices - Advanced Regression Techniques<a class="headerlink" href="#house-prices-advanced-regression-techniques" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="house-prices-r">
+<h1>House Prices (R)<a class="headerlink" href="#house-prices-r" title="Link to this heading">#</a></h1>
+<section id="advanced-regression-techniques">
+<h2>Advanced Regression Techniques<a class="headerlink" href="#advanced-regression-techniques" title="Link to this heading">#</a></h2>
 <p>Predict sales prices and practice feature engineering, RFs, and gradient boosting</p>
 <p><strong>Author:</strong> Lingsong Zeng<br>
-<strong>Date:</strong> 12/31/2024</p>
+<strong>Date:</strong> 04/20/2020</p>
+</section>
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference internal" href="#Introduction"><span class="xref myst">Introduction</span></a></p></li>
+<li><p><a class="reference internal" href="#Data"><span class="xref myst">Data</span></a></p></li>
 <li><p><a class="reference internal" href="#EDA"><span class="xref myst">EDA</span></a></p></li>
 <li><p><a class="reference internal" href="#Feature-Engineering"><span class="xref myst">Feature Engineering</span></a></p></li>
 <li><p><a class="reference internal" href="#Preprocessing"><span class="xref myst">Preprocessing</span></a></p></li>
@@ -478,6 +509,20 @@
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">moments</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">VIM</span><span class="p">)</span><span class="w">      </span><span class="c1"># kNN imputation</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">e1071</span><span class="p">)</span><span class="w">    </span><span class="c1"># SVM</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">kernlab</span><span class="p">)</span><span class="w">  </span><span class="c1"># SVM</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">glmnet</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rpart</span><span class="p">)</span><span class="w">       </span><span class="c1"># Decision Tree package</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span><span class="w">  </span><span class="c1"># For visualizing the tree</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">randomForest</span><span class="p">)</span><span class="w">  </span><span class="c1"># Random Forest for Bagging</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span><span class="w">  </span><span class="c1"># Core XGBoost package</span>
 </pre></div>
 </div>
 </div>
@@ -493,6 +538,130 @@ The following objects are masked from &#39;package:stats&#39;:
 The following objects are masked from &#39;package:base&#39;:
 
     intersect, setdiff, setequal, union
+
+
+
+Attaching package: &#39;scales&#39;
+
+
+The following object is masked from &#39;package:readr&#39;:
+
+    col_factor
+
+
+Warning message:
+&quot;package &#39;VIM&#39; was built under R version 4.4.2&quot;
+Loading required package: colorspace
+
+Loading required package: grid
+
+VIM is ready to use.
+
+
+Suggestions and bug-reports can be submitted at: https://github.com/statistikat/VIM/issues
+
+
+Attaching package: &#39;VIM&#39;
+
+
+The following object is masked from &#39;package:datasets&#39;:
+
+    sleep
+
+
+Loading required package: carData
+
+
+Attaching package: &#39;car&#39;
+
+
+The following object is masked from &#39;package:dplyr&#39;:
+
+    recode
+
+
+Warning message:
+&quot;package &#39;caret&#39; was built under R version 4.4.2&quot;
+Loading required package: lattice
+
+Warning message:
+&quot;package &#39;e1071&#39; was built under R version 4.4.2&quot;
+
+Attaching package: &#39;e1071&#39;
+
+
+The following objects are masked from &#39;package:moments&#39;:
+
+    kurtosis, moment, skewness
+
+
+
+Attaching package: &#39;kernlab&#39;
+
+
+The following object is masked from &#39;package:scales&#39;:
+
+    alpha
+
+
+The following object is masked from &#39;package:ggplot2&#39;:
+
+    alpha
+
+
+Warning message:
+&quot;package &#39;glmnet&#39; was built under R version 4.4.2&quot;
+Loading required package: Matrix
+
+
+Attaching package: &#39;Matrix&#39;
+
+
+The following objects are masked from &#39;package:tidyr&#39;:
+
+    expand, pack, unpack
+
+
+Loaded glmnet 4.1-8
+
+Warning message:
+&quot;package &#39;rpart.plot&#39; was built under R version 4.4.2&quot;
+Warning message:
+&quot;package &#39;randomForest&#39; was built under R version 4.4.2&quot;
+randomForest 4.7-1.2
+
+Type rfNews() to see new features/changes/bug fixes.
+
+
+Attaching package: &#39;randomForest&#39;
+
+
+The following object is masked from &#39;package:ggplot2&#39;:
+
+    margin
+
+
+The following object is masked from &#39;package:dplyr&#39;:
+
+    combine
+
+
+Warning message:
+&quot;package &#39;xgboost&#39; was built under R version 4.4.2&quot;
+
+Attaching package: &#39;xgboost&#39;
+
+
+The following object is masked from &#39;package:dplyr&#39;:
+
+    slice
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -500,8 +669,16 @@ The following objects are masked from &#39;package:base&#39;:
 </section>
 </section>
 </section>
-<section id="preprocessing">
-<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h2>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
+<section id="file-descriptions">
+<h3>File descriptions<a class="headerlink" href="#file-descriptions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">train.csv</span></code> - the training set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test.csv</span></code> - the test set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_description.txt</span></code> - full description of each column, originally prepared by Dean De Cock but lightly edited to match the column names used here</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_submission.csv</span></code> - a benchmark submission from a linear regression on year and month of sale, lot square footage, and number of bedrooms</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct file paths</span>
@@ -542,6 +719,1815 @@ The following objects are masked from &#39;package:base&#39;:
 </div>
 </div>
 </div>
+<p>Here we using <code class="docutils literal notranslate"><span class="pre">file.path</span></code> , the dynamic path generation, instead of using hard-coded paths is aiming to provide better compatibility across different platforms.</p>
+<p>Different operating systems use different path separators (e.g. Windows uses <code class="docutils literal notranslate"><span class="pre">\</span></code>, while Linux and macOS use <code class="docutils literal notranslate"><span class="pre">/</span></code>). <code class="docutils literal notranslate"><span class="pre">file.path</span></code> automatically chooses the correct separator based on the operating system.</p>
+<p>The size of the training dataset and the test dataset are roughly the same. The test dataset has one less column than the training dataset, which is our target column <code class="docutils literal notranslate"><span class="pre">SalePrice</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">glimpse</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 1,460
+Columns: 80
+$ MSSubClass    &lt;dbl&gt; 60, 20, 60, 70, 60, 50, 20, 60, 50, 190, 20, 60, 20, 20,…
+$ MSZoning      &lt;chr&gt; &quot;RL&quot;, &quot;RL&quot;, &quot;RL&quot;, &quot;RL&quot;, &quot;RL&quot;, &quot;RL&quot;, &quot;RL&quot;, &quot;RL&quot;, &quot;RM&quot;, &quot;R…
+$ LotFrontage   &lt;dbl&gt; 65, 80, 68, 60, 84, 85, 75, NA, 51, 50, 70, 85, NA, 91, …
+$ LotArea       &lt;dbl&gt; 8450, 9600, 11250, 9550, 14260, 14115, 10084, 10382, 612…
+$ Street        &lt;chr&gt; &quot;Pave&quot;, &quot;Pave&quot;, &quot;Pave&quot;, &quot;Pave&quot;, &quot;Pave&quot;, &quot;Pave&quot;, &quot;Pave&quot;, …
+$ Alley         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ LotShape      &lt;chr&gt; &quot;Reg&quot;, &quot;Reg&quot;, &quot;IR1&quot;, &quot;IR1&quot;, &quot;IR1&quot;, &quot;IR1&quot;, &quot;Reg&quot;, &quot;IR1&quot;, …
+$ LandContour   &lt;chr&gt; &quot;Lvl&quot;, &quot;Lvl&quot;, &quot;Lvl&quot;, &quot;Lvl&quot;, &quot;Lvl&quot;, &quot;Lvl&quot;, &quot;Lvl&quot;, &quot;Lvl&quot;, …
+$ Utilities     &lt;chr&gt; &quot;AllPub&quot;, &quot;AllPub&quot;, &quot;AllPub&quot;, &quot;AllPub&quot;, &quot;AllPub&quot;, &quot;AllPu…
+$ LotConfig     &lt;chr&gt; &quot;Inside&quot;, &quot;FR2&quot;, &quot;Inside&quot;, &quot;Corner&quot;, &quot;FR2&quot;, &quot;Inside&quot;, &quot;I…
+$ LandSlope     &lt;chr&gt; &quot;Gtl&quot;, &quot;Gtl&quot;, &quot;Gtl&quot;, &quot;Gtl&quot;, &quot;Gtl&quot;, &quot;Gtl&quot;, &quot;Gtl&quot;, &quot;Gtl&quot;, …
+$ Neighborhood  &lt;chr&gt; &quot;CollgCr&quot;, &quot;Veenker&quot;, &quot;CollgCr&quot;, &quot;Crawfor&quot;, &quot;NoRidge&quot;, &quot;…
+$ Condition1    &lt;chr&gt; &quot;Norm&quot;, &quot;Feedr&quot;, &quot;Norm&quot;, &quot;Norm&quot;, &quot;Norm&quot;, &quot;Norm&quot;, &quot;Norm&quot;,…
+$ Condition2    &lt;chr&gt; &quot;Norm&quot;, &quot;Norm&quot;, &quot;Norm&quot;, &quot;Norm&quot;, &quot;Norm&quot;, &quot;Norm&quot;, &quot;Norm&quot;, …
+$ BldgType      &lt;chr&gt; &quot;1Fam&quot;, &quot;1Fam&quot;, &quot;1Fam&quot;, &quot;1Fam&quot;, &quot;1Fam&quot;, &quot;1Fam&quot;, &quot;1Fam&quot;, …
+$ HouseStyle    &lt;chr&gt; &quot;2Story&quot;, &quot;1Story&quot;, &quot;2Story&quot;, &quot;2Story&quot;, &quot;2Story&quot;, &quot;1.5Fi…
+$ OverallQual   &lt;dbl&gt; 7, 6, 7, 7, 8, 5, 8, 7, 7, 5, 5, 9, 5, 7, 6, 7, 6, 4, 5,…
+$ OverallCond   &lt;dbl&gt; 5, 8, 5, 5, 5, 5, 5, 6, 5, 6, 5, 5, 6, 5, 5, 8, 7, 5, 5,…
+$ YearBuilt     &lt;dbl&gt; 2003, 1976, 2001, 1915, 2000, 1993, 2004, 1973, 1931, 19…
+$ YearRemodAdd  &lt;dbl&gt; 2003, 1976, 2002, 1970, 2000, 1995, 2005, 1973, 1950, 19…
+$ RoofStyle     &lt;chr&gt; &quot;Gable&quot;, &quot;Gable&quot;, &quot;Gable&quot;, &quot;Gable&quot;, &quot;Gable&quot;, &quot;Gable&quot;, &quot;G…
+$ RoofMatl      &lt;chr&gt; &quot;CompShg&quot;, &quot;CompShg&quot;, &quot;CompShg&quot;, &quot;CompShg&quot;, &quot;CompShg&quot;, &quot;…
+$ Exterior1st   &lt;chr&gt; &quot;VinylSd&quot;, &quot;MetalSd&quot;, &quot;VinylSd&quot;, &quot;Wd Sdng&quot;, &quot;VinylSd&quot;, &quot;…
+$ Exterior2nd   &lt;chr&gt; &quot;VinylSd&quot;, &quot;MetalSd&quot;, &quot;VinylSd&quot;, &quot;Wd Shng&quot;, &quot;VinylSd&quot;, &quot;…
+$ MasVnrType    &lt;chr&gt; &quot;BrkFace&quot;, &quot;None&quot;, &quot;BrkFace&quot;, &quot;None&quot;, &quot;BrkFace&quot;, &quot;None&quot;,…
+$ MasVnrArea    &lt;dbl&gt; 196, 0, 162, 0, 350, 0, 186, 240, 0, 0, 0, 286, 0, 306, …
+$ ExterQual     &lt;chr&gt; &quot;Gd&quot;, &quot;TA&quot;, &quot;Gd&quot;, &quot;TA&quot;, &quot;Gd&quot;, &quot;TA&quot;, &quot;Gd&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;T…
+$ ExterCond     &lt;chr&gt; &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;T…
+$ Foundation    &lt;chr&gt; &quot;PConc&quot;, &quot;CBlock&quot;, &quot;PConc&quot;, &quot;BrkTil&quot;, &quot;PConc&quot;, &quot;Wood&quot;, &quot;…
+$ BsmtQual      &lt;chr&gt; &quot;Gd&quot;, &quot;Gd&quot;, &quot;Gd&quot;, &quot;TA&quot;, &quot;Gd&quot;, &quot;Gd&quot;, &quot;Ex&quot;, &quot;Gd&quot;, &quot;TA&quot;, &quot;T…
+$ BsmtCond      &lt;chr&gt; &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;Gd&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;T…
+$ BsmtExposure  &lt;chr&gt; &quot;No&quot;, &quot;Gd&quot;, &quot;Mn&quot;, &quot;No&quot;, &quot;Av&quot;, &quot;No&quot;, &quot;Av&quot;, &quot;Mn&quot;, &quot;No&quot;, &quot;N…
+$ BsmtFinType1  &lt;chr&gt; &quot;GLQ&quot;, &quot;ALQ&quot;, &quot;GLQ&quot;, &quot;ALQ&quot;, &quot;GLQ&quot;, &quot;GLQ&quot;, &quot;GLQ&quot;, &quot;ALQ&quot;, …
+$ BsmtFinSF1    &lt;dbl&gt; 706, 978, 486, 216, 655, 732, 1369, 859, 0, 851, 906, 99…
+$ BsmtFinType2  &lt;chr&gt; &quot;Unf&quot;, &quot;Unf&quot;, &quot;Unf&quot;, &quot;Unf&quot;, &quot;Unf&quot;, &quot;Unf&quot;, &quot;Unf&quot;, &quot;BLQ&quot;, …
+$ BsmtFinSF2    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ BsmtUnfSF     &lt;dbl&gt; 150, 284, 434, 540, 490, 64, 317, 216, 952, 140, 134, 17…
+$ TotalBsmtSF   &lt;dbl&gt; 856, 1262, 920, 756, 1145, 796, 1686, 1107, 952, 991, 10…
+$ Heating       &lt;chr&gt; &quot;GasA&quot;, &quot;GasA&quot;, &quot;GasA&quot;, &quot;GasA&quot;, &quot;GasA&quot;, &quot;GasA&quot;, &quot;GasA&quot;, …
+$ HeatingQC     &lt;chr&gt; &quot;Ex&quot;, &quot;Ex&quot;, &quot;Ex&quot;, &quot;Gd&quot;, &quot;Ex&quot;, &quot;Ex&quot;, &quot;Ex&quot;, &quot;Ex&quot;, &quot;Gd&quot;, &quot;E…
+$ CentralAir    &lt;chr&gt; &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;…
+$ Electrical    &lt;chr&gt; &quot;SBrkr&quot;, &quot;SBrkr&quot;, &quot;SBrkr&quot;, &quot;SBrkr&quot;, &quot;SBrkr&quot;, &quot;SBrkr&quot;, &quot;S…
+$ `1stFlrSF`    &lt;dbl&gt; 856, 1262, 920, 961, 1145, 796, 1694, 1107, 1022, 1077, …
+$ `2ndFlrSF`    &lt;dbl&gt; 854, 0, 866, 756, 1053, 566, 0, 983, 752, 0, 0, 1142, 0,…
+$ LowQualFinSF  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ GrLivArea     &lt;dbl&gt; 1710, 1262, 1786, 1717, 2198, 1362, 1694, 2090, 1774, 10…
+$ BsmtFullBath  &lt;dbl&gt; 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1,…
+$ BsmtHalfBath  &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ FullBath      &lt;dbl&gt; 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 1, 3, 1, 2, 1, 1, 1, 2, 1,…
+$ HalfBath      &lt;dbl&gt; 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,…
+$ BedroomAbvGr  &lt;dbl&gt; 3, 3, 3, 3, 4, 1, 3, 3, 2, 2, 3, 4, 2, 3, 2, 2, 2, 2, 3,…
+$ KitchenAbvGr  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,…
+$ KitchenQual   &lt;chr&gt; &quot;Gd&quot;, &quot;TA&quot;, &quot;Gd&quot;, &quot;Gd&quot;, &quot;Gd&quot;, &quot;TA&quot;, &quot;Gd&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;T…
+$ TotRmsAbvGrd  &lt;dbl&gt; 8, 6, 6, 7, 9, 5, 7, 7, 8, 5, 5, 11, 4, 7, 5, 5, 5, 6, 6…
+$ Functional    &lt;chr&gt; &quot;Typ&quot;, &quot;Typ&quot;, &quot;Typ&quot;, &quot;Typ&quot;, &quot;Typ&quot;, &quot;Typ&quot;, &quot;Typ&quot;, &quot;Typ&quot;, …
+$ Fireplaces    &lt;dbl&gt; 0, 1, 1, 1, 1, 0, 1, 2, 2, 2, 0, 2, 0, 1, 1, 0, 1, 0, 0,…
+$ FireplaceQu   &lt;chr&gt; NA, &quot;TA&quot;, &quot;TA&quot;, &quot;Gd&quot;, &quot;TA&quot;, NA, &quot;Gd&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, …
+$ GarageType    &lt;chr&gt; &quot;Attchd&quot;, &quot;Attchd&quot;, &quot;Attchd&quot;, &quot;Detchd&quot;, &quot;Attchd&quot;, &quot;Attch…
+$ GarageYrBlt   &lt;dbl&gt; 2003, 1976, 2001, 1998, 2000, 1993, 2004, 1973, 1931, 19…
+$ GarageFinish  &lt;chr&gt; &quot;RFn&quot;, &quot;RFn&quot;, &quot;RFn&quot;, &quot;Unf&quot;, &quot;RFn&quot;, &quot;Unf&quot;, &quot;RFn&quot;, &quot;RFn&quot;, …
+$ GarageCars    &lt;dbl&gt; 2, 2, 2, 3, 3, 2, 2, 2, 2, 1, 1, 3, 1, 3, 1, 2, 2, 2, 2,…
+$ GarageArea    &lt;dbl&gt; 548, 460, 608, 642, 836, 480, 636, 484, 468, 205, 384, 7…
+$ GarageQual    &lt;chr&gt; &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;Fa&quot;, &quot;G…
+$ GarageCond    &lt;chr&gt; &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;TA&quot;, &quot;T…
+$ PavedDrive    &lt;chr&gt; &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;, &quot;…
+$ WoodDeckSF    &lt;dbl&gt; 0, 298, 0, 0, 192, 40, 255, 235, 90, 0, 0, 147, 140, 160…
+$ OpenPorchSF   &lt;dbl&gt; 61, 0, 42, 35, 84, 30, 57, 204, 0, 4, 0, 21, 0, 33, 213,…
+$ EnclosedPorch &lt;dbl&gt; 0, 0, 0, 272, 0, 0, 0, 228, 205, 0, 0, 0, 0, 0, 176, 0, …
+$ `3SsnPorch`   &lt;dbl&gt; 0, 0, 0, 0, 0, 320, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ ScreenPorch   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 176, 0, 0, 0, 0, 0, …
+$ PoolArea      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ PoolQC        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Fence         &lt;chr&gt; NA, NA, NA, NA, NA, &quot;MnPrv&quot;, NA, NA, NA, NA, NA, NA, NA,…
+$ MiscFeature   &lt;chr&gt; NA, NA, NA, NA, NA, &quot;Shed&quot;, NA, &quot;Shed&quot;, NA, NA, NA, NA, …
+$ MiscVal       &lt;dbl&gt; 0, 0, 0, 0, 0, 700, 0, 350, 0, 0, 0, 0, 0, 0, 0, 0, 700,…
+$ MoSold        &lt;dbl&gt; 2, 5, 9, 2, 12, 10, 8, 11, 4, 1, 2, 7, 9, 8, 5, 7, 3, 10…
+$ YrSold        &lt;dbl&gt; 2008, 2007, 2008, 2006, 2008, 2009, 2007, 2009, 2008, 20…
+$ SaleType      &lt;chr&gt; &quot;WD&quot;, &quot;WD&quot;, &quot;WD&quot;, &quot;WD&quot;, &quot;WD&quot;, &quot;WD&quot;, &quot;WD&quot;, &quot;WD&quot;, &quot;WD&quot;, &quot;W…
+$ SaleCondition &lt;chr&gt; &quot;Normal&quot;, &quot;Normal&quot;, &quot;Normal&quot;, &quot;Abnorml&quot;, &quot;Normal&quot;, &quot;Norm…
+$ SalePrice     &lt;dbl&gt; 208500, 181500, 223500, 140000, 250000, 143000, 307000, …
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because we will use all features for modeling later, we need to convert all features in chr format to factor format. Therefore, we now need to filter out categorical features and numerical features separately.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&#39;MSSubClass&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MSZoning&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Street&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Alley&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LotShape&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LandContour&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&#39;Utilities&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LotConfig&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LandSlope&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Neighborhood&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Condition1&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&#39;Condition2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BldgType&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;HouseStyle&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;RoofStyle&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;RoofMatl&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&#39;Exterior1st&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Exterior2nd&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MasVnrType&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;ExterQual&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;ExterCond&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&#39;Foundation&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BsmtQual&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BsmtCond&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BsmtExposure&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BsmtFinType1&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&#39;BsmtFinType2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Heating&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;HeatingQC&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;CentralAir&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Electrical&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&#39;KitchenQual&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Functional&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;FireplaceQu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;GarageType&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;GarageFinish&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&#39;GarageQual&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;GarageCond&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;PavedDrive&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;PoolQC&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Fence&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MiscFeature&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&#39;SaleType&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;SaleCondition&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;OverallQual&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;OverallCond&#39;</span>
+<span class="p">)</span>
+
+<span class="n">numerical_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&#39;LotFrontage&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LotArea&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;YearBuilt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;YearRemodAdd&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MasVnrArea&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&#39;BsmtFinSF1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BsmtFinSF2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BsmtUnfSF&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;TotalBsmtSF&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;1stFlrSF&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&#39;2ndFlrSF&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LowQualFinSF&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;GrLivArea&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BsmtFullBath&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BsmtHalfBath&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&#39;FullBath&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;HalfBath&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BedroomAbvGr&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;KitchenAbvGr&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;TotRmsAbvGrd&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&#39;Fireplaces&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;GarageYrBlt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;GarageCars&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;GarageArea&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;WoodDeckSF&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&#39;OpenPorchSF&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;EnclosedPorch&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;3SsnPorch&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;ScreenPorch&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;PoolArea&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&#39;MiscVal&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MoSold&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;YrSold&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">categorical_features</span></code> and <code class="docutils literal notranslate"><span class="pre">numerical_features</span></code>, the reason we cannot directly select features with values of <code class="docutils literal notranslate"><span class="pre">int64</span></code> or <code class="docutils literal notranslate"><span class="pre">float64</span></code>, because some features such as <code class="docutils literal notranslate"><span class="pre">MSSubClass</span></code>:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>MSSubClass: Identifies the type of dwelling involved in the sale.	
+
+        20	1-STORY 1946 &amp; NEWER ALL STYLES
+        30	1-STORY 1945 &amp; OLDER
+        40	1-STORY W/FINISHED ATTIC ALL AGES
+        45	1-1/2 STORY - UNFINISHED ALL AGES
+        50	1-1/2 STORY FINISHED ALL AGES
+        60	2-STORY 1946 &amp; NEWER
+        70	2-STORY 1945 &amp; OLDER
+        75	2-1/2 STORY ALL AGES
+        80	SPLIT OR MULTI-LEVEL
+        85	SPLIT FOYER
+        90	DUPLEX - ALL STYLES AND AGES
+       120	1-STORY PUD (Planned Unit Development) - 1946 &amp; NEWER
+       150	1-1/2 STORY PUD - ALL AGES
+       160	2-STORY PUD - 1946 &amp; NEWER
+       180	PUD - MULTILEVEL - INCL SPLIT LEV/FOYER
+       190	2 FAMILY CONVERSION - ALL STYLES AND AGES
+</pre></div>
+</div>
+<p>Its value is <code class="docutils literal notranslate"><span class="pre">int64</span></code> format, but it is actually a categorical feature. Therefore, here I manually distinguish all <code class="docutils literal notranslate"><span class="pre">categorical_features</span></code> and <code class="docutils literal notranslate"><span class="pre">numerical_features</span></code> according to the description in <code class="docutils literal notranslate"><span class="pre">data_description.txt</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert all categorical features to factor</span>
+<span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="nf">all_of</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">),</span><span class="w"> </span><span class="n">as.factor</span><span class="p">))</span>
+
+<span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="nf">all_of</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">),</span><span class="w"> </span><span class="n">as.factor</span><span class="p">))</span>
+
+<span class="nf">glimpse</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 1,460
+Columns: 80
+$ MSSubClass    &lt;fct&gt; 60, 20, 60, 70, 60, 50, 20, 60, 50, 190, 20, 60, 20, 20,…
+$ MSZoning      &lt;fct&gt; RL, RL, RL, RL, RL, RL, RL, RL, RM, RL, RL, RL, RL, RL, …
+$ LotFrontage   &lt;dbl&gt; 65, 80, 68, 60, 84, 85, 75, NA, 51, 50, 70, 85, NA, 91, …
+$ LotArea       &lt;dbl&gt; 8450, 9600, 11250, 9550, 14260, 14115, 10084, 10382, 612…
+$ Street        &lt;fct&gt; Pave, Pave, Pave, Pave, Pave, Pave, Pave, Pave, Pave, Pa…
+$ Alley         &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ LotShape      &lt;fct&gt; Reg, Reg, IR1, IR1, IR1, IR1, Reg, IR1, Reg, Reg, Reg, I…
+$ LandContour   &lt;fct&gt; Lvl, Lvl, Lvl, Lvl, Lvl, Lvl, Lvl, Lvl, Lvl, Lvl, Lvl, L…
+$ Utilities     &lt;fct&gt; AllPub, AllPub, AllPub, AllPub, AllPub, AllPub, AllPub, …
+$ LotConfig     &lt;fct&gt; Inside, FR2, Inside, Corner, FR2, Inside, Inside, Corner…
+$ LandSlope     &lt;fct&gt; Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, G…
+$ Neighborhood  &lt;fct&gt; CollgCr, Veenker, CollgCr, Crawfor, NoRidge, Mitchel, So…
+$ Condition1    &lt;fct&gt; Norm, Feedr, Norm, Norm, Norm, Norm, Norm, PosN, Artery,…
+$ Condition2    &lt;fct&gt; Norm, Norm, Norm, Norm, Norm, Norm, Norm, Norm, Norm, Ar…
+$ BldgType      &lt;fct&gt; 1Fam, 1Fam, 1Fam, 1Fam, 1Fam, 1Fam, 1Fam, 1Fam, 1Fam, 2f…
+$ HouseStyle    &lt;fct&gt; 2Story, 1Story, 2Story, 2Story, 2Story, 1.5Fin, 1Story, …
+$ OverallQual   &lt;fct&gt; 7, 6, 7, 7, 8, 5, 8, 7, 7, 5, 5, 9, 5, 7, 6, 7, 6, 4, 5,…
+$ OverallCond   &lt;fct&gt; 5, 8, 5, 5, 5, 5, 5, 6, 5, 6, 5, 5, 6, 5, 5, 8, 7, 5, 5,…
+$ YearBuilt     &lt;dbl&gt; 2003, 1976, 2001, 1915, 2000, 1993, 2004, 1973, 1931, 19…
+$ YearRemodAdd  &lt;dbl&gt; 2003, 1976, 2002, 1970, 2000, 1995, 2005, 1973, 1950, 19…
+$ RoofStyle     &lt;fct&gt; Gable, Gable, Gable, Gable, Gable, Gable, Gable, Gable, …
+$ RoofMatl      &lt;fct&gt; CompShg, CompShg, CompShg, CompShg, CompShg, CompShg, Co…
+$ Exterior1st   &lt;fct&gt; VinylSd, MetalSd, VinylSd, Wd Sdng, VinylSd, VinylSd, Vi…
+$ Exterior2nd   &lt;fct&gt; VinylSd, MetalSd, VinylSd, Wd Shng, VinylSd, VinylSd, Vi…
+$ MasVnrType    &lt;fct&gt; BrkFace, None, BrkFace, None, BrkFace, None, Stone, Ston…
+$ MasVnrArea    &lt;dbl&gt; 196, 0, 162, 0, 350, 0, 186, 240, 0, 0, 0, 286, 0, 306, …
+$ ExterQual     &lt;fct&gt; Gd, TA, Gd, TA, Gd, TA, Gd, TA, TA, TA, TA, Ex, TA, Gd, …
+$ ExterCond     &lt;fct&gt; TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, …
+$ Foundation    &lt;fct&gt; PConc, CBlock, PConc, BrkTil, PConc, Wood, PConc, CBlock…
+$ BsmtQual      &lt;fct&gt; Gd, Gd, Gd, TA, Gd, Gd, Ex, Gd, TA, TA, TA, Ex, TA, Gd, …
+$ BsmtCond      &lt;fct&gt; TA, TA, TA, Gd, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, …
+$ BsmtExposure  &lt;fct&gt; No, Gd, Mn, No, Av, No, Av, Mn, No, No, No, No, No, Av, …
+$ BsmtFinType1  &lt;fct&gt; GLQ, ALQ, GLQ, ALQ, GLQ, GLQ, GLQ, ALQ, Unf, GLQ, Rec, G…
+$ BsmtFinSF1    &lt;dbl&gt; 706, 978, 486, 216, 655, 732, 1369, 859, 0, 851, 906, 99…
+$ BsmtFinType2  &lt;fct&gt; Unf, Unf, Unf, Unf, Unf, Unf, Unf, BLQ, Unf, Unf, Unf, U…
+$ BsmtFinSF2    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ BsmtUnfSF     &lt;dbl&gt; 150, 284, 434, 540, 490, 64, 317, 216, 952, 140, 134, 17…
+$ TotalBsmtSF   &lt;dbl&gt; 856, 1262, 920, 756, 1145, 796, 1686, 1107, 952, 991, 10…
+$ Heating       &lt;fct&gt; GasA, GasA, GasA, GasA, GasA, GasA, GasA, GasA, GasA, Ga…
+$ HeatingQC     &lt;fct&gt; Ex, Ex, Ex, Gd, Ex, Ex, Ex, Ex, Gd, Ex, Ex, Ex, TA, Ex, …
+$ CentralAir    &lt;fct&gt; Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y,…
+$ Electrical    &lt;fct&gt; SBrkr, SBrkr, SBrkr, SBrkr, SBrkr, SBrkr, SBrkr, SBrkr, …
+$ `1stFlrSF`    &lt;dbl&gt; 856, 1262, 920, 961, 1145, 796, 1694, 1107, 1022, 1077, …
+$ `2ndFlrSF`    &lt;dbl&gt; 854, 0, 866, 756, 1053, 566, 0, 983, 752, 0, 0, 1142, 0,…
+$ LowQualFinSF  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ GrLivArea     &lt;dbl&gt; 1710, 1262, 1786, 1717, 2198, 1362, 1694, 2090, 1774, 10…
+$ BsmtFullBath  &lt;dbl&gt; 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1,…
+$ BsmtHalfBath  &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ FullBath      &lt;dbl&gt; 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 1, 3, 1, 2, 1, 1, 1, 2, 1,…
+$ HalfBath      &lt;dbl&gt; 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,…
+$ BedroomAbvGr  &lt;dbl&gt; 3, 3, 3, 3, 4, 1, 3, 3, 2, 2, 3, 4, 2, 3, 2, 2, 2, 2, 3,…
+$ KitchenAbvGr  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,…
+$ KitchenQual   &lt;fct&gt; Gd, TA, Gd, Gd, Gd, TA, Gd, TA, TA, TA, TA, Ex, TA, Gd, …
+$ TotRmsAbvGrd  &lt;dbl&gt; 8, 6, 6, 7, 9, 5, 7, 7, 8, 5, 5, 11, 4, 7, 5, 5, 5, 6, 6…
+$ Functional    &lt;fct&gt; Typ, Typ, Typ, Typ, Typ, Typ, Typ, Typ, Min1, Typ, Typ, …
+$ Fireplaces    &lt;dbl&gt; 0, 1, 1, 1, 1, 0, 1, 2, 2, 2, 0, 2, 0, 1, 1, 0, 1, 0, 0,…
+$ FireplaceQu   &lt;fct&gt; NA, TA, TA, Gd, TA, NA, Gd, TA, TA, TA, NA, Gd, NA, Gd, …
+$ GarageType    &lt;fct&gt; Attchd, Attchd, Attchd, Detchd, Attchd, Attchd, Attchd, …
+$ GarageYrBlt   &lt;dbl&gt; 2003, 1976, 2001, 1998, 2000, 1993, 2004, 1973, 1931, 19…
+$ GarageFinish  &lt;fct&gt; RFn, RFn, RFn, Unf, RFn, Unf, RFn, RFn, Unf, RFn, Unf, F…
+$ GarageCars    &lt;dbl&gt; 2, 2, 2, 3, 3, 2, 2, 2, 2, 1, 1, 3, 1, 3, 1, 2, 2, 2, 2,…
+$ GarageArea    &lt;dbl&gt; 548, 460, 608, 642, 836, 480, 636, 484, 468, 205, 384, 7…
+$ GarageQual    &lt;fct&gt; TA, TA, TA, TA, TA, TA, TA, TA, Fa, Gd, TA, TA, TA, TA, …
+$ GarageCond    &lt;fct&gt; TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, TA, …
+$ PavedDrive    &lt;fct&gt; Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y,…
+$ WoodDeckSF    &lt;dbl&gt; 0, 298, 0, 0, 192, 40, 255, 235, 90, 0, 0, 147, 140, 160…
+$ OpenPorchSF   &lt;dbl&gt; 61, 0, 42, 35, 84, 30, 57, 204, 0, 4, 0, 21, 0, 33, 213,…
+$ EnclosedPorch &lt;dbl&gt; 0, 0, 0, 272, 0, 0, 0, 228, 205, 0, 0, 0, 0, 0, 176, 0, …
+$ `3SsnPorch`   &lt;dbl&gt; 0, 0, 0, 0, 0, 320, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ ScreenPorch   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 176, 0, 0, 0, 0, 0, …
+$ PoolArea      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ PoolQC        &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Fence         &lt;fct&gt; NA, NA, NA, NA, NA, MnPrv, NA, NA, NA, NA, NA, NA, NA, N…
+$ MiscFeature   &lt;fct&gt; NA, NA, NA, NA, NA, Shed, NA, Shed, NA, NA, NA, NA, NA, …
+$ MiscVal       &lt;dbl&gt; 0, 0, 0, 0, 0, 700, 0, 350, 0, 0, 0, 0, 0, 0, 0, 0, 700,…
+$ MoSold        &lt;dbl&gt; 2, 5, 9, 2, 12, 10, 8, 11, 4, 1, 2, 7, 9, 8, 5, 7, 3, 10…
+$ YrSold        &lt;dbl&gt; 2008, 2007, 2008, 2006, 2008, 2009, 2007, 2009, 2008, 20…
+$ SaleType      &lt;fct&gt; WD, WD, WD, WD, WD, WD, WD, WD, WD, WD, WD, New, WD, New…
+$ SaleCondition &lt;fct&gt; Normal, Normal, Normal, Abnorml, Normal, Normal, Normal,…
+$ SalePrice     &lt;dbl&gt; 208500, 181500, 223500, 140000, 250000, 143000, 307000, …
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the variables where NA means &quot;None&quot;</span>
+<span class="n">none_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;Alley&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtQual&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtCond&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtExposure&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;BsmtFinType1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtFinType2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FireplaceQu&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GarageType&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;GarageFinish&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GarageQual&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GarageCond&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PoolQC&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;Fence&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MiscFeature&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>According to the description in <code class="docutils literal notranslate"><span class="pre">data_description.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">NA</span></code> in some features does not mean Missing Value, but means that the observation does not have the feature, such as <code class="docutils literal notranslate"><span class="pre">Alley</span></code>:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>Alley: Type of alley access to property
+
+       Grvl	Gravel
+       Pave	Paved
+       NA 	No alley access
+</pre></div>
+</div>
+<p>Therefore, the missing value filling treatment of these features should be different. I filtered out all similar features here to prepare for the missing value filling in the subsequent preprocessing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace NA with &quot;None&quot; and ensure &quot;None&quot; is the lowest factor level</span>
+<span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">across</span><span class="p">(</span><span class="nf">all_of</span><span class="p">(</span><span class="n">none_features</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="o">~</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span>
+<span class="w">        </span><span class="nf">replace_na</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">.</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;None&quot;</span><span class="p">),</span><span class="w">  </span><span class="c1"># fill NA by &quot;None&quot;</span>
+<span class="w">        </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;None&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">.</span><span class="p">)))))</span><span class="w">  </span><span class="c1"># redefine factor levels</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">across</span><span class="p">(</span>
+<span class="w">      </span><span class="nf">all_of</span><span class="p">(</span><span class="n">none_features</span><span class="p">),</span><span class="w"> </span>
+<span class="w">      </span><span class="o">~</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span>
+<span class="w">          </span><span class="nf">replace_na</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">.</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;None&quot;</span><span class="p">),</span><span class="w">  </span>
+<span class="w">          </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;None&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="nf">unique</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">.</span><span class="p">)))))</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+
+<span class="c1"># Verify the changes</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">none_features</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Alley      BsmtQual   BsmtCond    BsmtExposure BsmtFinType1 BsmtFinType2
+ None:1369   None: 37   None:  37   None: 38     None: 37     None:  38   
+ Grvl:  50   Ex  :121   Fa  :  45   Av  :221     ALQ :220     ALQ :  19   
+ Pave:  41   Fa  : 35   Gd  :  65   Gd  :134     BLQ :148     BLQ :  33   
+             Gd  :618   Po  :   2   Mn  :114     GLQ :418     GLQ :  14   
+             TA  :649   TA  :1311   No  :953     LwQ : 74     LwQ :  46   
+                                                 Rec :133     Rec :  54   
+                                                 Unf :430     Unf :1256   
+ FireplaceQu   GarageType  GarageFinish GarageQual  GarageCond   PoolQC    
+ None:690    None   : 81   None: 81     None:  81   None:  81   None:1453  
+ Ex  : 24    2Types :  6   Fin :352     Ex  :   3   Ex  :   2   Ex  :   2  
+ Fa  : 33    Attchd :870   RFn :422     Fa  :  48   Fa  :  35   Fa  :   2  
+ Gd  :380    Basment: 19   Unf :605     Gd  :  14   Gd  :   9   Gd  :   3  
+ Po  : 20    BuiltIn: 88                Po  :   3   Po  :   7              
+ TA  :313    CarPort:  9                TA  :1311   TA  :1326              
+             Detchd :387                                                   
+   Fence      MiscFeature
+ None :1179   None:1406  
+ GdPrv:  59   Gar2:   2  
+ GdWo :  54   Othr:   2  
+ MnPrv: 157   Shed:  49  
+ MnWw :  11   TenC:   1  
+                         
+                         
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ordinal_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;MSSubClass&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OverallQual&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OverallCond&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LotShape&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LandSlope&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;ExterQual&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ExterCond&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtQual&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtCond&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtExposure&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;BsmtFinType1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtFinType2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HeatingQC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;KitchenQual&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Functional&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FireplaceQu&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GarageFinish&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GarageQual&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GarageCond&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;PavedDrive&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PoolQC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fence&quot;</span>
+<span class="p">)</span>
+
+<span class="n">nominal_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;MSZoning&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Street&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Alley&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LandContour&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Utilities&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LotConfig&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Neighborhood&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Condition1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Condition2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BldgType&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HouseStyle&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;RoofStyle&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RoofMatl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Exterior1st&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Exterior2nd&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MasVnrType&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Foundation&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heating&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CentralAir&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Electrical&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GarageType&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;MiscFeature&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SaleType&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SaleCondition&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, I also distinguish between <code class="docutils literal notranslate"><span class="pre">ordinal_features</span></code> and <code class="docutils literal notranslate"><span class="pre">nominal_features</span></code> here to facilitate subsequent preprocessing. The main difference between them is whether the variable values are ordered. The following are examples of an ordinal feature and a nominal feature respectively.</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>ExterQual: Evaluates the quality of the material on the exterior 
+		
+       Ex	Excellent
+       Gd	Good
+       TA	Average/Typical
+       Fa	Fair
+       Po	Poor
+
+MSZoning: Identifies the general zoning classification of the sale.
+		
+       A	Agriculture
+       C	Commercial
+       FV	Floating Village Residential
+       I	Industrial
+       RH	Residential High Density
+       RL	Residential Low Density
+       RP	Residential Low Density Park 
+       RM	Residential Medium Density
+</pre></div>
+</div>
+<p>In the following preprocessing, ordinal features will be applied with Label Encoding, while nominal features will be applied with One-Hot Encoding.</p>
+</section>
+</section>
+<section id="eda">
+<h2>EDA<a class="headerlink" href="#eda" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  34900  129975  163000  180921  214000  755000 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a tibble with SalePrice</span>
+<span class="n">train</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SalePrice</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">after_stat</span><span class="p">(</span><span class="n">count</span><span class="p">)),</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_viridis_c</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SalePrice&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;plasma&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_vline</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">aes</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">SalePrice</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">comma_format</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># not use scientific notation</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SalePrice&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SalePrice Distribution&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Histogram with Adjusted Density Plot&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/6b6a5150028ae2bc9668960001d3577b2a9b417677ce2a5f15bc3137a9f783e2.png"><img alt="../_images/6b6a5150028ae2bc9668960001d3577b2a9b417677ce2a5f15bc3137a9f783e2.png" src="../_images/6b6a5150028ae2bc9668960001d3577b2a9b417677ce2a5f15bc3137a9f783e2.png" style="width: 600px; height: 480px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate skewness and kurtosis</span>
+<span class="n">skewness_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">skewness</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">kurtosis_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">kurtosis</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Print skewness and kurtosis</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Skewness of SalePrice:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">skewness_value</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Kurtosis of SalePrice:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">kurtosis_value</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Skewness of SalePrice: 1.879009 
+Kurtosis of SalePrice: 6.496789 
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the histogram and the calculated value of skewness (1.88), we can see that the distribution of <code class="docutils literal notranslate"><span class="pre">SalePrice</span></code> is right-skewed. This may have a negative impact on the training of the model. So we need a log transformation for <code class="docutils literal notranslate"><span class="pre">SalePrice</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Log transformation of SalePrice</span>
+<span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">SalePrice_log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">SalePrice</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the distribution of log-transformed SalePrice</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SalePrice_log</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">after_stat</span><span class="p">(</span><span class="n">count</span><span class="p">)),</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_viridis_c</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log SalePrice&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;plasma&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_vline</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">aes</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">SalePrice_log</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">comma_format</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># not use scientific notation</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log(SalePrice)&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Log-Transformed SalePrice Distribution&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Histogram of Log-Transformed SalePrice&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/d93d8cef35826cabab1e79f7e92783e5399dd4e9b2060cf365190b327238da71.png"><img alt="../_images/d93d8cef35826cabab1e79f7e92783e5399dd4e9b2060cf365190b327238da71.png" src="../_images/d93d8cef35826cabab1e79f7e92783e5399dd4e9b2060cf365190b327238da71.png" style="width: 600px; height: 480px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate skewness and kurtosis for log-transformed SalePrice</span>
+<span class="n">skewness_log</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">skewness</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice_log</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">kurtosis_log</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">kurtosis</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice_log</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Print skewness and kurtosis</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Log-Transformed SalePrice_log Skewness:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">skewness_log</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Log-Transformed SalePrice_log Kurtosis:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">kurtosis_log</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log-Transformed SalePrice_log Skewness: 0.1210859 
+Log-Transformed SalePrice_log Kurtosis: 0.7974482 
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the charts and statistics, we can see that after logarithmic transformation, the distribution of <code class="docutils literal notranslate"><span class="pre">SalePrice</span></code> is closer to normal distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the original SalePrice column</span>
+<span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">SalePrice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following is the distribution of the remaining numerical features:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">)</span>
+
+<span class="c1"># Convert train dataset to long format and remove NA/Inf values</span>
+<span class="n">train</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="nf">all_of</span><span class="p">(</span><span class="n">numerical_features</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">everything</span><span class="p">(),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Feature&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Value&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">Value</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nf">is.finite</span><span class="p">(</span><span class="n">Value</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># Remove NA and Inf values</span>
+
+<span class="c1"># Plot histograms for all numerical features</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Value</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">Feature</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;free&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># Free scales to adjust for different ranges</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution of Numerical Features&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/e6fd066fa9ce9f9fdbacfd8ad46068a451afc2ce6a9b0bdb7b2847997e95b50a.png"><img alt="../_images/e6fd066fa9ce9f9fdbacfd8ad46068a451afc2ce6a9b0bdb7b2847997e95b50a.png" src="../_images/e6fd066fa9ce9f9fdbacfd8ad46068a451afc2ce6a9b0bdb7b2847997e95b50a.png" style="width: 900px; height: 900px;" /></a>
+</div>
+</div>
+</section>
+<section id="feature-engineering">
+<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to add features</span>
+<span class="n">add_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">create_interactions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">create_base_features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Create a new dataframe to store features</span>
+<span class="w">  </span><span class="n">new_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Base features</span>
+<span class="w">  </span><span class="nf">if </span><span class="p">(</span><span class="n">create_base_features</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">new_features</span><span class="o">$</span><span class="n">HouseAge</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">YrSold</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">YearBuilt</span>
+<span class="w">    </span><span class="n">new_features</span><span class="o">$</span><span class="n">RemodelAge</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">YrSold</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">YearRemodAdd</span>
+<span class="w">    </span><span class="n">new_features</span><span class="o">$</span><span class="n">TotalSF</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">`1stFlrSF`</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">`2ndFlrSF`</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">TotalBsmtSF</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Merge new features into the original dataset</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">new_features</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">return</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply feature engineering to train and test datasets</span>
+<span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">add_features</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">add_features</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+
+<span class="c1"># Define new features</span>
+<span class="n">new_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;HouseAge&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RemodelAge&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TotalSF&quot;</span><span class="p">)</span>
+
+<span class="c1"># Update numerical_features list</span>
+<span class="n">numerical_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">numerical_features</span><span class="p">,</span><span class="w"> </span><span class="n">new_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+
+<span class="c1"># Plot histograms for new features</span>
+<span class="n">train</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="nf">all_of</span><span class="p">(</span><span class="n">new_features</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">everything</span><span class="p">(),</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Feature&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Value&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Value</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">Feature</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;free&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">  </span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution of Newly Created Features&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/b65649076f2e48b69ad4d1ee4f6357f8d118ad0ce8d8a6ea45f9d0fec70cd208.png"><img alt="../_images/b65649076f2e48b69ad4d1ee4f6357f8d118ad0ce8d8a6ea45f9d0fec70cd208.png" src="../_images/b65649076f2e48b69ad4d1ee4f6357f8d118ad0ce8d8a6ea45f9d0fec70cd208.png" style="width: 720px; height: 240px;" /></a>
+</div>
+</div>
+</section>
+<section id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h2>
+<section id="handling-missing-values">
+<h3>Handling Missing Values<a class="headerlink" href="#handling-missing-values" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to find columns with NA</span>
+<span class="n">check_na</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">na_count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="w">  </span><span class="n">na_count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="n">na_count</span><span class="p">[</span><span class="n">na_count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">  </span><span class="c1"># Only keep columns with NA</span>
+<span class="w">  </span><span class="nf">return</span><span class="p">(</span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">na_count</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Check missing values in train and test</span>
+<span class="n">na_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check_na</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">na_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check_na</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+
+<span class="c1"># Print missing value summary</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Missing Values in Train Dataset:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">na_train</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nMissing Values in Test Dataset:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">na_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Missing Values in Train Dataset:
+            na_count
+LotFrontage      259
+GarageYrBlt       81
+MasVnrType         8
+MasVnrArea         8
+Electrical         1
+
+Missing Values in Test Dataset:
+             na_count
+LotFrontage       227
+GarageYrBlt        78
+MasVnrType         16
+MasVnrArea         15
+MSZoning            4
+Utilities           2
+BsmtFullBath        2
+BsmtHalfBath        2
+Functional          2
+Exterior1st         1
+Exterior2nd         1
+BsmtFinSF1          1
+BsmtFinSF2          1
+BsmtUnfSF           1
+TotalBsmtSF         1
+KitchenQual         1
+GarageCars          1
+GarageArea          1
+SaleType            1
+TotalSF             1
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">NA</span></code> for these variables means the structure does not exist and should be filled with 0:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GarageYrBlt</span></code> (year garage was built)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MasVnrArea</span></code> (brick facing area)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BsmtFinSF1</span></code>, <code class="docutils literal notranslate"><span class="pre">BsmtFinSF2</span></code>, <code class="docutils literal notranslate"><span class="pre">BsmtUnfSF</span></code> (basement area)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TotalBsmtSF</span></code> (total basement area)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GarageCars</span></code> (number of garage spaces)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GarageArea</span></code> (garage area)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TotalSF</span></code> (total area, usually equal to <code class="docutils literal notranslate"><span class="pre">1stFlrSF</span></code> + <code class="docutils literal notranslate"><span class="pre">2ndFlrSF</span></code> + <code class="docutils literal notranslate"><span class="pre">TotalBsmtSF</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">zero_fill_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;GarageYrBlt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MasVnrArea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtFinSF1&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="s">&quot;BsmtFinSF2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtUnfSF&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TotalBsmtSF&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="s">&quot;GarageCars&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GarageArea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TotalSF&quot;</span><span class="p">)</span>
+
+<span class="n">train</span><span class="p">[</span><span class="n">zero_fill_features</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">zero_fill_features</span><span class="p">],</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">))</span>
+<span class="n">test</span><span class="p">[</span><span class="n">zero_fill_features</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">zero_fill_features</span><span class="p">],</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">NA</span></code> for these variables may be missing data entries and should be filled with the most common category (Mode):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MasVnrType</span></code> (brickwork finish type)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Electrical</span></code> (electrical system)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MSZoning</span></code> (land zoning)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Utilities</span></code> (public facilities)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Functional</span></code> (house function)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Exterior1st</span></code>, <code class="docutils literal notranslate"><span class="pre">Exterior2nd</span></code> (exterior wall material)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KitchenQual</span></code> (kitchen quality)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SaleType</span></code> (sale type)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mode_fill_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;MasVnrType&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Electrical&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MSZoning&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="s">&quot;Utilities&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Functional&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Exterior1st&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                        </span><span class="s">&quot;Exterior2nd&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;KitchenQual&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SaleType&quot;</span><span class="p">)</span>
+
+<span class="n">fill_mode</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">mode_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))[</span><span class="m">1</span><span class="p">]</span><span class="w">  </span><span class="c1"># get mode</span>
+<span class="w">  </span><span class="nf">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">mode_value</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">train</span><span class="p">[</span><span class="n">mode_fill_features</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">mode_fill_features</span><span class="p">],</span><span class="w"> </span><span class="n">fill_mode</span><span class="p">)</span>
+<span class="n">test</span><span class="p">[</span><span class="n">mode_fill_features</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">mode_fill_features</span><span class="p">],</span><span class="w"> </span><span class="n">fill_mode</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">NA</span></code> values for these variables may be missing values, and filling the median value can reduce the impact of outliers:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LotFrontage</span></code> (street frontage length)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">Neighborhood</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">LotFrontage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">LotFrontage</span><span class="p">),</span><span class="w"> </span><span class="nf">median</span><span class="p">(</span><span class="n">LotFrontage</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="n">LotFrontage</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ungroup</span><span class="p">()</span>
+
+<span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">Neighborhood</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">LotFrontage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">LotFrontage</span><span class="p">),</span><span class="w"> </span><span class="nf">median</span><span class="p">(</span><span class="n">LotFrontage</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="n">LotFrontage</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ungroup</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Filled with 0 or 1 (integer feature)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BsmtFullBath</span></code>, <code class="docutils literal notranslate"><span class="pre">BsmtHalfBath</span></code> (basement bathrooms)</p></li>
+</ul>
+<p>If there is no basement, the number of bathrooms should be 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bath_fill_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;BsmtFullBath&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BsmtHalfBath&quot;</span><span class="p">)</span>
+
+<span class="n">train</span><span class="p">[</span><span class="n">bath_fill_features</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">bath_fill_features</span><span class="p">],</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">))</span>
+<span class="n">test</span><span class="p">[</span><span class="n">bath_fill_features</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">bath_fill_features</span><span class="p">],</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recheck <code class="docutils literal notranslate"><span class="pre">NA</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">na_train_after</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check_na</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">na_test_after</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check_na</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;After processing, missing values in Train Dataset:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">na_train_after</span><span class="p">)</span>
+
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;\nAfter processing, missing values in Test Dataset:\n&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">na_test_after</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After processing, missing values in Train Dataset:
+[1] na_count
+&lt;0 rows&gt; (or 0-length row.names)
+
+After processing, missing values in Test Dataset:
+[1] na_count
+&lt;0 rows&gt; (or 0-length row.names)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="encoding">
+<h3>Encoding<a class="headerlink" href="#encoding" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ensure test dataset has the same factor levels as train</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">categorical_features</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">if </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">test</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">test</span><span class="p">[[</span><span class="n">col</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">test</span><span class="p">[[</span><span class="n">col</span><span class="p">]],</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">levels</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="n">col</span><span class="p">]]))</span><span class="w"> </span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Apply One-Hot Encoding using predefined categorical_features</span>
+<span class="n">ohe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dummyVars</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">categorical_features</span><span class="p">])</span>
+
+<span class="c1"># Apply transformation to train and test sets</span>
+<span class="n">train_ohe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">ohe</span><span class="p">,</span><span class="w"> </span><span class="n">train</span><span class="p">)</span>
+<span class="n">test_ohe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">ohe</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">)</span>
+
+<span class="c1"># Merge transformed categorical features with numerical features</span>
+<span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">],</span><span class="w"> </span><span class="n">train_ohe</span><span class="p">,</span><span class="w"> </span><span class="n">SalePrice_log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice_log</span><span class="p">)</span>
+<span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">test</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">],</span><span class="w"> </span><span class="n">test_ohe</span><span class="p">)</span>
+
+<span class="c1"># Ensure all variables are numeric</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;data.frame&#39;:	1460 obs. of  337 variables:
+ $ LotFrontage          : num  65 80 68 60 84 85 75 80 51 50 ...
+ $ LotArea              : num  8450 9600 11250 9550 14260 ...
+ $ YearBuilt            : num  2003 1976 2001 1915 2000 ...
+ $ YearRemodAdd         : num  2003 1976 2002 1970 2000 ...
+ $ MasVnrArea           : num  196 0 162 0 350 0 186 240 0 0 ...
+ $ BsmtFinSF1           : num  706 978 486 216 655 ...
+ $ BsmtFinSF2           : num  0 0 0 0 0 0 0 32 0 0 ...
+ $ BsmtUnfSF            : num  150 284 434 540 490 64 317 216 952 140 ...
+ $ TotalBsmtSF          : num  856 1262 920 756 1145 ...
+ $ 1stFlrSF             : num  856 1262 920 961 1145 ...
+ $ 2ndFlrSF             : num  854 0 866 756 1053 ...
+ $ LowQualFinSF         : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ GrLivArea            : num  1710 1262 1786 1717 2198 ...
+ $ BsmtFullBath         : num  1 0 1 1 1 1 1 1 0 1 ...
+ $ BsmtHalfBath         : num  0 1 0 0 0 0 0 0 0 0 ...
+ $ FullBath             : num  2 2 2 1 2 1 2 2 2 1 ...
+ $ HalfBath             : num  1 0 1 0 1 1 0 1 0 0 ...
+ $ BedroomAbvGr         : num  3 3 3 3 4 1 3 3 2 2 ...
+ $ KitchenAbvGr         : num  1 1 1 1 1 1 1 1 2 2 ...
+ $ TotRmsAbvGrd         : num  8 6 6 7 9 5 7 7 8 5 ...
+ $ Fireplaces           : num  0 1 1 1 1 0 1 2 2 2 ...
+ $ GarageYrBlt          : num  2003 1976 2001 1998 2000 ...
+ $ GarageCars           : num  2 2 2 3 3 2 2 2 2 1 ...
+ $ GarageArea           : num  548 460 608 642 836 480 636 484 468 205 ...
+ $ WoodDeckSF           : num  0 298 0 0 192 40 255 235 90 0 ...
+ $ OpenPorchSF          : num  61 0 42 35 84 30 57 204 0 4 ...
+ $ EnclosedPorch        : num  0 0 0 272 0 0 0 228 205 0 ...
+ $ 3SsnPorch            : num  0 0 0 0 0 320 0 0 0 0 ...
+ $ ScreenPorch          : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ PoolArea             : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MiscVal              : num  0 0 0 0 0 700 0 350 0 0 ...
+ $ MoSold               : num  2 5 9 2 12 10 8 11 4 1 ...
+ $ YrSold               : num  2008 2007 2008 2006 2008 ...
+ $ HouseAge             : num  5 31 7 91 8 16 3 36 77 69 ...
+ $ RemodelAge           : num  5 31 6 36 8 14 2 36 58 58 ...
+ $ TotalSF              : num  2566 2524 2706 2473 3343 ...
+ $ MSSubClass.20        : num  0 1 0 0 0 0 1 0 0 0 ...
+ $ MSSubClass.30        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.40        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.45        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.50        : num  0 0 0 0 0 1 0 0 1 0 ...
+ $ MSSubClass.60        : num  1 0 1 0 1 0 0 1 0 0 ...
+ $ MSSubClass.70        : num  0 0 0 1 0 0 0 0 0 0 ...
+ $ MSSubClass.75        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.80        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.85        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.90        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.120       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.160       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.180       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSSubClass.190       : num  0 0 0 0 0 0 0 0 0 1 ...
+ $ MSZoning.C (all)     : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSZoning.FV          : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSZoning.RH          : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ MSZoning.RL          : num  1 1 1 1 1 1 1 1 0 1 ...
+ $ MSZoning.RM          : num  0 0 0 0 0 0 0 0 1 0 ...
+ $ Street.Grvl          : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Street.Pave          : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ Alley.None           : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ Alley.Grvl           : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Alley.Pave           : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LotShape.IR1         : num  0 0 1 1 1 1 0 1 0 0 ...
+ $ LotShape.IR2         : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LotShape.IR3         : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LotShape.Reg         : num  1 1 0 0 0 0 1 0 1 1 ...
+ $ LandContour.Bnk      : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LandContour.HLS      : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LandContour.Low      : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LandContour.Lvl      : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ Utilities.AllPub     : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ Utilities.NoSeWa     : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LotConfig.Corner     : num  0 0 0 1 0 0 0 1 0 1 ...
+ $ LotConfig.CulDSac    : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LotConfig.FR2        : num  0 1 0 0 1 0 0 0 0 0 ...
+ $ LotConfig.FR3        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LotConfig.Inside     : num  1 0 1 0 0 1 1 0 1 0 ...
+ $ LandSlope.Gtl        : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ LandSlope.Mod        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ LandSlope.Sev        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.Blmngtn : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.Blueste : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.BrDale  : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.BrkSide : num  0 0 0 0 0 0 0 0 0 1 ...
+ $ Neighborhood.ClearCr : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.CollgCr : num  1 0 1 0 0 0 0 0 0 0 ...
+ $ Neighborhood.Crawfor : num  0 0 0 1 0 0 0 0 0 0 ...
+ $ Neighborhood.Edwards : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.Gilbert : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.IDOTRR  : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.MeadowV : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.Mitchel : num  0 0 0 0 0 1 0 0 0 0 ...
+ $ Neighborhood.NAmes   : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.NoRidge : num  0 0 0 0 1 0 0 0 0 0 ...
+ $ Neighborhood.NPkVill : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.NridgHt : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.NWAmes  : num  0 0 0 0 0 0 0 1 0 0 ...
+ $ Neighborhood.OldTown : num  0 0 0 0 0 0 0 0 1 0 ...
+ $ Neighborhood.Sawyer  : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Neighborhood.SawyerW : num  0 0 0 0 0 0 0 0 0 0 ...
+  [list output truncated]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="normalize-data-standard-scaling">
+<h3>Normalize Data (Standard Scaling)<a class="headerlink" href="#normalize-data-standard-scaling" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply Standard Scaling (Z-score normalization)</span>
+<span class="n">scaler</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">preProcess</span><span class="p">(</span><span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">],</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;center&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;scale&quot;</span><span class="p">))</span>
+
+<span class="c1"># Normalize train and test datasets</span>
+<span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">scaler</span><span class="p">,</span><span class="w"> </span><span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">])</span>
+<span class="n">test</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">scaler</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">])</span>
+
+<span class="c1"># Check summary to confirm scaling</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  LotFrontage           LotArea          YearBuilt         YearRemodAdd    
+ Min.   :-2.193290   Min.   :-0.9234   Min.   :-3.28670   Min.   :-1.6888  
+ 1st Qu.:-0.454694   1st Qu.:-0.2969   1st Qu.:-0.57173   1st Qu.:-0.8654  
+ Median :-0.008901   Median :-0.1040   Median : 0.05735   Median : 0.4424  
+ Mean   : 0.000000   Mean   : 0.0000   Mean   : 0.00000   Mean   : 0.0000  
+ 3rd Qu.: 0.436893   3rd Qu.: 0.1087   3rd Qu.: 0.95131   3rd Qu.: 0.9268  
+ Max.   :10.823886   Max.   :20.5112   Max.   : 1.28240   Max.   : 1.2174  
+   MasVnrArea        BsmtFinSF1        BsmtFinSF2        BsmtUnfSF      
+ Min.   :-0.5706   Min.   :-0.9727   Min.   :-0.2886   Min.   :-1.2837  
+ 1st Qu.:-0.5706   1st Qu.:-0.9727   1st Qu.:-0.2886   1st Qu.:-0.7791  
+ Median :-0.5706   Median :-0.1319   Median :-0.2886   Median :-0.2031  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 0.3383   3rd Qu.: 0.5889   3rd Qu.:-0.2886   3rd Qu.: 0.5449  
+ Max.   : 8.2824   Max.   :11.4018   Max.   : 8.8486   Max.   : 4.0029  
+  TotalBsmtSF         1stFlrSF          2ndFlrSF        LowQualFinSF    
+ Min.   :-2.4103   Min.   :-2.1434   Min.   :-0.7949   Min.   :-0.1202  
+ 1st Qu.:-0.5965   1st Qu.:-0.7259   1st Qu.:-0.7949   1st Qu.:-0.1202  
+ Median :-0.1503   Median :-0.1956   Median :-0.7949   Median :-0.1202  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 0.5489   3rd Qu.: 0.5914   3rd Qu.: 0.8728   3rd Qu.:-0.1202  
+ Max.   :11.5170   Max.   : 9.1296   Max.   : 3.9356   Max.   :11.6438  
+   GrLivArea         BsmtFullBath      BsmtHalfBath       FullBath      
+ Min.   :-2.24835   Min.   :-0.8197   Min.   :-0.241   Min.   :-2.8408  
+ 1st Qu.:-0.73450   1st Qu.:-0.8197   1st Qu.:-0.241   1st Qu.:-1.0257  
+ Median :-0.09794   Median :-0.8197   Median :-0.241   Median : 0.7895  
+ Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.000   Mean   : 0.0000  
+ 3rd Qu.: 0.49723   3rd Qu.: 1.1074   3rd Qu.:-0.241   3rd Qu.: 0.7895  
+ Max.   : 7.85288   Max.   : 4.9617   Max.   : 8.136   Max.   : 2.6046  
+    HalfBath        BedroomAbvGr      KitchenAbvGr      TotRmsAbvGrd    
+ Min.   :-0.7614   Min.   :-3.5137   Min.   :-4.7499   Min.   :-2.7795  
+ 1st Qu.:-0.7614   1st Qu.:-1.0621   1st Qu.:-0.2114   1st Qu.:-0.9338  
+ Median :-0.7614   Median : 0.1637   Median :-0.2114   Median :-0.3186  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 1.2272   3rd Qu.: 0.1637   3rd Qu.:-0.2114   3rd Qu.: 0.2967  
+ Max.   : 3.2157   Max.   : 6.2928   Max.   : 8.8656   Max.   : 4.6033  
+   Fireplaces       GarageYrBlt        GarageCars        GarageArea      
+ Min.   :-0.9509   Min.   :-4.1189   Min.   :-2.3646   Min.   :-2.21220  
+ 1st Qu.:-0.9509   1st Qu.: 0.1967   1st Qu.:-1.0265   1st Qu.:-0.64769  
+ Median : 0.6003   Median : 0.2386   Median : 0.3116   Median : 0.03283  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.00000  
+ 3rd Qu.: 0.6003   3rd Qu.: 0.2915   3rd Qu.: 0.3116   3rd Qu.: 0.48184  
+ Max.   : 3.7027   Max.   : 0.3114   Max.   : 2.9879   Max.   : 4.42001  
+   WoodDeckSF       OpenPorchSF      EnclosedPorch       3SsnPorch      
+ Min.   :-0.7519   Min.   :-0.7042   Min.   :-0.3592   Min.   :-0.1163  
+ 1st Qu.:-0.7519   1st Qu.:-0.7042   1st Qu.:-0.3592   1st Qu.:-0.1163  
+ Median :-0.7519   Median :-0.3269   Median :-0.3592   Median :-0.1163  
+ Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 0.5884   3rd Qu.: 0.3221   3rd Qu.:-0.3592   3rd Qu.:-0.1163  
+ Max.   : 6.0855   Max.   : 7.5516   Max.   : 8.6723   Max.   :17.2113  
+  ScreenPorch         PoolArea           MiscVal             MoSold       
+ Min.   :-0.2701   Min.   :-0.06867   Min.   :-0.08766   Min.   :-1.9684  
+ 1st Qu.:-0.2701   1st Qu.:-0.06867   1st Qu.:-0.08766   1st Qu.:-0.4889  
+ Median :-0.2701   Median :-0.06867   Median :-0.08766   Median :-0.1191  
+ Mean   : 0.0000   Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.0000  
+ 3rd Qu.:-0.2701   3rd Qu.:-0.06867   3rd Qu.:-0.08766   3rd Qu.: 0.6207  
+ Max.   : 8.3386   Max.   :18.29991   Max.   :31.15459   Max.   : 2.1002  
+     YrSold           HouseAge          RemodelAge         TotalSF       
+ Min.   :-1.3672   Min.   :-1.20819   Min.   :-1.1603   Min.   :-2.7175  
+ 1st Qu.:-0.6142   1st Qu.:-0.94373   1st Qu.:-0.9181   1st Qu.:-0.6785  
+ Median : 0.1387   Median :-0.05117   Median :-0.4336   Median :-0.1132  
+ Mean   : 0.0000   Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.0000  
+ 3rd Qu.: 0.8917   3rd Qu.: 0.57693   3rd Qu.: 0.8745   3rd Qu.: 0.5318  
+ Max.   : 1.6446   Max.   : 3.28765   Max.   : 1.7950   Max.   :11.1778  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="modeling">
+<h2>Modeling<a class="headerlink" href="#modeling" title="Link to this heading">#</a></h2>
+<section id="knn">
+<h3>kNN<a class="headerlink" href="#knn" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define training control</span>
+<span class="n">control</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+
+<span class="c1"># Train KNN model (search for best k from 3 to 20)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">knn_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="n">SalePrice_log</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;knn&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">tuneGrid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)))</span><span class="w">  </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">knn_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k-Nearest Neighbors 
+
+1460 samples
+ 336 predictor
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 1169, 1169, 1167, 1168, 1167 
+Resampling results across tuning parameters:
+
+  k   RMSE       Rsquared   MAE      
+   2  0.1845686  0.7900069  0.1276179
+   3  0.1817196  0.7983125  0.1230549
+   4  0.1792032  0.8048398  0.1211112
+   5  0.1774886  0.8093004  0.1202619
+   6  0.1758587  0.8133593  0.1193890
+   7  0.1756505  0.8148392  0.1200586
+   8  0.1755424  0.8161537  0.1199109
+   9  0.1751004  0.8183383  0.1195764
+  10  0.1743246  0.8207036  0.1192279
+  11  0.1738102  0.8230655  0.1188269
+  12  0.1732819  0.8249960  0.1188608
+  13  0.1733773  0.8248139  0.1191312
+  14  0.1733588  0.8257621  0.1195074
+  15  0.1733005  0.8260253  0.1194859
+  16  0.1735761  0.8261160  0.1197313
+  17  0.1740310  0.8254902  0.1197519
+  18  0.1740578  0.8256934  0.1201630
+  19  0.1739952  0.8268467  0.1202297
+  20  0.1741199  0.8273405  0.1204882
+
+RMSE was used to select the optimal model using the smallest value.
+The final value used for the model was k = 12.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">knn_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/1f9ff95d036335262813b475097444428c786b04b1df22e858e799d43432335b.png"><img alt="../_images/1f9ff95d036335262813b475097444428c786b04b1df22e858e799d43432335b.png" src="../_images/1f9ff95d036335262813b475097444428c786b04b1df22e858e799d43432335b.png" style="width: 720px; height: 480px;" /></a>
+</div>
+</div>
+</section>
+<section id="svm">
+<h3>SVM<a class="headerlink" href="#svm" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train SVM model with radial basis function (RBF) kernel</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">svm_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="n">SalePrice_log</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;svmRadial&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">tuneLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w">  </span><span class="c1"># Automatically searches for best parameters</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+Warning message in .local(x, ...):
+&quot;Variable(s) `&#39; constant. Cannot scale data.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">svm_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Support Vector Machines with Radial Basis Function Kernel 
+
+1460 samples
+ 336 predictor
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 1169, 1169, 1167, 1168, 1167 
+Resampling results across tuning parameters:
+
+  C     RMSE       Rsquared   MAE       
+  0.25  0.1400580  0.8793136  0.09348299
+  0.50  0.1332413  0.8900571  0.08837307
+  1.00  0.1290501  0.8962326  0.08551372
+  2.00  0.1262895  0.9005448  0.08413747
+  4.00  0.1250289  0.9023650  0.08437091
+
+Tuning parameter &#39;sigma&#39; was held constant at a value of 0.002345221
+RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were sigma = 0.002345221 and C = 4.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">svm_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/bb089a146bd604fb56d3312cd3c5b4bdf25c58f5d308906a1d080117bc74ed40.png"><img alt="../_images/bb089a146bd604fb56d3312cd3c5b4bdf25c58f5d308906a1d080117bc74ed40.png" src="../_images/bb089a146bd604fb56d3312cd3c5b4bdf25c58f5d308906a1d080117bc74ed40.png" style="width: 720px; height: 480px;" /></a>
+</div>
+</div>
+</section>
+<section id="linear-regression">
+<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Linear Regression model</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">lr_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="n">SalePrice_log</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lm&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in predict.lm(modelFit, newdata):
+&quot;prediction from rank-deficient fit; attr(*, &quot;non-estim&quot;) has doubtful cases&quot;
+Warning message in predict.lm(modelFit, newdata):
+&quot;prediction from rank-deficient fit; attr(*, &quot;non-estim&quot;) has doubtful cases&quot;
+Warning message in predict.lm(modelFit, newdata):
+&quot;prediction from rank-deficient fit; attr(*, &quot;non-estim&quot;) has doubtful cases&quot;
+Warning message in predict.lm(modelFit, newdata):
+&quot;prediction from rank-deficient fit; attr(*, &quot;non-estim&quot;) has doubtful cases&quot;
+Warning message in predict.lm(modelFit, newdata):
+&quot;prediction from rank-deficient fit; attr(*, &quot;non-estim&quot;) has doubtful cases&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lr_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear Regression 
+
+1460 samples
+ 336 predictor
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 1169, 1169, 1167, 1168, 1167 
+Resampling results:
+
+  RMSE       Rsquared   MAE       
+  0.1662427  0.8343093  0.09405306
+
+Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lasso">
+<h3>Lasso<a class="headerlink" href="#lasso" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert train and test to matrices for glmnet</span>
+<span class="n">x_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">])</span>
+<span class="n">y_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice_log</span>
+<span class="n">x_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">test</span><span class="p">[,</span><span class="w"> </span><span class="n">numerical_features</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Lasso Regression (alpha = 1)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">lasso_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cv.glmnet</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lasso_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:  cv.glmnet(x = x_train, y = y_train, alpha = 1) 
+
+Measure: Mean-Squared Error 
+
+     Lambda Index Measure       SE Nonzero
+min 0.00568    44 0.03272 0.006926      24
+1se 0.04829    21 0.03901 0.005492       7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">lasso_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/84190c8de3df0b330434a6b88b5a6ffa6151f5eedffb97fbcd5199630b758d6d.png"><img alt="../_images/84190c8de3df0b330434a6b88b5a6ffa6151f5eedffb97fbcd5199630b758d6d.png" src="../_images/84190c8de3df0b330434a6b88b5a6ffa6151f5eedffb97fbcd5199630b758d6d.png" style="width: 720px; height: 480px;" /></a>
+</div>
+</div>
+</section>
+<section id="ridge">
+<h3>Ridge<a class="headerlink" href="#ridge" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Ridge Regression (alpha = 0)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">ridge_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cv.glmnet</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ridge_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:  cv.glmnet(x = x_train, y = y_train, alpha = 0) 
+
+Measure: Mean-Squared Error 
+
+    Lambda Index Measure       SE Nonzero
+min 0.1375    84 0.03218 0.006231      36
+1se 0.8840    64 0.03831 0.004226      36
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">ridge_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/daf0c1f9449124c5081419de591d3dd2d617bf843655e1a14d462f4c570a1c21.png"><img alt="../_images/daf0c1f9449124c5081419de591d3dd2d617bf843655e1a14d462f4c570a1c21.png" src="../_images/daf0c1f9449124c5081419de591d3dd2d617bf843655e1a14d462f4c570a1c21.png" style="width: 720px; height: 480px;" /></a>
+</div>
+</div>
+</section>
+<section id="elasticnet">
+<h3>ElasticNet<a class="headerlink" href="#elasticnet" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Elastic Net (alpha = 0.5)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">elastic_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cv.glmnet</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">elastic_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:  cv.glmnet(x = x_train, y = y_train, alpha = 0.5) 
+
+Measure: Mean-Squared Error 
+
+     Lambda Index Measure       SE Nonzero
+min 0.01247    43 0.03261 0.006788      26
+1se 0.08799    22 0.03871 0.005006      11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">elastic_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/c13478155d3229d93a22ed9879694d59f4f1f66fce38112f993e13ab75be5fcc.png"><img alt="../_images/c13478155d3229d93a22ed9879694d59f4f1f66fce38112f993e13ab75be5fcc.png" src="../_images/c13478155d3229d93a22ed9879694d59f4f1f66fce38112f993e13ab75be5fcc.png" style="width: 720px; height: 480px;" /></a>
+</div>
+</div>
+</section>
+<section id="decision-tree">
+<h3>Decision Tree<a class="headerlink" href="#decision-tree" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ensure all features are included in the model</span>
+<span class="n">feature_names</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">setdiff</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">train</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SalePrice&quot;</span><span class="p">))</span>
+
+<span class="c1"># Train Decision Tree</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">dt_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">feature_names</span><span class="p">],</span><span class="w"> </span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice_log</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rpart&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">  </span><span class="n">tuneLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in nominalTrainWorkflow(x = x, y = y, wts = weights, info = trainInfo, :
+&quot;There were missing values in resampled performance measures.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CART 
+
+1460 samples
+ 337 predictor
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 1169, 1169, 1167, 1168, 1167 
+Resampling results across tuning parameters:
+
+  cp           RMSE        Rsquared   MAE       
+  0.004123256  0.07073209  0.9686293  0.05436392
+  0.005264440  0.07425451  0.9656958  0.05690558
+  0.008289932  0.08013962  0.9603042  0.06132646
+  0.020787158  0.09946534  0.9381319  0.07938158
+  0.022259562  0.11308238  0.9195754  0.09419376
+  0.024627884  0.13180918  0.8911292  0.10581696
+  0.027539374  0.14621217  0.8661460  0.11297063
+  0.125213917  0.18400717  0.7822614  0.13835935
+  0.132022391  0.23497255  0.6537036  0.17884794
+  0.604412897  0.34101599  0.5841747  0.26478954
+
+RMSE was used to select the optimal model using the smallest value.
+The final value used for the model was cp = 0.004123256.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">dt_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/e5d08937e3ae4e7824343311a322023636f70922eb090100520277a323939766.png"><img alt="../_images/e5d08937e3ae4e7824343311a322023636f70922eb090100520277a323939766.png" src="../_images/e5d08937e3ae4e7824343311a322023636f70922eb090100520277a323939766.png" style="width: 720px; height: 480px;" /></a>
+</div>
+</div>
+</section>
+<section id="bagging">
+<h3>Bagging<a class="headerlink" href="#bagging" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ensure all features are included in the model</span>
+<span class="n">feature_names</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">setdiff</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">train</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SalePrice&quot;</span><span class="p">))</span>
+
+<span class="c1"># Train Bagging model (explicit feature selection)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">bagging_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">[,</span><span class="w"> </span><span class="n">feature_names</span><span class="p">],</span><span class="w"> </span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="o">$</span><span class="n">SalePrice_log</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;treebag&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bagging_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bagged CART 
+
+1460 samples
+ 337 predictor
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 1169, 1169, 1167, 1168, 1167 
+Resampling results:
+
+  RMSE        Rsquared  MAE       
+  0.05952973  0.978507  0.04010522
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="random-forest">
+<h3>Random Forest<a class="headerlink" href="#random-forest" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Random Forest model</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">rf_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="n">SalePrice_log</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rf&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">tuneGrid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">mtry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">train</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)),</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">ntree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">)</span><span class="w">  </span><span class="c1"># Optimize mtry and use 500 trees</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rf_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random Forest 
+
+1460 samples
+ 336 predictor
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 1169, 1169, 1167, 1168, 1167 
+Resampling results across tuning parameters:
+
+  mtry  RMSE       Rsquared   MAE       
+   3    0.1925098  0.8343472  0.13232173
+   5    0.1675364  0.8586295  0.11228565
+   7    0.1588777  0.8668822  0.10547821
+   9    0.1527855  0.8735186  0.10111837
+  11    0.1501170  0.8758326  0.09898017
+  13    0.1484744  0.8771772  0.09755836
+  15    0.1467841  0.8788165  0.09687788
+  17    0.1455728  0.8795109  0.09601605
+
+RMSE was used to select the optimal model using the smallest value.
+The final value used for the model was mtry = 17.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">rf_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/1a3bce712e766573e2a4f86730385914e2c8f1cbdc4e8fa091d8399f7d04039b.png"><img alt="../_images/1a3bce712e766573e2a4f86730385914e2c8f1cbdc4e8fa091d8399f7d04039b.png" src="../_images/1a3bce712e766573e2a4f86730385914e2c8f1cbdc4e8fa091d8399f7d04039b.png" style="width: 720px; height: 480px;" /></a>
+</div>
+</div>
+</section>
+<section id="xgboost">
+<h3>XGBoost<a class="headerlink" href="#xgboost" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define XGBoost parameters</span>
+<span class="n">params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;reg:squarederror&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Regression task</span>
+<span class="w">  </span><span class="n">eval_metric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rmse&quot;</span><span class="p">,</span><span class="w">            </span><span class="c1"># Root Mean Squared Error</span>
+<span class="w">  </span><span class="n">eta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w">                      </span><span class="c1"># Learning rate</span>
+<span class="w">  </span><span class="n">max_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w">                   </span><span class="c1"># Tree depth</span>
+<span class="w">  </span><span class="n">subsample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">                 </span><span class="c1"># Row sampling</span>
+<span class="w">  </span><span class="n">colsample_bytree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="w">           </span><span class="c1"># Feature sampling</span>
+<span class="p">)</span>
+
+<span class="c1"># Convert data to XGBoost format</span>
+<span class="n">dtrain</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_train</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">dtest</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="c1"># Use cross-validation to determine `nrounds`</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">cv_results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.cv</span><span class="p">(</span>
+<span class="w">  </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dtrain</span><span class="p">,</span>
+<span class="w">  </span><span class="n">nrounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">,</span><span class="w">  </span><span class="c1"># Start with a reasonable upper bound</span>
+<span class="w">  </span><span class="n">nfold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w">  </span><span class="c1"># 5-fold cross-validation</span>
+<span class="w">  </span><span class="n">early_stopping_rounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w">  </span><span class="c1"># Stop if no improvement</span>
+<span class="w">  </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract best `nrounds`</span>
+<span class="n">best_nrounds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cv_results</span><span class="o">$</span><span class="n">best_iteration</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Best nrounds:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">best_nrounds</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+
+<span class="c1"># Train final model with best `nrounds`</span>
+<span class="n">xgb_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.train</span><span class="p">(</span>
+<span class="w">  </span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dtrain</span><span class="p">,</span>
+<span class="w">  </span><span class="n">nrounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">best_nrounds</span><span class="p">,</span>
+<span class="w">  </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-rmse:10.955906+0.006319	test-rmse:10.955914+0.027053 
+Multiple eval metrics are present. Will use test_rmse for early stopping.
+Will train until test_rmse hasn&#39;t improved in 20 rounds.
+
+[2]	train-rmse:10.409415+0.006180	test-rmse:10.409422+0.027204 
+[3]	train-rmse:9.890327+0.005956	test-rmse:9.890333+0.027426 
+[4]	train-rmse:9.397029+0.005689	test-rmse:9.397033+0.027701 
+[5]	train-rmse:8.928634+0.005263	test-rmse:8.928637+0.028144 
+[6]	train-rmse:8.483707+0.005180	test-rmse:8.483707+0.028224 
+[7]	train-rmse:8.061160+0.004857	test-rmse:8.061159+0.028549 
+[8]	train-rmse:7.659444+0.004582	test-rmse:7.659663+0.028553 
+[9]	train-rmse:7.277962+0.004365	test-rmse:7.278175+0.028455 
+[10]	train-rmse:6.915648+0.004193	test-rmse:6.916309+0.028504 
+[11]	train-rmse:6.571441+0.004101	test-rmse:6.572028+0.028034 
+[12]	train-rmse:6.244302+0.003866	test-rmse:6.244799+0.027293 
+[13]	train-rmse:5.933583+0.003644	test-rmse:5.934007+0.027001 
+[14]	train-rmse:5.638300+0.003609	test-rmse:5.638459+0.026768 
+[15]	train-rmse:5.357697+0.003477	test-rmse:5.357941+0.026571 
+[16]	train-rmse:5.091280+0.003207	test-rmse:5.091920+0.026897 
+[17]	train-rmse:4.838109+0.003182	test-rmse:4.838678+0.026351 
+[18]	train-rmse:4.597795+0.003113	test-rmse:4.598454+0.026238 
+[19]	train-rmse:4.369210+0.002926	test-rmse:4.369592+0.025729 
+[20]	train-rmse:4.152234+0.002691	test-rmse:4.152451+0.025582 
+[21]	train-rmse:3.945866+0.002642	test-rmse:3.946165+0.025491 
+[22]	train-rmse:3.749956+0.002487	test-rmse:3.750256+0.025562 
+[23]	train-rmse:3.563707+0.002341	test-rmse:3.564102+0.025597 
+[24]	train-rmse:3.386690+0.002291	test-rmse:3.387289+0.025202 
+[25]	train-rmse:3.218735+0.002298	test-rmse:3.219267+0.024731 
+[26]	train-rmse:3.059184+0.002272	test-rmse:3.059426+0.024200 
+[27]	train-rmse:2.907595+0.002075	test-rmse:2.907866+0.023845 
+[28]	train-rmse:2.763432+0.001837	test-rmse:2.763466+0.023471 
+[29]	train-rmse:2.626677+0.001916	test-rmse:2.626775+0.023190 
+[30]	train-rmse:2.496832+0.001713	test-rmse:2.496776+0.022824 
+[31]	train-rmse:2.373308+0.001781	test-rmse:2.373075+0.022484 
+[32]	train-rmse:2.256007+0.001655	test-rmse:2.255706+0.022215 
+[33]	train-rmse:2.144637+0.001612	test-rmse:2.144419+0.021699 
+[34]	train-rmse:2.038665+0.001534	test-rmse:2.038414+0.021223 
+[35]	train-rmse:1.938060+0.001623	test-rmse:1.937776+0.020571 
+[36]	train-rmse:1.842532+0.001428	test-rmse:1.842298+0.020337 
+[37]	train-rmse:1.751905+0.001416	test-rmse:1.751602+0.020146 
+[38]	train-rmse:1.665773+0.001356	test-rmse:1.665612+0.019682 
+[39]	train-rmse:1.583990+0.001256	test-rmse:1.583799+0.019342 
+[40]	train-rmse:1.506275+0.001134	test-rmse:1.506169+0.019086 
+[41]	train-rmse:1.432536+0.000987	test-rmse:1.432533+0.018718 
+[42]	train-rmse:1.362432+0.000937	test-rmse:1.362449+0.018384 
+[43]	train-rmse:1.295792+0.000968	test-rmse:1.295879+0.018033 
+[44]	train-rmse:1.232476+0.000937	test-rmse:1.232731+0.017462 
+[45]	train-rmse:1.172381+0.000959	test-rmse:1.172770+0.016909 
+[46]	train-rmse:1.115253+0.000939	test-rmse:1.115881+0.016344 
+[47]	train-rmse:1.061087+0.000778	test-rmse:1.061869+0.015921 
+[48]	train-rmse:1.009625+0.000799	test-rmse:1.010507+0.015478 
+[49]	train-rmse:0.960757+0.000707	test-rmse:0.961746+0.015278 
+[50]	train-rmse:0.914334+0.000675	test-rmse:0.915748+0.014888 
+[51]	train-rmse:0.870248+0.000545	test-rmse:0.871964+0.014524 
+[52]	train-rmse:0.828469+0.000578	test-rmse:0.830544+0.014096 
+[53]	train-rmse:0.788743+0.000568	test-rmse:0.791320+0.013622 
+[54]	train-rmse:0.750995+0.000473	test-rmse:0.754068+0.013307 
+[55]	train-rmse:0.715158+0.000410	test-rmse:0.718889+0.012879 
+[56]	train-rmse:0.681238+0.000434	test-rmse:0.685309+0.012686 
+[57]	train-rmse:0.648915+0.000495	test-rmse:0.653689+0.012360 
+[58]	train-rmse:0.618297+0.000500	test-rmse:0.623832+0.011970 
+[59]	train-rmse:0.589329+0.000493	test-rmse:0.595626+0.011794 
+[60]	train-rmse:0.561663+0.000404	test-rmse:0.568529+0.011688 
+[61]	train-rmse:0.535468+0.000541	test-rmse:0.543067+0.011197 
+[62]	train-rmse:0.510684+0.000557	test-rmse:0.519031+0.011014 
+[63]	train-rmse:0.487062+0.000561	test-rmse:0.496214+0.010655 
+[64]	train-rmse:0.464626+0.000474	test-rmse:0.474586+0.010222 
+[65]	train-rmse:0.443388+0.000413	test-rmse:0.453988+0.010040 
+[66]	train-rmse:0.423198+0.000420	test-rmse:0.434655+0.009861 
+[67]	train-rmse:0.404039+0.000401	test-rmse:0.416342+0.009980 
+[68]	train-rmse:0.385907+0.000445	test-rmse:0.398922+0.009738 
+[69]	train-rmse:0.368706+0.000472	test-rmse:0.382596+0.009614 
+[70]	train-rmse:0.352301+0.000519	test-rmse:0.367226+0.009472 
+[71]	train-rmse:0.336813+0.000478	test-rmse:0.352825+0.009373 
+[72]	train-rmse:0.322142+0.000525	test-rmse:0.339234+0.009293 
+[73]	train-rmse:0.308241+0.000593	test-rmse:0.326516+0.009298 
+[74]	train-rmse:0.295051+0.000613	test-rmse:0.314416+0.009383 
+[75]	train-rmse:0.282582+0.000550	test-rmse:0.303005+0.009380 
+[76]	train-rmse:0.270806+0.000496	test-rmse:0.292307+0.009390 
+[77]	train-rmse:0.259599+0.000510	test-rmse:0.282323+0.009240 
+[78]	train-rmse:0.249028+0.000619	test-rmse:0.272956+0.008965 
+[79]	train-rmse:0.238995+0.000608	test-rmse:0.264318+0.008721 
+[80]	train-rmse:0.229495+0.000656	test-rmse:0.256215+0.008794 
+[81]	train-rmse:0.220518+0.000601	test-rmse:0.248403+0.008793 
+[82]	train-rmse:0.212027+0.000655	test-rmse:0.241287+0.009015 
+[83]	train-rmse:0.204034+0.000674	test-rmse:0.234449+0.009096 
+[84]	train-rmse:0.196502+0.000631	test-rmse:0.228128+0.009047 
+[85]	train-rmse:0.189323+0.000560	test-rmse:0.222338+0.009151 
+[86]	train-rmse:0.182635+0.000642	test-rmse:0.217131+0.009183 
+[87]	train-rmse:0.176194+0.000613	test-rmse:0.212127+0.009298 
+[88]	train-rmse:0.170225+0.000644	test-rmse:0.207536+0.009222 
+[89]	train-rmse:0.164547+0.000714	test-rmse:0.203248+0.009217 
+[90]	train-rmse:0.159145+0.000748	test-rmse:0.199319+0.009295 
+[91]	train-rmse:0.154065+0.000768	test-rmse:0.195509+0.009191 
+[92]	train-rmse:0.149335+0.000810	test-rmse:0.191898+0.009174 
+[93]	train-rmse:0.144879+0.000828	test-rmse:0.188833+0.009206 
+[94]	train-rmse:0.140655+0.000847	test-rmse:0.185881+0.009237 
+[95]	train-rmse:0.136737+0.000883	test-rmse:0.183150+0.009276 
+[96]	train-rmse:0.133063+0.000954	test-rmse:0.180638+0.009348 
+[97]	train-rmse:0.129653+0.000993	test-rmse:0.178230+0.009500 
+[98]	train-rmse:0.126258+0.001076	test-rmse:0.176129+0.009722 
+[99]	train-rmse:0.123188+0.001139	test-rmse:0.174222+0.009795 
+[100]	train-rmse:0.120244+0.001221	test-rmse:0.172390+0.009816 
+[101]	train-rmse:0.117514+0.001357	test-rmse:0.170757+0.009702 
+[102]	train-rmse:0.114877+0.001310	test-rmse:0.169212+0.009657 
+[103]	train-rmse:0.112520+0.001438	test-rmse:0.167883+0.009725 
+[104]	train-rmse:0.110219+0.001441	test-rmse:0.166562+0.009771 
+[105]	train-rmse:0.108070+0.001513	test-rmse:0.165470+0.009816 
+[106]	train-rmse:0.106115+0.001549	test-rmse:0.164351+0.009858 
+[107]	train-rmse:0.104289+0.001556	test-rmse:0.163363+0.009938 
+[108]	train-rmse:0.102543+0.001655	test-rmse:0.162459+0.009996 
+[109]	train-rmse:0.100909+0.001651	test-rmse:0.161698+0.010077 
+[110]	train-rmse:0.099281+0.001688	test-rmse:0.160902+0.010031 
+[111]	train-rmse:0.097817+0.001597	test-rmse:0.160258+0.010060 
+[112]	train-rmse:0.096462+0.001632	test-rmse:0.159627+0.010049 
+[113]	train-rmse:0.095111+0.001541	test-rmse:0.158999+0.010055 
+[114]	train-rmse:0.093777+0.001540	test-rmse:0.158365+0.009987 
+[115]	train-rmse:0.092716+0.001579	test-rmse:0.157829+0.009944 
+[116]	train-rmse:0.091620+0.001607	test-rmse:0.157270+0.010021 
+[117]	train-rmse:0.090580+0.001662	test-rmse:0.156918+0.010024 
+[118]	train-rmse:0.089457+0.001710	test-rmse:0.156538+0.009993 
+[119]	train-rmse:0.088562+0.001816	test-rmse:0.156230+0.010003 
+[120]	train-rmse:0.087667+0.001765	test-rmse:0.155869+0.009995 
+[121]	train-rmse:0.086833+0.001803	test-rmse:0.155594+0.010012 
+[122]	train-rmse:0.085979+0.001725	test-rmse:0.155267+0.010026 
+[123]	train-rmse:0.085271+0.001742	test-rmse:0.155050+0.010093 
+[124]	train-rmse:0.084403+0.001634	test-rmse:0.154770+0.010055 
+[125]	train-rmse:0.083632+0.001599	test-rmse:0.154498+0.010089 
+[126]	train-rmse:0.082972+0.001689	test-rmse:0.154349+0.010131 
+[127]	train-rmse:0.082212+0.001758	test-rmse:0.154158+0.010110 
+[128]	train-rmse:0.081603+0.001821	test-rmse:0.153947+0.010104 
+[129]	train-rmse:0.081047+0.001861	test-rmse:0.153818+0.010111 
+[130]	train-rmse:0.080539+0.001835	test-rmse:0.153630+0.010230 
+[131]	train-rmse:0.079987+0.001848	test-rmse:0.153473+0.010230 
+[132]	train-rmse:0.079346+0.001898	test-rmse:0.153263+0.010233 
+[133]	train-rmse:0.078796+0.001907	test-rmse:0.153136+0.010211 
+[134]	train-rmse:0.078328+0.001855	test-rmse:0.153020+0.010345 
+[135]	train-rmse:0.077733+0.001898	test-rmse:0.152934+0.010327 
+[136]	train-rmse:0.077310+0.001873	test-rmse:0.152782+0.010396 
+[137]	train-rmse:0.076797+0.001951	test-rmse:0.152779+0.010497 
+[138]	train-rmse:0.076276+0.001939	test-rmse:0.152661+0.010501 
+[139]	train-rmse:0.075895+0.001967	test-rmse:0.152612+0.010518 
+[140]	train-rmse:0.075439+0.001949	test-rmse:0.152544+0.010581 
+[141]	train-rmse:0.075026+0.001968	test-rmse:0.152481+0.010596 
+[142]	train-rmse:0.074491+0.001915	test-rmse:0.152473+0.010584 
+[143]	train-rmse:0.074087+0.001976	test-rmse:0.152374+0.010490 
+[144]	train-rmse:0.073624+0.001950	test-rmse:0.152306+0.010508 
+[145]	train-rmse:0.073190+0.001929	test-rmse:0.152190+0.010520 
+[146]	train-rmse:0.072831+0.001910	test-rmse:0.152118+0.010502 
+[147]	train-rmse:0.072491+0.001931	test-rmse:0.152118+0.010461 
+[148]	train-rmse:0.072099+0.002076	test-rmse:0.152115+0.010455 
+[149]	train-rmse:0.071723+0.002010	test-rmse:0.152057+0.010513 
+[150]	train-rmse:0.071329+0.001962	test-rmse:0.152010+0.010539 
+[151]	train-rmse:0.070939+0.001934	test-rmse:0.151953+0.010570 
+[152]	train-rmse:0.070639+0.001924	test-rmse:0.151924+0.010615 
+[153]	train-rmse:0.070240+0.001788	test-rmse:0.151915+0.010609 
+[154]	train-rmse:0.069846+0.001803	test-rmse:0.151822+0.010588 
+[155]	train-rmse:0.069394+0.001770	test-rmse:0.151890+0.010653 
+[156]	train-rmse:0.068983+0.001752	test-rmse:0.151865+0.010607 
+[157]	train-rmse:0.068682+0.001698	test-rmse:0.151798+0.010605 
+[158]	train-rmse:0.068337+0.001763	test-rmse:0.151764+0.010546 
+[159]	train-rmse:0.067994+0.001725	test-rmse:0.151804+0.010596 
+[160]	train-rmse:0.067688+0.001747	test-rmse:0.151803+0.010569 
+[161]	train-rmse:0.067318+0.001842	test-rmse:0.151725+0.010542 
+[162]	train-rmse:0.066905+0.001869	test-rmse:0.151722+0.010594 
+[163]	train-rmse:0.066553+0.001957	test-rmse:0.151706+0.010646 
+[164]	train-rmse:0.066196+0.001884	test-rmse:0.151678+0.010618 
+[165]	train-rmse:0.065920+0.001764	test-rmse:0.151639+0.010602 
+[166]	train-rmse:0.065623+0.001788	test-rmse:0.151590+0.010630 
+[167]	train-rmse:0.065250+0.001869	test-rmse:0.151552+0.010688 
+[168]	train-rmse:0.064875+0.001951	test-rmse:0.151545+0.010638 
+[169]	train-rmse:0.064607+0.001977	test-rmse:0.151560+0.010620 
+[170]	train-rmse:0.064256+0.001866	test-rmse:0.151489+0.010675 
+[171]	train-rmse:0.063863+0.001852	test-rmse:0.151501+0.010647 
+[172]	train-rmse:0.063573+0.001920	test-rmse:0.151442+0.010634 
+[173]	train-rmse:0.063056+0.001862	test-rmse:0.151435+0.010615 
+[174]	train-rmse:0.062737+0.001826	test-rmse:0.151468+0.010616 
+[175]	train-rmse:0.062425+0.001899	test-rmse:0.151447+0.010634 
+[176]	train-rmse:0.062149+0.001891	test-rmse:0.151401+0.010608 
+[177]	train-rmse:0.061813+0.001943	test-rmse:0.151379+0.010642 
+[178]	train-rmse:0.061509+0.001941	test-rmse:0.151400+0.010601 
+[179]	train-rmse:0.061188+0.001963	test-rmse:0.151365+0.010559 
+[180]	train-rmse:0.060936+0.001990	test-rmse:0.151356+0.010592 
+[181]	train-rmse:0.060603+0.002044	test-rmse:0.151354+0.010647 
+[182]	train-rmse:0.060330+0.002015	test-rmse:0.151316+0.010637 
+[183]	train-rmse:0.059977+0.002060	test-rmse:0.151283+0.010644 
+[184]	train-rmse:0.059716+0.002099	test-rmse:0.151266+0.010669 
+[185]	train-rmse:0.059386+0.002142	test-rmse:0.151307+0.010657 
+[186]	train-rmse:0.059064+0.002047	test-rmse:0.151264+0.010719 
+[187]	train-rmse:0.058750+0.002084	test-rmse:0.151263+0.010703 
+[188]	train-rmse:0.058371+0.002025	test-rmse:0.151252+0.010666 
+[189]	train-rmse:0.058030+0.001996	test-rmse:0.151239+0.010721 
+[190]	train-rmse:0.057701+0.002109	test-rmse:0.151226+0.010710 
+[191]	train-rmse:0.057418+0.002038	test-rmse:0.151195+0.010728 
+[192]	train-rmse:0.057040+0.001984	test-rmse:0.151223+0.010678 
+[193]	train-rmse:0.056744+0.001960	test-rmse:0.151210+0.010668 
+[194]	train-rmse:0.056496+0.001953	test-rmse:0.151220+0.010674 
+[195]	train-rmse:0.056140+0.001987	test-rmse:0.151195+0.010702 
+[196]	train-rmse:0.055921+0.001938	test-rmse:0.151154+0.010737 
+[197]	train-rmse:0.055683+0.001946	test-rmse:0.151139+0.010741 
+[198]	train-rmse:0.055441+0.001862	test-rmse:0.151149+0.010730 
+[199]	train-rmse:0.055106+0.001757	test-rmse:0.151169+0.010711 
+[200]	train-rmse:0.054746+0.001793	test-rmse:0.151190+0.010727 
+[201]	train-rmse:0.054446+0.001726	test-rmse:0.151132+0.010801 
+[202]	train-rmse:0.054123+0.001800	test-rmse:0.151149+0.010825 
+[203]	train-rmse:0.053872+0.001840	test-rmse:0.151139+0.010840 
+[204]	train-rmse:0.053588+0.001846	test-rmse:0.151185+0.010832 
+[205]	train-rmse:0.053367+0.001906	test-rmse:0.151182+0.010855 
+[206]	train-rmse:0.053043+0.001834	test-rmse:0.151155+0.010898 
+[207]	train-rmse:0.052691+0.001846	test-rmse:0.151154+0.010886 
+[208]	train-rmse:0.052428+0.001837	test-rmse:0.151117+0.010933 
+[209]	train-rmse:0.052112+0.001787	test-rmse:0.151158+0.010948 
+[210]	train-rmse:0.051945+0.001826	test-rmse:0.151162+0.010950 
+[211]	train-rmse:0.051743+0.001878	test-rmse:0.151167+0.010992 
+[212]	train-rmse:0.051496+0.001897	test-rmse:0.151176+0.010978 
+[213]	train-rmse:0.051150+0.001831	test-rmse:0.151198+0.011000 
+[214]	train-rmse:0.050857+0.001818	test-rmse:0.151249+0.011031 
+[215]	train-rmse:0.050603+0.001840	test-rmse:0.151272+0.011006 
+[216]	train-rmse:0.050351+0.001838	test-rmse:0.151233+0.010988 
+[217]	train-rmse:0.050089+0.001856	test-rmse:0.151232+0.011013 
+[218]	train-rmse:0.049844+0.001921	test-rmse:0.151258+0.010978 
+[219]	train-rmse:0.049576+0.001888	test-rmse:0.151282+0.010938 
+[220]	train-rmse:0.049273+0.001845	test-rmse:0.151293+0.010909 
+[221]	train-rmse:0.048983+0.001823	test-rmse:0.151309+0.010946 
+[222]	train-rmse:0.048707+0.001779	test-rmse:0.151288+0.010945 
+[223]	train-rmse:0.048450+0.001807	test-rmse:0.151254+0.010941 
+[224]	train-rmse:0.048204+0.001802	test-rmse:0.151269+0.010950 
+[225]	train-rmse:0.048010+0.001848	test-rmse:0.151283+0.010942 
+[226]	train-rmse:0.047737+0.001862	test-rmse:0.151278+0.010960 
+[227]	train-rmse:0.047570+0.001845	test-rmse:0.151295+0.010980 
+[228]	train-rmse:0.047396+0.001840	test-rmse:0.151291+0.011009 
+Stopping. Best iteration:
+[208]	train-rmse:0.052428+0.001837	test-rmse:0.151117+0.010933
+
+Best nrounds: 208 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Kaggle Competition: <a class="reference external" href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview">https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview</a></p></li>
+<li><p>Dataset Description: <a class="reference external" href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data">https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -581,7 +2567,7 @@ The following objects are masked from &#39;package:base&#39;:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">House Prices - Advanced Regression Techniques</p>
+        <p class="prev-next-title">House Prices (Python)</p>
       </div>
     </a>
     <a class="right-next"
@@ -610,6 +2596,7 @@ The following objects are masked from &#39;package:base&#39;:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-regression-techniques">Advanced Regression Techniques</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
@@ -623,7 +2610,32 @@ The following objects are masked from &#39;package:base&#39;:
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-descriptions">File descriptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-missing-values">Handling Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding">Encoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalize-data-standard-scaling">Normalize Data (Standard Scaling)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#knn">kNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#svm">SVM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso">Lasso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge">Ridge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticnet">ElasticNet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">XGBoost</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
@@ -648,7 +2660,7 @@ By Arno Zeng
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>

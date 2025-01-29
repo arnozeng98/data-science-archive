@@ -1,4 +1,4 @@
-# Welcome to Arno's Projects Collection
+# Arno's Projects Collection
 
 Welcome to **Arno's Projects Collection**! This site is a showcase of various projects I've worked on, spanning topics such as **data science**, **machine learning**, **natural language processing**, and more. Each project is organized to provide insights into its background, methodology, and results.
 
