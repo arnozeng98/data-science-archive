@@ -60,12 +60,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'archive/house-prices(py)';</script>
-    <link rel="canonical" href="docs.arnozeng.com/archive/house-prices(py).html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'archive/house-prices-py';</script>
+    <link rel="canonical" href="docs.arnozeng.com/archive/house-prices-py.html" />
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="House Prices (R)" href="house-prices%28r%29.html" />
+    <link rel="next" title="House Prices (R)" href="house-prices-r.html" />
     <link rel="prev" title="Arno’s Projects Collection" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -173,25 +173,16 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">House Prices (Python)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="house-prices%28r%29.html">House Prices (R)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coronary-heart-disease-study.html">Coronary Heart Disease Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="house-prices-r.html">House Prices (R)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="coronary-heart-disease-study.html">Coronary Heart Disease Prediction with Deep Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="blogs.html">Blogs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NLP</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="cfg-parsers.html">CFG Parsers</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Database</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="postgresql.html">PostgreSQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mongodb.html">MongoDB</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 </ul>
 
     </div>
@@ -268,7 +259,7 @@
       
       
       
-      <li><a href="https://github.com/arnozeng98/data-science-archive/issues/new?title=Issue%20on%20page%20%2Farchive/house-prices(py).html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/arnozeng98/data-science-archive/issues/new?title=Issue%20on%20page%20%2Farchive/house-prices-py.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -298,7 +289,7 @@
       
       
       
-      <li><a href="../_sources/archive/house-prices(py).ipynb" target="_blank"
+      <li><a href="../_sources/archive/house-prices-py.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,7 +376,6 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-regression-techniques">Advanced Regression Techniques</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
@@ -416,11 +406,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">XGBoost</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lightgbm">LightGBM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking">Stacking</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -440,33 +427,6 @@
 <p>Predict sales prices and practice feature engineering, RFs, and gradient boosting</p>
 <p><strong>Author:</strong> Lingsong Zeng<br>
 <strong>Date:</strong> 12/31/2024</p>
-</section>
-<section id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="#Introduction"><span class="xref myst">Introduction</span></a></p></li>
-<li><p><a class="reference internal" href="#Data"><span class="xref myst">Data</span></a></p></li>
-<li><p><a class="reference internal" href="#EDA"><span class="xref myst">EDA</span></a></p></li>
-<li><p><a class="reference internal" href="#Feature-Engineering"><span class="xref myst">Feature Engineering</span></a></p></li>
-<li><p><a class="reference internal" href="#Preprocessing"><span class="xref myst">Preprocessing</span></a></p></li>
-<li><p><a class="reference internal" href="#Modeling"><span class="xref myst">Modeling</span></a></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#kNN"><span class="xref myst">kNN</span></a></p></li>
-<li><p><a class="reference internal" href="#SVM"><span class="xref myst">SVM</span></a></p></li>
-<li><p><a class="reference internal" href="#Linear-Regression"><span class="xref myst">Linear Regression</span></a></p></li>
-<li><p><a class="reference internal" href="#Lasso"><span class="xref myst">Lasso</span></a></p></li>
-<li><p><a class="reference internal" href="#Ridge"><span class="xref myst">Ridge</span></a></p></li>
-<li><p><a class="reference internal" href="#ElasticNet"><span class="xref myst">ElasticNet</span></a></p></li>
-<li><p><a class="reference internal" href="#Decision-Tree"><span class="xref myst">Decision Tree</span></a></p></li>
-<li><p><a class="reference internal" href="#Bagging"><span class="xref myst">Bagging</span></a></p></li>
-<li><p><a class="reference internal" href="#Random-Forest"><span class="xref myst">Random Forest</span></a></p></li>
-<li><p><a class="reference internal" href="#XGBoost"><span class="xref myst">XGBoost</span></a></p></li>
-<li><p><a class="reference internal" href="#LightGBM"><span class="xref myst">LightGBM</span></a></p></li>
-<li><p><a class="reference internal" href="#Stacking"><span class="xref myst">Stacking</span></a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#References"><span class="xref myst">References</span></a></p></li>
-</ol>
 </section>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
@@ -1906,250 +1866,6 @@ This warning will only be shown once.
 </div>
 </div>
 </section>
-<section id="lightgbm">
-<h3>LightGBM<a class="headerlink" href="#lightgbm" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_lgb</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
-    <span class="c1"># Define the LightGBM Regressor</span>
-    <span class="n">lgb</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span>
-        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-        <span class="n">boosting_type</span><span class="o">=</span><span class="s1">&#39;gbdt&#39;</span><span class="p">,</span>
-        <span class="n">device</span><span class="o">=</span><span class="s1">&#39;gpu&#39;</span><span class="p">,</span>
-        <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>  <span class="c1"># Use all available cores</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Reduced parameter space</span>
-    <span class="n">param_dist</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
-        <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-        <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
-        <span class="s1">&#39;num_leaves&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">31</span><span class="p">],</span>  <span class="c1"># single value for num_leaves</span>
-        <span class="s1">&#39;subsample&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">],</span>
-        <span class="s1">&#39;colsample_bytree&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">],</span>
-        <span class="s1">&#39;min_child_samples&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
-        <span class="s1">&#39;reg_alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
-        <span class="s1">&#39;reg_lambda&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
-    <span class="p">}</span>
-
-    <span class="n">random_search</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
-        <span class="n">estimator</span><span class="o">=</span><span class="n">lgb</span><span class="p">,</span>
-        <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_dist</span><span class="p">,</span>
-        <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># fewer iterations</span>
-        <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_root_mean_squared_error&#39;</span><span class="p">,</span>
-        <span class="n">cv</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>       <span class="c1"># fewer folds</span>
-        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Fit the grid search to the training data</span>
-    <span class="n">random_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-    <span class="c1"># Print the best parameters and RMSE</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters:&quot;</span><span class="p">,</span> <span class="n">random_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best RMSE:&quot;</span><span class="p">,</span> <span class="o">-</span><span class="n">random_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
-
-    <span class="c1"># Use the best model to predict on the test set</span>
-    <span class="k">return</span> <span class="n">random_search</span><span class="o">.</span><span class="n">best_estimator_</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lgb_model</span> <span class="o">=</span> <span class="n">train_lgb</span><span class="p">(</span><span class="n">X_train_split</span><span class="p">,</span> <span class="n">y_train_split</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 3 folds for each of 20 candidates, totalling 60 fits
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">71</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">lgb_model</span> <span class="o">=</span> <span class="n">train_lgb</span><span class="p">(</span><span class="n">X_train_split</span><span class="p">,</span> <span class="n">y_train_split</span><span class="p">)</span>
-
-<span class="nn">Cell In[70], line 36,</span> in <span class="ni">train_lgb</span><span class="nt">(X_train, y_train)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">random_search</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">estimator</span><span class="o">=</span><span class="n">lgb</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_dist</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="c1"># Fit the grid search to the training data</span>
-<span class="ne">---&gt; </span><span class="mi">36</span> <span class="n">random_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="c1"># Print the best parameters and RMSE</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameters:&quot;</span><span class="p">,</span> <span class="n">random_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\sklearn\base.py:1473,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1466</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1468</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1469</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1470</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">   </span><span class="mi">1471</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1472</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1473</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\sklearn\model_selection\_search.py:1019,</span> in <span class="ni">BaseSearchCV.fit</span><span class="nt">(self, X, y, **params)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1013</span>     <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_results</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1014</span>         <span class="n">all_candidate_params</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="n">all_out</span><span class="p">,</span> <span class="n">all_more_results</span>
-<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1017</span>     <span class="k">return</span> <span class="n">results</span>
-<span class="ne">-&gt; </span><span class="mi">1019</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_search</span><span class="p">(</span><span class="n">evaluate_candidates</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1021</span> <span class="c1"># multimetric is determined here because in the case of a callable</span>
-<span class="g g-Whitespace">   </span><span class="mi">1022</span> <span class="c1"># self.scoring the return type is only known after calling</span>
-<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="n">first_test_score</span> <span class="o">=</span> <span class="n">all_out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;test_scores&quot;</span><span class="p">]</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\sklearn\model_selection\_search.py:1960,</span> in <span class="ni">RandomizedSearchCV._run_search</span><span class="nt">(self, evaluate_candidates)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1958</span> <span class="k">def</span> <span class="nf">_run_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluate_candidates</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1959</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Search n_iter candidates from param_distributions&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1960</span>     <span class="n">evaluate_candidates</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1961</span>         <span class="n">ParameterSampler</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1962</span>             <span class="bp">self</span><span class="o">.</span><span class="n">param_distributions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span>
-<span class="g g-Whitespace">   </span><span class="mi">1963</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1964</span>     <span class="p">)</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\sklearn\model_selection\_search.py:965,</span> in <span class="ni">BaseSearchCV.fit.&lt;locals&gt;.evaluate_candidates</span><span class="nt">(candidate_params, cv, more_results)</span>
-<span class="g g-Whitespace">    </span><span class="mi">957</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">958</span>     <span class="nb">print</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">959</span>         <span class="s2">&quot;Fitting </span><span class="si">{0}</span><span class="s2"> folds for each of </span><span class="si">{1}</span><span class="s2"> candidates,&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">960</span>         <span class="s2">&quot; totalling </span><span class="si">{2}</span><span class="s2"> fits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">961</span>             <span class="n">n_splits</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">,</span> <span class="n">n_candidates</span> <span class="o">*</span> <span class="n">n_splits</span>
-<span class="g g-Whitespace">    </span><span class="mi">962</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">963</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">965</span> <span class="n">out</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">966</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">967</span>         <span class="n">clone</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">968</span>         <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">969</span>         <span class="n">y</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">970</span>         <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">971</span>         <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">972</span>         <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>         <span class="n">split_progress</span><span class="o">=</span><span class="p">(</span><span class="n">split_idx</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">974</span>         <span class="n">candidate_progress</span><span class="o">=</span><span class="p">(</span><span class="n">cand_idx</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">975</span>         <span class="o">**</span><span class="n">fit_and_score_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">976</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">977</span>     <span class="k">for</span> <span class="p">(</span><span class="n">cand_idx</span><span class="p">,</span> <span class="n">parameters</span><span class="p">),</span> <span class="p">(</span><span class="n">split_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">))</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">978</span>         <span class="nb">enumerate</span><span class="p">(</span><span class="n">candidate_params</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">979</span>         <span class="nb">enumerate</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">routed_params</span><span class="o">.</span><span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">)),</span>
-<span class="g g-Whitespace">    </span><span class="mi">980</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">981</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">983</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">984</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">985</span>         <span class="s2">&quot;No fits were performed. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">986</span>         <span class="s2">&quot;Was the CV iterator empty? &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">987</span>         <span class="s2">&quot;Were there no candidates?&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">988</span>     <span class="p">)</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\sklearn\utils\parallel.py:74,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="n">config</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="n">iterable_with_config</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="p">(</span><span class="n">_with_config</span><span class="p">(</span><span class="n">delayed_func</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="k">for</span> <span class="n">delayed_func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">74</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">iterable_with_config</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\joblib\parallel.py:2007,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2001</span> <span class="c1"># The first item from the output is blank, but it makes the interpreter</span>
-<span class="g g-Whitespace">   </span><span class="mi">2002</span> <span class="c1"># progress until it enters the Try/Except block of the generator and</span>
-<span class="g g-Whitespace">   </span><span class="mi">2003</span> <span class="c1"># reaches the first `yield` statement. This starts the asynchronous</span>
-<span class="g g-Whitespace">   </span><span class="mi">2004</span> <span class="c1"># dispatch of the tasks to the workers.</span>
-<span class="g g-Whitespace">   </span><span class="mi">2005</span> <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2007</span> <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\joblib\parallel.py:1650,</span> in <span class="ni">Parallel._get_outputs</span><span class="nt">(self, iterator, pre_dispatch)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1647</span>     <span class="k">yield</span>
-<span class="g g-Whitespace">   </span><span class="mi">1649</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">retrieval_context</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">1650</span>         <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1652</span> <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1653</span>     <span class="c1"># The generator has been garbage collected before being fully</span>
-<span class="g g-Whitespace">   </span><span class="mi">1654</span>     <span class="c1"># consumed. This aborts the remaining tasks if possible and warn</span>
-<span class="g g-Whitespace">   </span><span class="mi">1655</span>     <span class="c1"># the user if necessary.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1656</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exception</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\joblib\parallel.py:1762,</span> in <span class="ni">Parallel._retrieve</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1757</span> <span class="c1"># If the next job is not ready for retrieval yet, we just wait for</span>
-<span class="g g-Whitespace">   </span><span class="mi">1758</span> <span class="c1"># async callbacks to progress.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1759</span> <span class="k">if</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span>
-<span class="g g-Whitespace">   </span><span class="mi">1760</span>     <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1761</span>         <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span> <span class="o">==</span> <span class="n">TASK_PENDING</span><span class="p">)):</span>
-<span class="ne">-&gt; </span><span class="mi">1762</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1763</span>     <span class="k">continue</span>
-<span class="g g-Whitespace">   </span><span class="mi">1765</span> <span class="c1"># We need to be careful: the job list can be filling up as</span>
-<span class="g g-Whitespace">   </span><span class="mi">1766</span> <span class="c1"># we empty it and Python list are not thread-safe by</span>
-<span class="g g-Whitespace">   </span><span class="mi">1767</span> <span class="c1"># default hence the use of the lock</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lgb_valid_pred</span> <span class="o">=</span> <span class="n">lgb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid_split</span><span class="p">)</span>
-<span class="n">lgb_valid_rmse</span> <span class="o">=</span> <span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">y_valid_split</span><span class="p">,</span> <span class="n">lgb_valid_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Validation RMSE (LightGBM): </span><span class="si">{</span><span class="n">lgb_valid_rmse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_submission</span><span class="p">(</span><span class="n">lgb_model</span><span class="p">,</span> <span class="n">X_test_full</span><span class="p">,</span> <span class="n">test_ids</span><span class="p">,</span> <span class="s1">&#39;lightgbm.csv&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="stacking">
-<h3>Stacking<a class="headerlink" href="#stacking" title="Link to this heading">#</a></h3>
-</section>
-</section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Models&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s1">&#39;kNN&#39;</span><span class="p">,</span> 
-        <span class="s1">&#39;SVM&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Linear Regression&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Lasso&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Ridge&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;ElasticNet&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Bagging&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;XGBoost&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;LightGBM&#39;</span>
-    <span class="p">],</span>
-    <span class="s1">&#39;Scores (RMSE)&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="n">knn_valid_rmse</span><span class="p">,</span>
-        <span class="n">svm_valid_rmse</span><span class="p">,</span>
-        <span class="n">linear_valid_rmse</span><span class="p">,</span>
-        <span class="n">lasso_valid_rmse</span><span class="p">,</span>
-        <span class="n">ridge_valid_rmse</span><span class="p">,</span>
-        <span class="n">elasticnet_valid_rmse</span><span class="p">,</span>
-        <span class="n">tree_valid_rmse</span><span class="p">,</span>
-        <span class="n">rf_valid_rmse</span><span class="p">,</span>
-        <span class="n">bag_valid_rmse</span><span class="p">,</span>
-        <span class="n">xgb_valid_rmse</span><span class="p">,</span>
-        <span class="n">lgb_valid_rmse</span>
-    <span class="p">]</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
@@ -2200,7 +1916,7 @@ This warning will only be shown once.
       </div>
     </a>
     <a class="right-next"
-       href="house-prices%28r%29.html"
+       href="house-prices-r.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -2226,7 +1942,6 @@ This warning will only be shown once.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-regression-techniques">Advanced Regression Techniques</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
@@ -2257,11 +1972,8 @@ This warning will only be shown once.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">XGBoost</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lightgbm">LightGBM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking">Stacking</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
