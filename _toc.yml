@@ -3,17 +3,8 @@
 
 format: jb-book
 root: archive/intro
-parts:
-  - caption: Machine Learning
-    chapters:
-    - file: archive/house-prices-py
-    - file: archive/house-prices-r
-
-  - caption: Deep Learning
-    chapters: 
-    - file: archive/coronary-heart-disease-study
-    - file: archive/blogs
-  
-  - caption: NLP
-    chapters:
-    - file: archive/cfg-parsers
+chapters:
+  - file: archive/house-prices-py
+  - file: archive/house-prices-r
+  - file: archive/twitter-sentiment-extactio
+  - file: archive/coronary-heart-disease-study

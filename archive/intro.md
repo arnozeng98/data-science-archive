@@ -1,24 +1,25 @@
 # Arno's Projects Collection
 
-Welcome to **Arno's Projects Collection**! This site is a showcase of various projects I've worked on, spanning topics such as **data science**, **machine learning**, **natural language processing**, and more. Each project is organized to provide insights into its background, methodology, and results.
+Welcome to **Arno's Projects Collection**! This site is a showcase of various projects I've worked on, spanning topics such as **data science**, **machine learning**, and **deep learning**. Each project is organized to provide insights into its background, methodology, and results.
 
 ---
 
 ## 🌟 What's Included?
 
 Here, you'll find:
+
 - **Interactive Jupyter Notebooks**: Explore the code and outputs directly.
 - **Data Science Explorations**: In-depth analysis of datasets, including visualizations and findings.
 - **Machine Learning Models**: Implementations of predictive models with performance evaluations.
-- **Personal Experiments**: Hands-on experiments with tools, libraries, and techniques.
+- **Healthcare and Real Estate Analytics**: Applications of data science techniques in medical research and house price prediction.
 
 ---
 
 ## 📂 Featured Projects
 
-- **[Markdown Files](markdown-files.md)**: A quick guide to organizing and writing Markdown files for Jupyter Book.
-- **[Notebooks with Myst Markdown](notebooks-with-myst-markdown.md)**: Explore the use of Myst Markdown for Jupyter Notebooks.
-- **[House Prices - Advanced Regression Techniques](house-prices-advanced-regression-techniques.md)**: My Kaggle project on predicting house prices using regression techniques.
+- **[Coronary Heart Disease Study](https://docs.arnozeng.com/archive/coronary-heart-disease-study.html)**: A data-driven exploration of risk factors associated with coronary heart disease, analyzing trends and predicting potential outcomes.
+- **[House Prices - Python Implementation](https://docs.arnozeng.com/archive/house-prices-py.html)**: A machine learning project leveraging Python to predict house prices based on various real estate features.
+- **[House Prices - R Implementation](https://docs.arnozeng.com/archive/house-prices-r.html)**: An alternative implementation of the house price prediction project using R for data analysis and model training.
 
 ---
 
