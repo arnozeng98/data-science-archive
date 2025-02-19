@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -65,8 +65,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Blogs" href="blogs.html" />
-    <link rel="prev" title="House Prices (R)" href="house-prices-r.html" />
+    <link rel="next" title="COLX 531 Lab 1. Machine Translation with Huggingface Transformers" href="COLX_531_Lab_1.html" />
+    <link rel="prev" title="Tweet Sentiment Extraction" href="twitter-sentiment-extactio.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -170,19 +170,13 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="house-prices-py.html">House Prices (Python)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="house-prices-r.html">House Prices (R)</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
-<ul class="current nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="house-prices-py.html">House Prices - Advanced Regression Techniques (Python)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="house-prices-r.html">House Prices - Advanced Regression Techniques (R)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twitter-sentiment-extactio.html">Tweet Sentiment Extraction</a></li>
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Coronary Heart Disease Prediction with Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blogs.html">Blogs</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">NLP</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="cfg-parsers.html">CFG Parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="COLX_531_Lab_1.html">COLX 531 Lab 1. Machine Translation with Huggingface Transformers</a></li>
 </ul>
 
     </div>
@@ -393,6 +387,7 @@
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-missing-values">Handling Missing Values</a></li>
 </ul>
 </li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data Visualization</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-numerical-variables">Distribution of Numerical Variables</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
@@ -811,7 +806,7 @@ memory usage: 369.7 KB
 <span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Drop unnecessary columns</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;typechd&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -836,6 +831,20 @@ Categorical (<code class="docutils literal notranslate"><span class="pre">arcus<
 </div>
 </div>
 </section>
+</section>
+<section id="feature-engineering">
+<h4>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute cross features</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;bmi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Body Mass Index (BMI)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;chol_age_ratio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;chol&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Cholesterol-to-Age Ratio (avoid division by zero)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;weight_height_ratio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Weight-to-Height Ratio</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;sbp_dbp_ratio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;sdp&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;dbp&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Systolic/Diastolic Blood Pressure Ratio</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="data-visualization">
 <h4>Data Visualization<a class="headerlink" href="#data-visualization" title="Link to this heading">#</a></h4>
@@ -910,7 +919,7 @@ Categorical (<code class="docutils literal notranslate"><span class="pre">arcus<
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8b07426406a4913923a1de17e4b123baa1a49bcf942af0557a69b6374088acc2.png" src="../_images/8b07426406a4913923a1de17e4b123baa1a49bcf942af0557a69b6374088acc2.png" />
+<img alt="../_images/e3ff4aac26a5e46af3d8d8c950940eb19509d3dccd018260d4a477609427114f.png" src="../_images/e3ff4aac26a5e46af3d8d8c950940eb19509d3dccd018260d4a477609427114f.png" />
 </div>
 </div>
 <p>This heatmap displays the Pearson correlation coefficients between numerical features in the dataset. The color scale ranges from red (positive correlation) to blue (negative correlation), with values between -1 and 1.</p>
@@ -1028,7 +1037,7 @@ Categorical (<code class="docutils literal notranslate"><span class="pre">arcus<
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define categorical variables</span>
-<span class="n">cat_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">,</span> <span class="s1">&#39;dibep&#39;</span><span class="p">,</span> <span class="s1">&#39;arcus&#39;</span><span class="p">,</span> <span class="s1">&#39;typechd&#39;</span><span class="p">]</span>
+<span class="n">cat_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">,</span> <span class="s1">&#39;dibep&#39;</span><span class="p">,</span> <span class="s1">&#39;arcus&#39;</span><span class="p">]</span>
 
 <span class="c1"># Conduct chi-square test for each categorical feature</span>
 <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">cat_vars</span><span class="p">:</span>
@@ -1042,7 +1051,6 @@ Categorical (<code class="docutils literal notranslate"><span class="pre">arcus<
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-Square Test for behave: p-value = 0.00000
 Chi-Square Test for dibep: p-value = 0.00000
 Chi-Square Test for arcus: p-value = 0.00041
-Chi-Square Test for typechd: p-value = 0.00000
 </pre></div>
 </div>
 </div>
@@ -1342,10 +1350,9 @@ Chi-Square Test for typechd: p-value = 0.00000
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dibep&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dibep&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;arcus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;arcus&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;typechd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;typechd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
 <span class="c1"># One-hot encode categorical variables</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">,</span> <span class="s1">&#39;dibep&#39;</span><span class="p">,</span> <span class="s1">&#39;arcus&#39;</span><span class="p">,</span> <span class="s1">&#39;typechd&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">,</span> <span class="s1">&#39;dibep&#39;</span><span class="p">,</span> <span class="s1">&#39;arcus&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1354,7 +1361,7 @@ Chi-Square Test for typechd: p-value = 0.00000
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define features (X) and target variable (y)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chd&#39;</span><span class="p">,</span> <span class="s1">&#39;timechd&#39;</span><span class="p">,</span> <span class="s1">&#39;typechd_1&#39;</span><span class="p">,</span> <span class="s1">&#39;typechd_2&#39;</span><span class="p">,</span> <span class="s1">&#39;typechd_3&#39;</span><span class="p">])</span>  <span class="c1"># Features</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chd&#39;</span><span class="p">,</span> <span class="s1">&#39;timechd&#39;</span><span class="p">])</span>  <span class="c1"># Features</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;chd&#39;</span><span class="p">]</span>  <span class="c1"># Target variable</span>
 </pre></div>
 </div>
@@ -1389,7 +1396,7 @@ Chi-Square Test for typechd: p-value = 0.00000
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((2523, 12), (631, 12), (2523,), (631,))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((2523, 16), (631, 16), (2523,), (631,))
 </pre></div>
 </div>
 </div>
@@ -1455,6 +1462,110 @@ Chi-Square Test for typechd: p-value = 0.00000
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🔹 Logistic Regression Model Performance:
               precision    recall  f1-score   support
 
+           0       0.96      0.72      0.82       580
+           1       0.17      0.63      0.26        51
+
+    accuracy                           0.71       631
+   macro avg       0.56      0.67      0.54       631
+weighted avg       0.89      0.71      0.78       631
+
+ROC-AUC Score: 0.6749
+--------------------------------------------------
+🔹 K-Nearest Neighbors Model Performance:
+              precision    recall  f1-score   support
+
+           0       0.94      0.75      0.83       580
+           1       0.13      0.43      0.20        51
+
+    accuracy                           0.73       631
+   macro avg       0.54      0.59      0.52       631
+weighted avg       0.87      0.73      0.78       631
+
+ROC-AUC Score: 0.5915
+--------------------------------------------------
+🔹 Gradient Boosting Model Performance:
+              precision    recall  f1-score   support
+
+           0       0.94      0.94      0.94       580
+           1       0.30      0.27      0.29        51
+
+    accuracy                           0.89       631
+   macro avg       0.62      0.61      0.61       631
+weighted avg       0.89      0.89      0.89       631
+
+ROC-AUC Score: 0.6088
+--------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+
+<span class="c1"># Define models</span>
+<span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">gbm</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define hyperparameter grids</span>
+<span class="n">grids</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;knn&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]},</span>
+    <span class="s2">&quot;gbm&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]},</span>
+    <span class="s2">&quot;svm&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="s2">&quot;rbf&quot;</span><span class="p">]},</span>
+    <span class="s2">&quot;xgb&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]}</span>
+<span class="p">}</span>
+
+<span class="c1"># Perform Grid Search</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;log_reg&quot;</span><span class="p">:</span> <span class="n">log_reg</span><span class="p">,</span> <span class="s2">&quot;knn&quot;</span><span class="p">:</span> <span class="n">knn</span><span class="p">,</span> <span class="s2">&quot;gbm&quot;</span><span class="p">:</span> <span class="n">gbm</span><span class="p">,</span> <span class="s2">&quot;svm&quot;</span><span class="p">:</span> <span class="n">svm</span><span class="p">,</span> <span class="s2">&quot;xgb&quot;</span><span class="p">:</span> <span class="n">xgb</span><span class="p">}</span>
+<span class="n">best_models</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">:</span>
+        <span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">grids</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">)</span>
+        <span class="n">best_models</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best params for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">)</span>
+        <span class="n">best_models</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
+
+<span class="c1"># Predictions</span>
+<span class="n">y_preds</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">best_models</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+<span class="c1"># Evaluate Models</span>
+<span class="k">def</span> <span class="nf">evaluate_model</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔹 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> Model Performance:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ROC-AUC Score: </span><span class="si">{</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_pred</span> <span class="ow">in</span> <span class="n">y_preds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">evaluate_model</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best params for knn: {&#39;n_neighbors&#39;: 7}
+Best params for gbm: {&#39;learning_rate&#39;: 0.2, &#39;n_estimators&#39;: 150}
+Best params for svm: {&#39;C&#39;: 10, &#39;kernel&#39;: &#39;rbf&#39;}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ArnoZ\AppData\Roaming\Python\Python312\site-packages\xgboost\core.py:158: UserWarning: [16:25:11] WARNING: C:\buildkite-agent\builds\buildkite-windows-cpu-autoscaling-group-i-0c55ff5f71b100e98-1\xgboost\xgboost-ci-windows\src\learner.cc:740: 
+Parameters: { &quot;use_label_encoder&quot; } are not used.
+
+  warnings.warn(smsg, UserWarning)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best params for xgb: {&#39;learning_rate&#39;: 0.2, &#39;n_estimators&#39;: 100}
+🔹 log_reg Model Performance:
+              precision    recall  f1-score   support
+
            0       0.96      0.70      0.81       580
            1       0.16      0.65      0.26        51
 
@@ -1464,29 +1575,53 @@ weighted avg       0.89      0.70      0.77       631
 
 ROC-AUC Score: 0.6744
 --------------------------------------------------
-🔹 K-Nearest Neighbors Model Performance:
+🔹 knn Model Performance:
               precision    recall  f1-score   support
 
-           0       0.94      0.74      0.83       580
-           1       0.12      0.41      0.19        51
+           0       0.93      0.71      0.81       580
+           1       0.12      0.43      0.18        51
 
-    accuracy                           0.72       631
-   macro avg       0.53      0.58      0.51       631
-weighted avg       0.87      0.72      0.78       631
+    accuracy                           0.69       631
+   macro avg       0.53      0.57      0.49       631
+weighted avg       0.87      0.69      0.76       631
 
-ROC-AUC Score: 0.5783
+ROC-AUC Score: 0.5709
 --------------------------------------------------
-🔹 Gradient Boosting Model Performance:
+🔹 gbm Model Performance:
               precision    recall  f1-score   support
 
-           0       0.93      0.93      0.93       580
-           1       0.21      0.20      0.20        51
+           0       0.93      0.98      0.95       580
+           1       0.36      0.10      0.15        51
 
-    accuracy                           0.87       631
-   macro avg       0.57      0.57      0.57       631
-weighted avg       0.87      0.87      0.87       631
+    accuracy                           0.91       631
+   macro avg       0.64      0.54      0.55       631
+weighted avg       0.88      0.91      0.89       631
 
-ROC-AUC Score: 0.5653
+ROC-AUC Score: 0.5413
+--------------------------------------------------
+🔹 svm Model Performance:
+              precision    recall  f1-score   support
+
+           0       0.93      0.83      0.88       580
+           1       0.13      0.29      0.18        51
+
+    accuracy                           0.78       631
+   macro avg       0.53      0.56      0.53       631
+weighted avg       0.87      0.78      0.82       631
+
+ROC-AUC Score: 0.5609
+--------------------------------------------------
+🔹 xgb Model Performance:
+              precision    recall  f1-score   support
+
+           0       0.92      0.98      0.95       580
+           1       0.23      0.06      0.09        51
+
+    accuracy                           0.91       631
+   macro avg       0.58      0.52      0.52       631
+weighted avg       0.87      0.91      0.88       631
+
+ROC-AUC Score: 0.5208
 --------------------------------------------------
 </pre></div>
 </div>
@@ -1509,153 +1644,267 @@ ROC-AUC Score: 0.5653
 <h3>Deep Learning Model (MLP - Multi-Layer Perceptron)<a class="headerlink" href="#deep-learning-model-mlp-multi-layer-perceptron" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define MLP (Multi-Layer Perceptron) Model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">EarlyStopping</span><span class="p">,</span> <span class="n">ReduceLROnPlateau</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.regularizers</span> <span class="kn">import</span> <span class="n">l2</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">SMOTE</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.class_weight</span> <span class="kn">import</span> <span class="n">compute_class_weight</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Load dataset</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;wcgs&quot;</span><span class="p">,</span> <span class="s2">&quot;datawcgs.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+
+<span class="c1"># Rename columns for clarity</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;age0&quot;</span><span class="p">:</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;height0&quot;</span><span class="p">:</span> <span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;weight0&quot;</span><span class="p">:</span> <span class="s2">&quot;weight&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sbp0&quot;</span><span class="p">:</span> <span class="s2">&quot;sdp&quot;</span><span class="p">,</span> <span class="s2">&quot;dbp0&quot;</span><span class="p">:</span> <span class="s2">&quot;dbp&quot;</span><span class="p">,</span> <span class="s2">&quot;chol0&quot;</span><span class="p">:</span> <span class="s2">&quot;chol&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;behpat0&quot;</span><span class="p">:</span> <span class="s2">&quot;behave&quot;</span><span class="p">,</span> <span class="s2">&quot;ncigs0&quot;</span><span class="p">:</span> <span class="s2">&quot;cigs&quot;</span><span class="p">,</span> <span class="s2">&quot;dibpat0&quot;</span><span class="p">:</span> <span class="s2">&quot;dibep&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;chd69&quot;</span><span class="p">:</span> <span class="s2">&quot;chd&quot;</span><span class="p">,</span> <span class="s2">&quot;typechd&quot;</span><span class="p">:</span> <span class="s2">&quot;typechd&quot;</span><span class="p">,</span> <span class="s2">&quot;time169&quot;</span><span class="p">:</span> <span class="s2">&quot;timechd&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;arcus0&quot;</span><span class="p">:</span> <span class="s2">&quot;arcus&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Drop unnecessary columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;typechd&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Handle missing values</span>
+<span class="n">num_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;chol&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">num_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;chol&#39;</span><span class="p">]])</span>
+<span class="n">cat_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;arcus&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cat_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;arcus&#39;</span><span class="p">]])</span>
+
+<span class="c1"># Convert categorical variables</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;dibep&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dibep&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;arcus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;arcus&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;behave&#39;</span><span class="p">,</span> <span class="s1">&#39;dibep&#39;</span><span class="p">,</span> <span class="s1">&#39;arcus&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Define features and target variable</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chd&#39;</span><span class="p">,</span> <span class="s1">&#39;timechd&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;chd&#39;</span><span class="p">]</span>
+
+<span class="c1"># Split dataset</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Standardize numerical features</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Apply SMOTE for balancing</span>
+<span class="n">smote</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">smote</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Adjust class weights</span>
+<span class="n">class_weight_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>  <span class="c1"># Adjusted to improve recall</span>
+
+<span class="c1"># Define Focal Loss</span>
+<span class="k">def</span> <span class="nf">focal_loss</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">clip_by_value</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="mf">1e-7</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">1e-7</span><span class="p">)</span>
+        <span class="n">bce</span> <span class="o">=</span> <span class="o">-</span><span class="n">y_true</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">y_true</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="n">gamma</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_pred</span> <span class="o">**</span> <span class="n">gamma</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">weight</span> <span class="o">*</span> <span class="n">bce</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss</span>
+
+<span class="c1"># Define MLP Model</span>
 <span class="n">mlp_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)),</span>  <span class="c1"># Define the input layer</span>
-    <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
-    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span>                   <span class="c1"># Regularization to prevent overfitting</span>
-    <span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>   <span class="c1"># Hidden layer</span>
-    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
-    <span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>   <span class="c1"># Hidden layer</span>
-    <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>  <span class="c1"># Output layer (binary classification)</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;he_normal&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">l2</span><span class="p">(</span><span class="mf">0.0005</span><span class="p">)),</span>
+    <span class="n">BatchNormalization</span><span class="p">(),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.4</span><span class="p">),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;he_normal&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">l2</span><span class="p">(</span><span class="mf">0.0005</span><span class="p">)),</span>
+    <span class="n">BatchNormalization</span><span class="p">(),</span>
+    <span class="n">Dropout</span><span class="p">(</span><span class="mf">0.4</span><span class="p">),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;he_normal&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">l2</span><span class="p">(</span><span class="mf">0.0005</span><span class="p">)),</span>
+    <span class="n">BatchNormalization</span><span class="p">(),</span>
+    <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
 <span class="p">])</span>
 
 <span class="c1"># Compile Model</span>
 <span class="n">mlp_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">),</span> 
-                  <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> 
-                  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+                  <span class="n">loss</span><span class="o">=</span><span class="n">focal_loss</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">),</span> 
+                  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">AUC</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;auc&#39;</span><span class="p">)])</span>
 
-<span class="c1"># Define Early Stopping</span>
+<span class="c1"># Define Callbacks</span>
 <span class="n">early_stopping</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">reduce_lr</span> <span class="o">=</span> <span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_auc&#39;</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_lr</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
 
 <span class="c1"># Train Model</span>
 <span class="n">history</span> <span class="o">=</span> <span class="n">mlp_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">,</span> 
                          <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span> 
-                         <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> 
-                         <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> 
-                         <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">early_stopping</span><span class="p">],</span> 
-                         <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                         <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> 
+                         <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">early_stopping</span><span class="p">,</span> <span class="n">reduce_lr</span><span class="p">],</span> 
+                         <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="n">class_weight_dict</span><span class="p">)</span>
+
+<span class="c1"># TTA Prediction</span>
+<span class="k">def</span> <span class="nf">tta_predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">preds</span> <span class="o">+=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span> <span class="o">+</span> <span class="n">noise</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">preds</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
+
+<span class="n">mlp_preds</span> <span class="o">=</span> <span class="n">tta_predict</span><span class="p">(</span><span class="n">mlp_model</span><span class="p">,</span> <span class="n">X_test_scaled</span><span class="p">)</span>
 
 <span class="c1"># Evaluate Model</span>
-<span class="n">mlp_preds</span> <span class="o">=</span> <span class="p">(</span><span class="n">mlp_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">evaluate_model</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\U0001F539</span><span class="s2"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> Model Performance:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ROC-AUC Score: </span><span class="si">{</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
 
-<span class="c1"># Print Evaluation</span>
 <span class="n">evaluate_model</span><span class="p">(</span><span class="s2">&quot;Deep Learning MLP&quot;</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">mlp_preds</span><span class="p">)</span>
+
+<span class="c1"># Plot ROC Curve and Confusion Matrix</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># ROC Curve</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">mlp_preds</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;AUC: </span><span class="si">{</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">mlp_preds</span><span class="p">)</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ROC Curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Confusion Matrix</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">mlp_preds</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 3ms/step - accuracy: 0.5710 - loss: 0.6801 - val_accuracy: 0.7100 - val_loss: 0.5442
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">4s</span> 7ms/step - auc: 0.5337 - loss: 0.6695 - val_auc: 0.7256 - val_loss: 0.2002 - learning_rate: 0.0010
 Epoch 2/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.6999 - loss: 0.5855 - val_accuracy: 0.6894 - val_loss: 0.5455
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.6526 - loss: 0.4472 - val_auc: 0.7409 - val_loss: 0.1999 - learning_rate: 0.0010
 Epoch 3/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7040 - loss: 0.5747 - val_accuracy: 0.7052 - val_loss: 0.5216
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.6834 - loss: 0.4047 - val_auc: 0.7330 - val_loss: 0.2030 - learning_rate: 0.0010
 Epoch 4/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7155 - loss: 0.5594 - val_accuracy: 0.6862 - val_loss: 0.5407
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.6920 - loss: 0.3924 - val_auc: 0.7293 - val_loss: 0.1943 - learning_rate: 0.0010
 Epoch 5/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7300 - loss: 0.5351 - val_accuracy: 0.6751 - val_loss: 0.5486
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7072 - loss: 0.3831 - val_auc: 0.7283 - val_loss: 0.1914 - learning_rate: 5.0000e-04
 Epoch 6/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7232 - loss: 0.5396 - val_accuracy: 0.6973 - val_loss: 0.5278
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7351 - loss: 0.3734 - val_auc: 0.7296 - val_loss: 0.1884 - learning_rate: 5.0000e-04
 Epoch 7/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7422 - loss: 0.5192 - val_accuracy: 0.6862 - val_loss: 0.5245
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7122 - loss: 0.3796 - val_auc: 0.7254 - val_loss: 0.1864 - learning_rate: 5.0000e-04
 Epoch 8/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - accuracy: 0.7321 - loss: 0.5232 - val_accuracy: 0.6973 - val_loss: 0.5142
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7429 - loss: 0.3641 - val_auc: 0.7221 - val_loss: 0.1843 - learning_rate: 5.0000e-04
 Epoch 9/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7377 - loss: 0.5193 - val_accuracy: 0.6751 - val_loss: 0.5480
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7389 - loss: 0.3628 - val_auc: 0.7213 - val_loss: 0.1819 - learning_rate: 5.0000e-04
 Epoch 10/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7495 - loss: 0.5071 - val_accuracy: 0.6561 - val_loss: 0.5678
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7348 - loss: 0.3697 - val_auc: 0.7208 - val_loss: 0.1783 - learning_rate: 5.0000e-04
 Epoch 11/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7462 - loss: 0.4992 - val_accuracy: 0.7005 - val_loss: 0.5178
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7501 - loss: 0.3580 - val_auc: 0.7225 - val_loss: 0.1768 - learning_rate: 5.0000e-04
 Epoch 12/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7692 - loss: 0.4775 - val_accuracy: 0.7100 - val_loss: 0.5003
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7638 - loss: 0.3496 - val_auc: 0.7221 - val_loss: 0.1746 - learning_rate: 5.0000e-04
 Epoch 13/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7743 - loss: 0.4829 - val_accuracy: 0.7147 - val_loss: 0.5022
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7530 - loss: 0.3457 - val_auc: 0.7204 - val_loss: 0.1718 - learning_rate: 5.0000e-04
 Epoch 14/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7668 - loss: 0.4746 - val_accuracy: 0.7100 - val_loss: 0.5127
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7539 - loss: 0.3469 - val_auc: 0.7189 - val_loss: 0.1679 - learning_rate: 5.0000e-04
 Epoch 15/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7753 - loss: 0.4601 - val_accuracy: 0.7211 - val_loss: 0.4867
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7576 - loss: 0.3426 - val_auc: 0.7212 - val_loss: 0.1667 - learning_rate: 5.0000e-04
 Epoch 16/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7555 - loss: 0.4762 - val_accuracy: 0.6830 - val_loss: 0.5324
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7672 - loss: 0.3369 - val_auc: 0.7219 - val_loss: 0.1655 - learning_rate: 5.0000e-04
 Epoch 17/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7720 - loss: 0.4628 - val_accuracy: 0.7084 - val_loss: 0.5046
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7706 - loss: 0.3359 - val_auc: 0.7230 - val_loss: 0.1631 - learning_rate: 5.0000e-04
 Epoch 18/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7853 - loss: 0.4572 - val_accuracy: 0.6894 - val_loss: 0.5327
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7733 - loss: 0.3312 - val_auc: 0.7275 - val_loss: 0.1607 - learning_rate: 2.5000e-04
 Epoch 19/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7905 - loss: 0.4449 - val_accuracy: 0.7290 - val_loss: 0.4717
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7843 - loss: 0.3242 - val_auc: 0.7266 - val_loss: 0.1605 - learning_rate: 2.5000e-04
 Epoch 20/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7928 - loss: 0.4417 - val_accuracy: 0.7258 - val_loss: 0.4923
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7657 - loss: 0.3328 - val_auc: 0.7272 - val_loss: 0.1579 - learning_rate: 2.5000e-04
 Epoch 21/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8001 - loss: 0.4232 - val_accuracy: 0.7211 - val_loss: 0.4784
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7801 - loss: 0.3235 - val_auc: 0.7271 - val_loss: 0.1578 - learning_rate: 1.2500e-04
 Epoch 22/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8058 - loss: 0.4268 - val_accuracy: 0.7322 - val_loss: 0.4791
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7749 - loss: 0.3263 - val_auc: 0.7259 - val_loss: 0.1571 - learning_rate: 1.2500e-04
 Epoch 23/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7998 - loss: 0.4302 - val_accuracy: 0.7211 - val_loss: 0.4928
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7735 - loss: 0.3308 - val_auc: 0.7265 - val_loss: 0.1559 - learning_rate: 1.2500e-04
 Epoch 24/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.7960 - loss: 0.4185 - val_accuracy: 0.7401 - val_loss: 0.4665
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7773 - loss: 0.3260 - val_auc: 0.7278 - val_loss: 0.1549 - learning_rate: 6.2500e-05
 Epoch 25/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8036 - loss: 0.4151 - val_accuracy: 0.7242 - val_loss: 0.4950
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7800 - loss: 0.3256 - val_auc: 0.7277 - val_loss: 0.1544 - learning_rate: 6.2500e-05
 Epoch 26/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8009 - loss: 0.4183 - val_accuracy: 0.7242 - val_loss: 0.4974
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7833 - loss: 0.3250 - val_auc: 0.7262 - val_loss: 0.1547 - learning_rate: 6.2500e-05
 Epoch 27/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - accuracy: 0.8187 - loss: 0.4060 - val_accuracy: 0.7512 - val_loss: 0.4626
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7806 - loss: 0.3257 - val_auc: 0.7261 - val_loss: 0.1552 - learning_rate: 3.1250e-05
 Epoch 28/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - accuracy: 0.8126 - loss: 0.4208 - val_accuracy: 0.7353 - val_loss: 0.4835
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7779 - loss: 0.3205 - val_auc: 0.7258 - val_loss: 0.1546 - learning_rate: 3.1250e-05
 Epoch 29/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - accuracy: 0.8062 - loss: 0.4182 - val_accuracy: 0.7369 - val_loss: 0.4874
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7834 - loss: 0.3200 - val_auc: 0.7274 - val_loss: 0.1535 - learning_rate: 3.1250e-05
 Epoch 30/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8216 - loss: 0.3963 - val_accuracy: 0.7464 - val_loss: 0.4845
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7980 - loss: 0.3156 - val_auc: 0.7268 - val_loss: 0.1541 - learning_rate: 1.5625e-05
 Epoch 31/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8286 - loss: 0.3851 - val_accuracy: 0.7559 - val_loss: 0.4634
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7843 - loss: 0.3228 - val_auc: 0.7252 - val_loss: 0.1538 - learning_rate: 1.5625e-05
 Epoch 32/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8094 - loss: 0.4102 - val_accuracy: 0.7591 - val_loss: 0.4698
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7723 - loss: 0.3272 - val_auc: 0.7250 - val_loss: 0.1530 - learning_rate: 1.5625e-05
 Epoch 33/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8225 - loss: 0.3850 - val_accuracy: 0.7655 - val_loss: 0.4557
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7553 - loss: 0.3355 - val_auc: 0.7266 - val_loss: 0.1538 - learning_rate: 7.8125e-06
 Epoch 34/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8135 - loss: 0.3958 - val_accuracy: 0.7433 - val_loss: 0.4910
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7753 - loss: 0.3255 - val_auc: 0.7264 - val_loss: 0.1538 - learning_rate: 7.8125e-06
 Epoch 35/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8308 - loss: 0.3645 - val_accuracy: 0.7385 - val_loss: 0.5019
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7737 - loss: 0.3252 - val_auc: 0.7265 - val_loss: 0.1537 - learning_rate: 7.8125e-06
 Epoch 36/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8354 - loss: 0.3713 - val_accuracy: 0.7623 - val_loss: 0.4707
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7653 - loss: 0.3333 - val_auc: 0.7259 - val_loss: 0.1537 - learning_rate: 3.9063e-06
 Epoch 37/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8302 - loss: 0.3704 - val_accuracy: 0.7544 - val_loss: 0.4673
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7844 - loss: 0.3169 - val_auc: 0.7253 - val_loss: 0.1532 - learning_rate: 3.9063e-06
 Epoch 38/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8276 - loss: 0.3931 - val_accuracy: 0.7845 - val_loss: 0.4464
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 3ms/step - auc: 0.7861 - loss: 0.3204 - val_auc: 0.7265 - val_loss: 0.1532 - learning_rate: 3.9063e-06
 Epoch 39/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8313 - loss: 0.3807 - val_accuracy: 0.7686 - val_loss: 0.4661
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7741 - loss: 0.3191 - val_auc: 0.7268 - val_loss: 0.1539 - learning_rate: 1.9531e-06
 Epoch 40/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8225 - loss: 0.3826 - val_accuracy: 0.7369 - val_loss: 0.5090
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7765 - loss: 0.3218 - val_auc: 0.7277 - val_loss: 0.1540 - learning_rate: 1.9531e-06
 Epoch 41/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8355 - loss: 0.3796 - val_accuracy: 0.7496 - val_loss: 0.5049
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - auc: 0.7737 - loss: 0.3253 - val_auc: 0.7264 - val_loss: 0.1542 - learning_rate: 1.9531e-06
 Epoch 42/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8449 - loss: 0.3537 - val_accuracy: 0.7607 - val_loss: 0.4845
-Epoch 43/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8412 - loss: 0.3550 - val_accuracy: 0.7750 - val_loss: 0.4722
-Epoch 44/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8434 - loss: 0.3468 - val_accuracy: 0.7702 - val_loss: 0.4722
-Epoch 45/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8416 - loss: 0.3475 - val_accuracy: 0.7623 - val_loss: 0.4977
-Epoch 46/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8331 - loss: 0.3614 - val_accuracy: 0.7861 - val_loss: 0.4715
-Epoch 47/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8387 - loss: 0.3592 - val_accuracy: 0.7750 - val_loss: 0.4819
-Epoch 48/50
-<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step - accuracy: 0.8422 - loss: 0.3467 - val_accuracy: 0.7750 - val_loss: 0.4714
-<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 3ms/step 
+<span class=" -Color -Color-Bold">145/145</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">1s</span> 2ms/step - auc: 0.7858 - loss: 0.3233 - val_auc: 0.7262 - val_loss: 0.1539 - learning_rate: 1.0000e-06
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 6ms/step
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
+<span class=" -Color -Color-Bold">20/20</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">0s</span> 2ms/step 
 🔹 Deep Learning MLP Model Performance:
               precision    recall  f1-score   support
 
-           0       0.95      0.81      0.87       580
-           1       0.18      0.47      0.26        51
+           0       0.96      0.59      0.73       580
+           1       0.14      0.73      0.23        51
 
-    accuracy                           0.78       631
-   macro avg       0.56      0.64      0.57       631
-weighted avg       0.88      0.78      0.82       631
+    accuracy                           0.60       631
+   macro avg       0.55      0.66      0.48       631
+weighted avg       0.89      0.60      0.69       631
 
-ROC-AUC Score: 0.6413
+ROC-AUC Score: 0.6593
 --------------------------------------------------
 </pre></div>
 </div>
+<img alt="../_images/c56b774fe0f48d5a3268448bf841526baaf4d0674e7ea09f69bf00ce2bb308a9.png" src="../_images/c56b774fe0f48d5a3268448bf841526baaf4d0674e7ea09f69bf00ce2bb308a9.png" />
 </div>
 </div>
 </section>
@@ -1693,20 +1942,20 @@ ROC-AUC Score: 0.6413
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="house-prices-r.html"
+       href="twitter-sentiment-extactio.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">House Prices (R)</p>
+        <p class="prev-next-title">Tweet Sentiment Extraction</p>
       </div>
     </a>
     <a class="right-next"
-       href="blogs.html"
+       href="COLX_531_Lab_1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Blogs</p>
+        <p class="prev-next-title">COLX 531 Lab 1. Machine Translation with Huggingface Transformers</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1745,6 +1994,7 @@ ROC-AUC Score: 0.6413
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-missing-values">Handling Missing Values</a></li>
 </ul>
 </li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data Visualization</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-numerical-variables">Distribution of Numerical Variables</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
