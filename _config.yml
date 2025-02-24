@@ -34,3 +34,9 @@ html:
   use_issues_button: true
   use_repository_button: true
   baseurl: "docs.arnozeng.com"
+  use_math: true  # enable MathJax parse
+
+# Enable MathJax parsing and myst extension
+parse:
+  myst_enable_extensions:
+    - amsmath

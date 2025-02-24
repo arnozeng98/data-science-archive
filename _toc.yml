@@ -8,3 +8,4 @@ chapters:
   - file: archive/house-prices-r
   - file: archive/twitter-sentiment-extactio
   - file: archive/coronary-heart-disease-study
+  - file: archive/authorship-attribution
