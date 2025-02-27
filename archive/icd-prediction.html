@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CCL2025 Chinese Electronic Medical Record ICD Diagnosis Coding Evaluation Competition &#8212; Arno&#39;s Projects Collection</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'archive/icd-prediction';</script>
+    <link rel="canonical" href="docs.arnozeng.com/archive/icd-prediction.html" />
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="House Prices - Advanced Regression Techniques (Python)" href="house-prices-py.html" />
+    <link rel="prev" title="Arno’s Projects Collection" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Arno's Projects Collection - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Arno's Projects Collection - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Arno’s Projects Collection
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CCL2025 Chinese Electronic Medical Record ICD Diagnosis Coding Evaluation Competition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="house-prices-py.html">House Prices - Advanced Regression Techniques (Python)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="house-prices-r.html">House Prices - Advanced Regression Techniques (R)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twitter-sentiment-extactio.html">Tweet Sentiment Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coronary-heart-disease-study.html">Coronary Heart Disease Prediction with Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorship-attribution.html">Authorship Attribution</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/arnozeng98/data-science-archive" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/arnozeng98/data-science-archive/issues/new?title=Issue%20on%20page%20%2Farchive/icd-prediction.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/archive/icd-prediction.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CCL2025 Chinese Electronic Medical Record ICD Diagnosis Coding Evaluation Competition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-description">Task Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-objective">Task Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-definition">Task Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-input-output">Task Input &amp; Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-icd-code-categories">Available ICD Code Categories</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-format">Submission Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-description">Dataset Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-files">Dataset Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#field-descriptions">Field Descriptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-metrics">Evaluation Metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">Baseline</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="ccl2025-chinese-electronic-medical-record-icd-diagnosis-coding-evaluation-competition">
+<h1>CCL2025 Chinese Electronic Medical Record ICD Diagnosis Coding Evaluation Competition<a class="headerlink" href="#ccl2025-chinese-electronic-medical-record-icd-diagnosis-coding-evaluation-competition" title="Link to this heading">#</a></h1>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
+<p>In recent years, with the increasing aging population and rising health awareness, healthcare systems are facing growing service pressure. The widespread adoption of Electronic Medical Records (EMR) in medical informatization offers new possibilities to address these challenges. To achieve standardized management and sharing of medical data, the World Health Organization (WHO) has developed the International Classification of Diseases (ICD). This standard converts tens of thousands of diseases and their combinations into a standardized alphanumeric coding system, laying the foundation for cross-regional and cross-institutional medical data exchange and analysis.</p>
+<p>However, manually converting EMR text into ICD codes is time-consuming, labor-intensive, and prone to human errors. Developing an automated ICD coding system can improve coding efficiency and consistency while providing more reliable data support for disease research and medical management.</p>
+<p>To advance this goal, this competition has constructed a special dataset for evaluating automated ICD coding in Chinese EMRs. The dataset is built using de-identified medical records, covering five primary diagnosis ICD-10 codes and 53 additional diagnosis ICD-10 codes, with a total of 1,485 records.</p>
+</section>
+<section id="task-description">
+<h2>Task Description<a class="headerlink" href="#task-description" title="Link to this heading">#</a></h2>
+<section id="task-objective">
+<h3>Task Objective<a class="headerlink" href="#task-objective" title="Link to this heading">#</a></h3>
+<p>The goal of this task is to utilize Natural Language Processing (NLP) techniques to analyze patients’ clinical symptoms from electronic medical record texts, extract key symptom information, and determine both primary diagnosis codes and additional diagnosis codes. This assists doctors or medical coders in accurately completing ICD coding.</p>
+</section>
+<section id="task-definition">
+<h3>Task Definition<a class="headerlink" href="#task-definition" title="Link to this heading">#</a></h3>
+<p>Given a text description of a patient’s medical history, chief complaint, current illness history, past medical history, and discharge status, the model needs to predict:</p>
+<ul class="simple">
+<li><p>Primary Diagnosis Code (only one ICD-10 code per record)</p></li>
+<li><p>Additional Diagnosis Codes (one or more ICD-10 codes per record)</p></li>
+</ul>
+</section>
+<section id="task-input-output">
+<h3>Task Input &amp; Output<a class="headerlink" href="#task-input-output" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Input: A string (str type) containing clinical information extracted from medical records.</p></li>
+<li><p>Output: A list where the primary diagnosis code and additional diagnosis codes are separated by a <code class="docutils literal notranslate"><span class="pre">&quot;|&quot;</span></code> delimiter, and the additional diagnosis codes are separated by a <code class="docutils literal notranslate"><span class="pre">&quot;;&quot;</span></code> delimiter.</p>
+<ul>
+<li><p>Example Output Format:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s2">&quot;Primary_Diagnosis_Code|Additional_Diagnosis_Code1;Additional_Diagnosis_Code2;...&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Primary Diagnosis Code: Exactly one code from the predefined list.</p></li>
+<li><p>Additional Diagnosis Codes: One or more codes from the predefined list.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="available-icd-code-categories">
+<h3>Available ICD Code Categories<a class="headerlink" href="#available-icd-code-categories" title="Link to this heading">#</a></h3>
+<p>Primary Diagnosis Codes:</p>
+<p><code class="docutils literal notranslate"><span class="pre">I10.x00x032</span></code>, <code class="docutils literal notranslate"><span class="pre">I20.000</span></code>, <code class="docutils literal notranslate"><span class="pre">I20.800x007</span></code>, <code class="docutils literal notranslate"><span class="pre">I21.401</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.900x018</span></code></p>
+<p>Additional Diagnosis Codes (Partial List):</p>
+<p><code class="docutils literal notranslate"><span class="pre">E04.101</span></code>, <code class="docutils literal notranslate"><span class="pre">E04.102</span></code>, <code class="docutils literal notranslate"><span class="pre">E11.900</span></code>, <code class="docutils literal notranslate"><span class="pre">E14.900x001</span></code>, <code class="docutils literal notranslate"><span class="pre">E72.101</span></code>, <code class="docutils literal notranslate"><span class="pre">E78.500</span></code>, <code class="docutils literal notranslate"><span class="pre">E87.600</span></code>, <code class="docutils literal notranslate"><span class="pre">I10.x00x023</span></code>, <code class="docutils literal notranslate"><span class="pre">I10.x00x024</span></code>, <code class="docutils literal notranslate"><span class="pre">I10.x00x027</span></code>, <code class="docutils literal notranslate"><span class="pre">I10.x00x028</span></code>, <code class="docutils literal notranslate"><span class="pre">I10.x00x031</span></code>, <code class="docutils literal notranslate"><span class="pre">I10.x00x032</span></code>, <code class="docutils literal notranslate"><span class="pre">I20.000</span></code>, <code class="docutils literal notranslate"><span class="pre">I25.102</span></code>, <code class="docutils literal notranslate"><span class="pre">I25.103</span></code>, <code class="docutils literal notranslate"><span class="pre">I25.200</span></code>, <code class="docutils literal notranslate"><span class="pre">I31.800x004</span></code>, <code class="docutils literal notranslate"><span class="pre">I38.x01</span></code>, <code class="docutils literal notranslate"><span class="pre">I48.x01</span></code>, <code class="docutils literal notranslate"><span class="pre">I48.x02</span></code>, <code class="docutils literal notranslate"><span class="pre">I49.100x001</span></code>, <code class="docutils literal notranslate"><span class="pre">I49.100x002</span></code>, <code class="docutils literal notranslate"><span class="pre">I49.300x001</span></code>, <code class="docutils literal notranslate"><span class="pre">I49.300x002</span></code>, <code class="docutils literal notranslate"><span class="pre">I49.400x002</span></code>, <code class="docutils literal notranslate"><span class="pre">I49.400x003</span></code>, <code class="docutils literal notranslate"><span class="pre">I49.900</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.900x007</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.900x008</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.900x010</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.900x014</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.900x015</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.900x016</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.900x018</span></code>, <code class="docutils literal notranslate"><span class="pre">I50.907</span></code>, <code class="docutils literal notranslate"><span class="pre">I63.900</span></code>, <code class="docutils literal notranslate"><span class="pre">I67.200x011</span></code>, <code class="docutils literal notranslate"><span class="pre">I69.300x002</span></code>, <code class="docutils literal notranslate"><span class="pre">I70.203</span></code>, <code class="docutils literal notranslate"><span class="pre">I70.806</span></code>, <code class="docutils literal notranslate"><span class="pre">J18.900</span></code>, <code class="docutils literal notranslate"><span class="pre">J98.414</span></code>, <code class="docutils literal notranslate"><span class="pre">K76.000</span></code>, <code class="docutils literal notranslate"><span class="pre">K76.807</span></code>, <code class="docutils literal notranslate"><span class="pre">N19.x00x002</span></code>, <code class="docutils literal notranslate"><span class="pre">N28.101</span></code>, <code class="docutils literal notranslate"><span class="pre">Q24.501</span></code>, <code class="docutils literal notranslate"><span class="pre">R42.x00x004</span></code>, <code class="docutils literal notranslate"><span class="pre">R91.x00x003</span></code>, <code class="docutils literal notranslate"><span class="pre">Z54.000x033</span></code>, <code class="docutils literal notranslate"><span class="pre">Z95.501</span></code>, <code class="docutils literal notranslate"><span class="pre">Z98.800x612</span></code></p>
+</section>
+</section>
+<section id="submission-format">
+<h2>Submission Format<a class="headerlink" href="#submission-format" title="Link to this heading">#</a></h2>
+<p>The competition has two leaderboard phases:</p>
+<ul class="simple">
+<li><p>A-Leaderboard (Validation Set): Evaluated on the Alibaba Cloud Tianchi platform. Participants can submit up to 5 times per day (failed submissions do not count towards this limit).</p></li>
+<li><p>B-Leaderboard (Test Set): Likely used for final ranking.</p></li>
+</ul>
+<p>Example Submission:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Record_ID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZYxxxxxxx&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Prediction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Primary_Diagnosis_Code|Additional_Diagnosis_Code1;Additional_Diagnosis_Code2;...]&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Record_ID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZYyyyyyyy&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Prediction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Primary_Diagnosis_Code|Additional_Diagnosis_Code1;Additional_Diagnosis_Code2;...]&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="dataset-description">
+<h2>Dataset Description<a class="headerlink" href="#dataset-description" title="Link to this heading">#</a></h2>
+<p>The evaluation dataset is built based on de-identified hospital medical records and contains 1,485 records. It is divided into:</p>
+<ul class="simple">
+<li><p>Training set: 800 records</p></li>
+<li><p>Validation set: 200 records</p></li>
+<li><p>Test set: 485 records (not publicly available)</p></li>
+</ul>
+<p>Only the training set and validation set are publicly available, while the test set remains private.</p>
+<section id="dataset-files">
+<h3>Dataset Files<a class="headerlink" href="#dataset-files" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ICD-Coding-train.json</span></code>: Annotated training data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ICD-Coding-test-A.json</span></code>: Validation set (A-Leaderboard test set).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ICD-Coding-A.json</span></code>: Submission example for the A-Leaderboard.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ICD-Coding-test-B.json</span></code>: Test set (B-Leaderboard). This dataset is not publicly available.</p></li>
+</ul>
+</section>
+<section id="field-descriptions">
+<h3>Field Descriptions<a class="headerlink" href="#field-descriptions" title="Link to this heading">#</a></h3>
+<p>Each record in the dataset is stored in JSON format and contains the following fields:</p>
+<ul class="simple">
+<li><p>Case ID (<code class="docutils literal notranslate"><span class="pre">病案标识</span></code>): The unique patient case identifier in the hospital.</p></li>
+<li><p>Chief Complaint (<code class="docutils literal notranslate"><span class="pre">主诉</span></code>): The primary symptom described by the patient during consultation, typically summarized in a short sentence.</p></li>
+<li><p>Present Illness History (<code class="docutils literal notranslate"><span class="pre">现病史</span></code>): A detailed description of the patient’s current illness, including onset, symptom characteristics, disease progression, past treatments, and response to therapy.</p></li>
+<li><p>Past Medical History (<code class="docutils literal notranslate"><span class="pre">既往史</span></code>): The patient’s previous health conditions, major diseases, surgeries, injuries, and allergies.</p></li>
+<li><p>Personal History (<code class="docutils literal notranslate"><span class="pre">个人史</span></code>): The patient’s lifestyle habits, occupational exposure, and epidemiological history.</p></li>
+<li><p>Marital History (<code class="docutils literal notranslate"><span class="pre">婚姻史</span></code>): Information on marital status, age at marriage, spouse’s health status, and number of children.</p></li>
+<li><p>Family History (<code class="docutils literal notranslate"><span class="pre">家族史</span></code>): Family history of hereditary or specific diseases among direct relatives.</p></li>
+<li><p>Admission Condition (<code class="docutils literal notranslate"><span class="pre">入院情况</span></code>): A summary of the patient’s symptoms, signs, and overall condition at the time of hospital admission.</p></li>
+<li><p>Admission Diagnosis (<code class="docutils literal notranslate"><span class="pre">入院诊断</span></code>): The initial diagnosis made by the physician upon hospital admission based on the medical history and tests.</p></li>
+<li><p>Treatment Course (<code class="docutils literal notranslate"><span class="pre">诊疗经过</span></code>): Detailed records of the patient’s examinations, treatments, and disease progression during hospitalization.</p></li>
+<li><p>Discharge Condition (<code class="docutils literal notranslate"><span class="pre">出院情况</span></code>): A brief description of the patient’s health status at discharge.</p></li>
+<li><p>Discharge Instructions (<code class="docutils literal notranslate"><span class="pre">出院医嘱</span></code>): Guidelines provided by the physician regarding medication, follow-up, and lifestyle adjustments after discharge.</p></li>
+<li><p>Primary Diagnosis Code (<code class="docutils literal notranslate"><span class="pre">主诊断编码</span></code>): The primary ICD-10 code corresponding to the main diagnosis during hospitalization.</p></li>
+<li><p>Additional Diagnosis Codes (<code class="docutils literal notranslate"><span class="pre">其他诊断编码</span></code>): One or more ICD-10 codes corresponding to other diagnoses.</p></li>
+</ul>
+<p>Sample Data (JSON Format):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;病案标识&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZY020000982397&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;主诉&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;胸闷、喘7天。&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;现病史&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;患者于7天前无明显诱因出现胸闷、喘，呈阵发性，活动及情绪激动后明显加重，不能从事日常活动...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;既往史&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;有“冠状动脉粥样硬化性心脏病”10余年，2021年于****行“冠状动脉移植术”（具体不详）&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;个人史&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;生长于原籍，否认疫区及地方病流行区长期居住史，生活规律...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;婚姻史&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;适龄结婚，育有1子，配偶及孩子身体健康。&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;家族史&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;父母已逝，具体不详。否认家族性遗传病及传染病史。&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;入院情况&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;患者老年男性，76岁，因“胸闷、喘7天”入院...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;入院诊断&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.急性失代偿性心力衰竭心功能II级（Killip分级）2.肺炎3.急性呼吸衰竭（I型）&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;诊疗经过&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;入院后完善相关辅助检查，凝血常规：凝血酶原时间：13.1秒...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;出院情况&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;双侧瞳孔等大等圆，对光反射及调节反射存在...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;出院医嘱&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1、低盐低脂饮食，注意休息，避免劳累，按时服药...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;主诊断编码&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;J81.x00x002&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;其他诊断编码&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I50.907; I50.903; I25.103; I20.000; I49.900; I48.x01;E11.900&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="evaluation-metrics">
+<h2>Evaluation Metrics<a class="headerlink" href="#evaluation-metrics" title="Link to this heading">#</a></h2>
+<p>The competition evaluates ICD coding accuracy using the accuracy (Acc) metric, calculated as:</p>
+<p>$$
+\text{Acc} = \frac{1}{N} \sum_{i=1}^{N} \lbrace 0.5 \cdot I(\hat{y}<em>{\text{main}} == y</em>{\text{main}}) + 0.5 \cdot \frac{\text{NUM}(y_{\text{other}} \cap \hat{y}<em>{\text{other}})}{\text{NUM}(y</em>{\text{other}})} \rbrace_{i}
+$$</p>
+<p>Where $I(\cdot)$ is an indicator function that returns <code class="docutils literal notranslate"><span class="pre">1</span></code> if the condition is met and <code class="docutils literal notranslate"><span class="pre">0</span></code>otherwise. $\hat{y}<em>{\text{main}}$ and $y</em>{\text{main}}$ represent the predicted label and true label of the main diagnosis code, respectively. $\text{NUM}(x)$ represents a quantity function that is used to calculate the number of $x$ . $\hat{y}<em>{\text{other}}$ and $y</em>{\text{other}}$ represent the predicted label set and true label set of other diagnosis codes, respectively. $N$ is the number of test samples. $\lbrace \cdot \rbrace_i$ is the prediction accuracy of the <code class="docutils literal notranslate"><span class="pre">i-th</span></code> Chinese electronic medical record.</p>
+</section>
+<section id="baseline">
+<h2>Baseline<a class="headerlink" href="#baseline" title="Link to this heading">#</a></h2>
+<p>Performance of baseline model:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>acc</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>41.34%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./archive"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Arno’s Projects Collection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="house-prices-py.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">House Prices - Advanced Regression Techniques (Python)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-description">Task Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-objective">Task Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-definition">Task Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-input-output">Task Input &amp; Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-icd-code-categories">Available ICD Code Categories</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-format">Submission Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-description">Dataset Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-files">Dataset Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#field-descriptions">Field Descriptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-metrics">Evaluation Metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">Baseline</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arno Zeng
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
