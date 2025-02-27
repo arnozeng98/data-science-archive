@@ -4,8 +4,9 @@
 format: jb-book
 root: archive/intro
 chapters:
+  - file: archive/icd-prediction
   - file: archive/house-prices-py
   - file: archive/house-prices-r
-  - file: archive/twitter-sentiment-extactio
+  - file: archive/twitter-sentiment-extaction
   - file: archive/coronary-heart-disease-study
   - file: archive/authorship-attribution
